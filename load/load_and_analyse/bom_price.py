@@ -1,0 +1,91 @@
+#!/usr/bin/python
+#coding:UTF-8
+import MySQLdb
+import numpy as np
+import sys 
+from decimal import *
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+
+
+def updateBomTotalPrice(goods_code,price):
+	print goods_code,price
+	db = MySQLdb.connect("127.0.0.1","root","","tmall",charset='utf8');
+	detail = db.cursor(MySQLdb.cursors.DictCursor)
+
+	value=[str(price),goods_code]
+	detail.execute('update BOM set price=%s where product_name=%s', value);
+	db.commit();
+	detail.close();
+	db.close();
+
+def getPriceBySku(goods_id):
+	db = MySQLdb.connect("127.0.0.1","root","","tmall",charset='utf8');
+        detail = db.cursor(MySQLdb.cursors.DictCursor)
+        value=[goods_id]
+        detail.execute('select price from t_bas_sku_price where sku_id =%s',value);
+	db.commit();
+	detail.close();
+	db.close();
+        if detail.rowcount ==0:
+                 return "0"
+        else:
+                row = detail.fetchone();
+                return row["price"]
+
+
+def getPriceList():
+	db = MySQLdb.connect("127.0.0.1","root","","tmall",charset='utf8');
+        fields = db.cursor(MySQLdb.cursors.DictCursor)
+	fields.execute("desc BOM")
+	data = fields.fetchall();
+        lst = [];
+	result = [];
+	fields = [];
+        for row in data:
+                lst.append(row["Field"])
+        for i in range(3,len(lst)):
+		result.append(getPriceBySku(lst[i]))
+		fields.append(lst[i])
+	return result,fields
+
+
+db = MySQLdb.connect("127.0.0.1","root","","tmall",charset='utf8');
+bom = db.cursor(MySQLdb.cursors.DictCursor)
+
+try:
+        bom.execute("select * from BOM")
+        bom_data = bom.fetchall();
+	priceList,fields = getPriceList();
+	print priceList,fields
+	bomGoodsNum = []
+	bomProductLst = []
+        for row in bom_data:
+		row_goods_num = []
+		bomProductLst.append(row['product_name'])
+		for i in range(0,len(fields)):
+			goods_num = row[fields[i]]
+			
+			if goods_num <>"" and goods_num is not None:
+				row_goods_num.append(int(goods_num))
+			else:
+				row_goods_num.append(0)
+		print row_goods_num
+
+		bomGoodsNum.append(row_goods_num)
+
+	bomPrice = np.dot(bomGoodsNum,priceList)
+
+
+	print priceList,bomPrice
+	for i in range(len(bomProductLst)):
+		updateBomTotalPrice(bomProductLst[i],bomPrice[i])
+	
+except Exception,e:
+        print "error: unable fetch data",e.args
+
+db.close();
+
+print "search complete"

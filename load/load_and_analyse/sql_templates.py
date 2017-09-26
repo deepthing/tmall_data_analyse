@@ -84,7 +84,6 @@ class sql_templates():
 	tpye_transaction = '''
 	LOAD DATA LOCAL INFILE '@templates_filename' INTO TABLE load_transaction_info CHARACTER
 	SET 'gbk' FIELDS ESCAPED BY '\\\\' TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\\n' IGNORE 1 LINES(
-		@num ,
 		order_id ,
 		goods_code ,
 		goods_name ,
@@ -193,6 +192,7 @@ class sql_templates():
 	'''
 
 	type_fee = '''
+
 	LOAD DATA LOCAL INFILE '@templates_filename' INTO TABLE load_fee_info CHARACTER
 	SET 'gbk' FIELDS ESCAPED BY '\\\\' TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\\n' IGNORE 1 LINES(
 		Payment_time ,
@@ -207,7 +207,7 @@ class sql_templates():
 		Foreign_fee_amount ,
 		Fee_desc
 	)
-	SET load_time = now();
+	SET Fee_date = '@templates_fee_date';
 	'''
 
 	type_strade = '''

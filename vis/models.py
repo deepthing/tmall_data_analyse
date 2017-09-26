@@ -10,7 +10,134 @@ from __future__ import unicode_literals
 from django.db import models
 
 
+class Bom(models.Model):
+    num = models.CharField(db_column='Num', primary_key=True, max_length=255)  # Field name made lowercase.
+    product_name = models.CharField(max_length=255, blank=True, null=True)
+    price = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    xy521077050523 = models.CharField(db_column='XY521077050523', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521077162825 = models.CharField(db_column='XY521077162825', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521078232623 = models.CharField(db_column='XY521078232623', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521067771349 = models.CharField(db_column='XY521067771349', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521073901132 = models.CharField(db_column='XY521073901132', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521078064529 = models.CharField(db_column='XY521078064529', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521074093868 = models.CharField(db_column='XY521074093868', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521078390258 = models.CharField(db_column='XY521078390258', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521077912497 = models.CharField(db_column='XY521077912497', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521074249153 = models.CharField(db_column='XY521074249153', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521074725008 = models.CharField(db_column='XY521074725008', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    xy521068155265 = models.CharField(db_column='XY521068155265', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    number_708390000203 = models.CharField(db_column='708390000203', max_length=255, blank=True, null=True)  # Field renamed because it wasn't a valid Python identifier.
+    number_708390000210 = models.CharField(db_column='708390000210', max_length=255, blank=True, null=True)  # Field renamed because it wasn't a valid Python identifier.
+    number_708390000227 = models.CharField(db_column='708390000227', max_length=255, blank=True, null=True)  # Field renamed because it wasn't a valid Python identifier.
+    number_7290108800098 = models.CharField(db_column='7290108800098', max_length=255, blank=True, null=True)  # Field renamed because it wasn't a valid Python identifier.
+
+    class Meta:
+        managed = False
+        db_table = 'BOM'
+
+
+class Item(models.Model):
+    num = models.CharField(db_column='Num', primary_key=True, max_length=255)  # Field name made lowercase.
+    field_field = models.CharField(db_column='\u8d27\u54c1\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_field_0 = models.CharField(db_column='\u8d27\u54c1\u540d\u79f0', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_id = models.CharField(db_column='\u8d27\u54c1id', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    field_field_1 = models.CharField(db_column='\u54c1\u7c7b\u540d\u79f0', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_2 = models.CharField(db_column='\u54c1\u724c\u540d\u79f0', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_3 = models.CharField(db_column='\u4ea7\u54c1\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_4 = models.CharField(db_column='\u6761\u5f62\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_5 = models.CharField(db_column='\u8d27\u54c1\u7c7b\u578b', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_6 = models.CharField(db_column='\u540a\u724c\u4ef7', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_7 = models.CharField(db_column='\u96f6\u552e\u4ef7', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_8 = models.CharField(db_column='\u6210\u672c\u4ef7', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_9 = models.CharField(db_column='\u533a\u57df\u9500\u552e', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_10 = models.CharField(db_column='\u6613\u788e\u54c1', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_11 = models.CharField(db_column='\u5371\u9669\u54c1', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_12 = models.CharField(db_column='\u6548\u671f\u7ba1\u7406', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_13 = models.CharField(db_column='\u6709\u6548\u671f\uff08\u5929\uff09', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_14 = models.CharField(db_column='\u4e34\u671f\u9884\u8b66\uff08\u5929\uff09', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_15 = models.CharField(db_column='\u7981\u552e\u5929\u6570\uff08\u5929\uff09', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_16 = models.CharField(db_column='\u7981\u6536\u5929\u6570\uff08\u5929\uff09', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_cm3_field = models.CharField(db_column='\u4f53\u79ef\uff08cm3\uff09', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_field_17 = models.CharField(db_column='\u957f', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_18 = models.CharField(db_column='\u5bbd', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_19 = models.CharField(db_column='\u9ad8', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_20 = models.CharField(db_column='\u91cd\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_21 = models.CharField(db_column='\u6bdb\u91cd', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_22 = models.CharField(db_column='\u51c0\u91cd', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_23 = models.CharField(db_column='\u76ae\u91cd', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_24 = models.CharField(db_column='\u7bb1\u88c5\u6570', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_25 = models.CharField(db_column='\u4f53\u79ef-\u8fd0\u8f93\u5355\u5143', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_26 = models.CharField(db_column='\u957f-\u8fd0\u8f93\u5355\u5143', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_27 = models.CharField(db_column='\u5bbd-\u8fd0\u8f93\u5355\u5143', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_28 = models.CharField(db_column='\u9ad8-\u8fd0\u8f93\u5355\u5143', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_29 = models.CharField(db_column='\u91cd\u91cf-\u8fd0\u8f93\u5355\u5143', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_30 = models.CharField(db_column='\u7a0e\u7387', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_31 = models.CharField(db_column='\u7a0e\u7387\u5206\u7c7b\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_32 = models.CharField(db_column='\u5305\u542b\u7535\u6c60', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_33 = models.CharField(db_column='\u751f\u4ea7\u6279\u53f7\u7ba1\u7406', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_field_34 = models.CharField(db_column='\u5305\u88c5\u65b9\u5f0f', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_1_field = models.CharField(db_column='\u5b50\u8d27\u54c11\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_1_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c11\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_2_field = models.CharField(db_column='\u5b50\u8d27\u54c12\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_2_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c12\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_3_field = models.CharField(db_column='\u5b50\u8d27\u54c13\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_3_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c13\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_4_field = models.CharField(db_column='\u5b50\u8d27\u54c14\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_4_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c14\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_5_field = models.CharField(db_column='\u5b50\u8d27\u54c15\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_5_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c15\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_6_field = models.CharField(db_column='\u5b50\u8d27\u54c16\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_6_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c16\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_7_field = models.CharField(db_column='\u5b50\u8d27\u54c17\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_7_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c17\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_8_field = models.CharField(db_column='\u5b50\u8d27\u54c18\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_8_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c18\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_9_field = models.CharField(db_column='\u5b50\u8d27\u54c19\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_9_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c19\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_10_field = models.CharField(db_column='\u5b50\u8d27\u54c110\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_10_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c110\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_11_field = models.CharField(db_column='\u5b50\u8d27\u54c111\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_11_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c111\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_12_field = models.CharField(db_column='\u5b50\u8d27\u54c112\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_12_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c112\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_13_field = models.CharField(db_column='\u5b50\u8d27\u54c113\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_13_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c113\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_14_field = models.CharField(db_column='\u5b50\u8d27\u54c114\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_14_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c114\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_15_field = models.CharField(db_column='\u5b50\u8d27\u54c115\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_15_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c115\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_16_field = models.CharField(db_column='\u5b50\u8d27\u54c116\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_16_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c116\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_17_field = models.CharField(db_column='\u5b50\u8d27\u54c117\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_17_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c117\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_18_field = models.CharField(db_column='\u5b50\u8d27\u54c118\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_18_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c118\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_19_field = models.CharField(db_column='\u5b50\u8d27\u54c119\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_19_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c119\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+    field_20_field = models.CharField(db_column='\u5b50\u8d27\u54c120\u7f16\u7801', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'.
+    field_20_field_0 = models.CharField(db_column='\u5b50\u8d27\u54c120\u6570\u91cf', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'. Field renamed because it ended with '_'. Field renamed because of name conflict.
+
+    class Meta:
+        managed = False
+        db_table = 'ITEM'
+
+
+
+class BomDetail(models.Model):
+    product_name = models.CharField(max_length=255, blank=True, null=True)
+    goods_id = models.CharField(max_length=255, blank=True, null=True)
+    goods_name = models.CharField(max_length=255, blank=True, null=True)
+    goods_count = models.IntegerField(blank=True, null=True)
+    rate = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'bom_detail'
+
+
+
 class LoadFeeInfo(models.Model):
+    fee_date = models.CharField(db_column='Fee_date', max_length=20, blank=True, null=True)  # Field name made lowercase.
     payment_time = models.DateTimeField(db_column='Payment_time', blank=True, null=True)  # Field name made lowercase.
     transaction_id = models.CharField(db_column='Transaction_id', max_length=50, blank=True, null=True)  # Field name made lowercase.
     partner_transaction_id = models.CharField(db_column='Partner_transaction_id', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -22,7 +149,6 @@ class LoadFeeInfo(models.Model):
     fee_amount = models.DecimalField(db_column='Fee_amount', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
     foreign_fee_amount = models.DecimalField(db_column='Foreign_fee_amount', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
     fee_desc = models.CharField(db_column='Fee_desc', max_length=200, blank=True, null=True)  # Field name made lowercase.
-    load_time = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -83,6 +209,7 @@ class LoadMyaccountInfo(models.Model):
     balance = models.DecimalField(db_column='Balance', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
     trans_date = models.DateTimeField(db_column='Trans_Date', blank=True, null=True)  # Field name made lowercase.
     remarks = models.CharField(db_column='Remarks', max_length=200, blank=True, null=True)  # Field name made lowercase.
+    alipay_order = models.CharField(db_column='Alipay_Order', max_length=200, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -264,6 +391,8 @@ class LoadTmallsodetailInfo(models.Model):
     memo = models.CharField(max_length=20)
     order_status = models.CharField(max_length=20)
     shop_code = models.CharField(max_length=20)
+    goods_rate = models.DecimalField(max_digits=18, decimal_places=4, blank=True, null=True)
+    goods_total = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -291,6 +420,7 @@ class LoadTransactionInfo(models.Model):
 
 
 class TBasAreaInfo(models.Model):
+    seq_no = models.AutoField(primary_key=True)
     area_code = models.CharField(max_length=1, blank=True, null=True)
     area_name = models.CharField(max_length=60, blank=True, null=True)
     province = models.CharField(max_length=60, blank=True, null=True)
@@ -302,6 +432,7 @@ class TBasAreaInfo(models.Model):
 
 
 class TBasSkuPrice(models.Model):
+    seq_no = models.AutoField(primary_key=True)
     sku_id = models.CharField(max_length=80, blank=True, null=True)
     sku_name = models.CharField(max_length=80, blank=True, null=True)
     price = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
@@ -432,8 +563,8 @@ class TGroupStradeInfo(models.Model):
     order_id = models.CharField(max_length=255, blank=True, null=True)
     alipay_actual_recieve = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
     refund = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
-    alipy_strade_p = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
-    alipy_strade_r = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    alipay_strade_p = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    alipay_strade_r = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
     alipay_actual_recieve_usd = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
     refund_usd = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
     alipay_strade_p_usd = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
@@ -514,20 +645,20 @@ class TOrderAmount(models.Model):
 
 
 class TOrderAnalyse(models.Model):
-    fin_period = models.CharField(max_length=20)
-    area_info = models.CharField(max_length=255)
-    order_num = models.CharField(max_length=18)
-    saled_num = models.CharField(max_length=18)
-    closed_num = models.CharField(max_length=18)
-    waiting_num = models.CharField(max_length=18)
-    close_unpaid_num = models.CharField(max_length=18)
-    close_return_num = models.CharField(max_length=18)
-    order_amount = models.CharField(max_length=18)
-    saled_amount = models.CharField(max_length=18)
-    closed_amount = models.CharField(max_length=18)
-    waiting_amount = models.CharField(max_length=18)
-    close_unpaid_amount = models.CharField(max_length=18)
-    close_return_amount = models.CharField(max_length=18)
+    fin_period = models.CharField(max_length=20, blank=True, null=True)
+    area_info = models.CharField(max_length=255, blank=True, null=True)
+    order_num = models.CharField(max_length=18, blank=True, null=True)
+    saled_num = models.CharField(max_length=18, blank=True, null=True)
+    closed_num = models.CharField(max_length=18, blank=True, null=True)
+    waiting_num = models.CharField(max_length=18, blank=True, null=True)
+    close_unpaid_num = models.CharField(max_length=18, blank=True, null=True)
+    close_return_num = models.CharField(max_length=18, blank=True, null=True)
+    order_amount = models.CharField(max_length=18, blank=True, null=True)
+    saled_amount = models.CharField(max_length=18, blank=True, null=True)
+    closed_amount = models.CharField(max_length=18, blank=True, null=True)
+    waiting_amount = models.CharField(max_length=18, blank=True, null=True)
+    close_unpaid_amount = models.CharField(max_length=18, blank=True, null=True)
+    close_return_amount = models.CharField(max_length=18, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -538,7 +669,7 @@ class TOrderArea(models.Model):
     fin_period = models.CharField(max_length=20)
     area_info = models.CharField(max_length=200)
     province = models.CharField(max_length=200)
-    order_number = models.DecimalField(max_digits=18, decimal_places=2)
+    order_number = models.IntegerField()
     order_amount = models.DecimalField(max_digits=18, decimal_places=2)
 
     class Meta:
@@ -551,28 +682,7 @@ class TPeriodNumInfo(models.Model):
     goods_name = models.CharField(max_length=200, blank=True, null=True)
     fee_order = models.CharField(max_length=2, blank=True, null=True)
     fee_type = models.CharField(max_length=200, blank=True, null=True)
-    p201509 = models.DecimalField(db_column='P201509', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201510 = models.DecimalField(db_column='P201510', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201511 = models.DecimalField(db_column='P201511', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201512 = models.DecimalField(db_column='P201512', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201601 = models.DecimalField(db_column='P201601', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201602 = models.DecimalField(db_column='P201602', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201603 = models.DecimalField(db_column='P201603', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201604 = models.DecimalField(db_column='P201604', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201605 = models.DecimalField(db_column='P201605', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201606 = models.DecimalField(db_column='P201606', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201607 = models.DecimalField(db_column='P201607', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201608 = models.DecimalField(db_column='P201608', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201609 = models.DecimalField(db_column='P201609', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201610 = models.DecimalField(db_column='P201610', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201611 = models.DecimalField(db_column='P201611', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201612 = models.DecimalField(db_column='P201612', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201701 = models.DecimalField(db_column='P201701', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201702 = models.DecimalField(db_column='P201702', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201703 = models.DecimalField(db_column='P201703', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201704 = models.DecimalField(db_column='P201704', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201705 = models.DecimalField(db_column='P201705', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    p201706 = models.DecimalField(db_column='P201706', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201707 = models.DecimalField(db_column='P201707', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -605,6 +715,27 @@ class TSettleAmountInfo(models.Model):
     class Meta:
         managed = False
         db_table = 't_settle_amount_info'
+
+
+class TSettleFeeInfo(models.Model):
+    seq_no = models.AutoField(primary_key=True)
+    fee_time = models.CharField(max_length=20, blank=True, null=True)
+    logisitic_tax = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    logisitic_service = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    alipay_service = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    tmall = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    juhuasuan = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    logisitic_tax_usd = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    logisitic_service_usd = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    alipay_service_usd = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    tmall_usd = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    juhuasuan_usd = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    order_fee = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    account_fee = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 't_settle_fee_info'
 
 
 class TSettlefeeMonthlyInfo(models.Model):
@@ -662,3 +793,18 @@ class TTransactionGroupInfo(models.Model):
     class Meta:
         managed = False
         db_table = 't_transaction_group_info'
+
+
+class TmpTmallMonthly(models.Model):
+    period = models.CharField(max_length=10, blank=True, null=True)
+    order_id = models.CharField(max_length=20, blank=True, null=True)
+    goods_id = models.CharField(max_length=255, blank=True, null=True)
+    product_name = models.CharField(max_length=255, blank=True, null=True)
+    number = models.IntegerField(blank=True, null=True)
+    amount = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    order_status = models.CharField(max_length=40, blank=True, null=True)
+    deal_amount = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tmp_tmall_monthly'
