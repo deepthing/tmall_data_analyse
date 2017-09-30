@@ -16,15 +16,16 @@ def updatePrice(goods_code,period,fee_type,price):
         detail = db.cursor(MySQLdb.cursors.DictCursor)
 
         value=[str(price),goods_code,fee_type]
-        detail.execute('update t_period_num_info set '+period+'=%s where goods_id=%s and fee_type=%s', value);
+        detail.execute('update t_period_nums_info set '+period+'=%s where goods_id=%s and fee_type=%s', value);
         db.commit();
         detail.close();
         db.close();
 
 def createColumn(period):
-        db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
-        detail = db.cursor(MySQLdb.cursors.DictCursor)
-        detail.execute('alter TABLE t_period_num_info add '+period+' DECIMAL(18,2)');
+    	print "period:"+period
+        db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8')
+        detail = db.cursor()
+        detail.execute('ALTER TABLE t_period_nums_info ADD '+period+' DECIMAL(18,2)')
 
 
 def getData(period):
@@ -81,6 +82,7 @@ try:
 			diff_inventory = sub_row['diff_inventory']
 			in_out_num = sub_row['in_out_num']
 			trans_amount = sub_row['trans_amount']
+			
 			
 			updatePrice(goods_id,col_period,'sale_num',sale_num);
 			updatePrice(goods_id,col_period,'sale_out_number',sale_out_number);

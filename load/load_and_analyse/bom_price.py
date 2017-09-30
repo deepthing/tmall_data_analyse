@@ -12,7 +12,7 @@ sys.setdefaultencoding('utf-8')
 
 def updateBomTotalPrice(goods_code,price):
 	print goods_code,price
-	db = MySQLdb.connect("127.0.0.1","root","","tmall",charset='utf8');
+	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
 	detail = db.cursor(MySQLdb.cursors.DictCursor)
 
 	value=[str(price),goods_code]
@@ -21,25 +21,23 @@ def updateBomTotalPrice(goods_code,price):
 	detail.close();
 	db.close();
 
-def getPriceBySku(goods_id):
-	db = MySQLdb.connect("127.0.0.1","root","","tmall",charset='utf8');
-        detail = db.cursor(MySQLdb.cursors.DictCursor)
-        value=[goods_id]
-        detail.execute('select price from t_bas_sku_price where sku_id =%s',value);
-	db.commit();
-	detail.close();
-	db.close();
-        if detail.rowcount ==0:
-                 return "0"
-        else:
-                row = detail.fetchone();
-                return row["price"]
+
 
 
 def getPriceList():
-	db = MySQLdb.connect("127.0.0.1","root","","tmall",charset='utf8');
+	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
         fields = db.cursor(MySQLdb.cursors.DictCursor)
 	fields.execute("desc BOM")
+	def getPriceBySku(goods_id):
+		db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+		detail = db.cursor(MySQLdb.cursors.DictCursor)
+		value=[goods_id]
+		detail.execute('select price from t_bas_sku_price where sku_id =%s',value);
+		if detail.rowcount ==0:
+			return "0"
+		else:
+			row = detail.fetchone();
+			return row["price"]
 	data = fields.fetchall();
         lst = [];
 	result = [];
@@ -47,12 +45,16 @@ def getPriceList():
         for row in data:
                 lst.append(row["Field"])
         for i in range(3,len(lst)):
-		result.append(getPriceBySku(lst[i]))
+    		print '-->'+lst[i]
+		
+		price = getPriceBySku(lst[i])
+		result.append(price)
+
 		fields.append(lst[i])
 	return result,fields
 
 
-db = MySQLdb.connect("127.0.0.1","root","","tmall",charset='utf8');
+db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
 bom = db.cursor(MySQLdb.cursors.DictCursor)
 
 try:
@@ -87,5 +89,4 @@ except Exception,e:
         print "error: unable fetch data",e.args
 
 db.close();
-
 print "search complete"

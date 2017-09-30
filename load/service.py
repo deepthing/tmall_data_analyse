@@ -101,52 +101,58 @@ def execsql(name):
     commands.getstatusoutput(sql)
 
 
-def analyse_data():
+def analyse_data(num):
     try:
-
-        print "更新BOM信息表"
-        # execfile("load_and_analyse/bom_price.py")
-
-        print "订单数量分析 - 状态分析"
-        execsql("load_and_analyse/sql/t_order_analyse.sql")
-
-        print "订单数量分析 - 账号分析"
-        execsql("load_and_analyse/sql/t_buyer_info.sql")
-
-        print "订单数量分析 - 区域分析"
-        execsql("load_and_analyse/sql/t_order_area.sql")
-
-        print "订单金额分析 - 订单金额"
-        execsql("load_and_analyse/sql/t_group_strade_info.sql")
-        execsql("load_and_analyse/sql/t_order_amount.sql")
-
-        print "订单金额分析 - 订单费用"
-        execsql("load_and_analyse/sql/t_fee_info.sql")
-
-        print "订单金额分析 - 月份金额"
-        execsql("load_and_analyse/sql/t_monthly_order_amount.sql")
-
-        print "订单金额分析 - 月份费用"
-        execsql("load_and_analyse/sql/t_fee_monthly_info.sql")
-
-        print "库存数量分析"
-        execsql("load_and_analyse/sql/t_good_num_info.sql")
-        execfile("load_and_analyse/inventory.py")
-
-        print "订单提取时间 - 金额统计"
-        execsql("load_and_analyse/sql/t_settle_amount_info.sql")
-
-        print "订单提取时间 - 费用明细"
-        execsql("load_and_analyse/sql/t_settle_fee_info.sql")
-
-        print "我的账户支出"
-        execsql("load_and_analyse/sql/t_myaccount_monthly_info.sql")
-
-        print "库存数量分析 - 行转列"
-        execsql("load_and_analyse/sql/init_t_period_num_info.sql")
-        execfile("load_and_analyse/goods_num.py")
+        if(num ==0 or num == 1):
+            print "初始化&&更新BOM信息表"
+            execsql("load_and_analyse/sql/init.sql")
+            execfile("load_and_analyse/bom.py")
+            execfile("load_and_analyse/bom_price.py")
+        if(num ==0 or num == 2):
+            print "订单数量分析 - 状态分析"
+            execsql("load_and_analyse/sql/t_order_analyse.sql")
+        if(num ==0 or num == 3):
+            print "订单数量分析 - 账号分析"
+            execsql("load_and_analyse/sql/t_buyer_info.sql")
+        if(num ==0 or num == 4):
+            print "订单数量分析 - 区域分析"
+            execsql("load_and_analyse/sql/t_order_area.sql")
+        if(num ==0 or num == 5):
+            print "订单金额分析 - 订单金额"
+            execsql("load_and_analyse/sql/t_group_strade_info.sql")
+            execsql("load_and_analyse/sql/t_order_amount.sql")
+        if(num ==0 or num == 6):
+           print "订单金额分析 - 订单费用"
+           execsql("load_and_analyse/sql/t_fee_info.sql")
+        if(num ==0 or num == 7):
+            print "订单金额分析 - 月份金额"
+            execsql("load_and_analyse/sql/t_monthly_order_amount.sql")
+        if(num ==0 or num == 8):
+            print "订单金额分析 - 月份费用"
+            execsql("load_and_analyse/sql/t_fee_monthly_info.sql")
+        if(num ==0 or num == 9):
+            print "bom更新"
+            execsql("load_and_analyse/sql/temp_product_info.sql")
+            execfile("load_and_analyse/bom_update.py")
+        if(num ==0 or num == 10):
+            print "库存数量分析"
+            execsql("load_and_analyse/sql/t_good_num_info.sql")
+            execfile("load_and_analyse/inventory.py")
+        if(num ==0 or num == 11):
+            print "订单提取时间 - 金额统计"
+            execsql("load_and_analyse/sql/t_settle_amount_info.sql")
+        if(num ==0 or num == 12):
+            print "订单提取时间 - 费用明细"
+            execsql("load_and_analyse/sql/t_settle_fee_info.sql")
+        if(num ==0 or num == 13):
+            print "我的账户支出"
+            execsql("load_and_analyse/sql/t_myaccount_monthly_info.sql")
+        if(num ==0 or num == 14):
+            print "库存数量分析 - 行转列"
+            execsql("load_and_analyse/sql/init_t_period_num_info.sql")
+            execfile("load_and_analyse/goods_num.py")
         
-        
+        print '执行完毕'
     except Exception,e:
         print str(e)
 

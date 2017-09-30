@@ -101,7 +101,6 @@ class sql_templates():
 	type_inventory = '''
 	LOAD DATA LOCAL INFILE '@templates_filename' INTO TABLE load_inventory_info CHARACTER
 	SET 'gbk' FIELDS ESCAPED BY '\\\\' TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\\n' IGNORE 1 LINES(
-		@num ,
 		period ,
 		goods_id ,
 		goods_code ,
