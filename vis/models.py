@@ -11,7 +11,7 @@ from django.db import models
 
 
 class Bom(models.Model):
-    num = models.CharField(db_column='Num', primary_key=True, max_length=255)  # Field name made lowercase.
+    num = models.AutoField(db_column='Num', primary_key=True)  # Field name made lowercase.
     product_name = models.CharField(max_length=255, blank=True, null=True)
     price = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
     xy521077050523 = models.CharField(db_column='XY521077050523', max_length=255, blank=True, null=True)  # Field name made lowercase.
@@ -122,7 +122,6 @@ class Item(models.Model):
         db_table = 'ITEM'
 
 
-
 class BomDetail(models.Model):
     product_name = models.CharField(max_length=255, blank=True, null=True)
     goods_id = models.CharField(max_length=255, blank=True, null=True)
@@ -134,6 +133,15 @@ class BomDetail(models.Model):
         managed = False
         db_table = 'bom_detail'
 
+
+class DjangoMigrations(models.Model):
+    app = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    applied = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_migrations'
 
 
 class LoadFeeInfo(models.Model):
@@ -286,6 +294,28 @@ class LoadSettledetailsInfo(models.Model):
         db_table = 'load_settledetails_info'
 
 
+class LoadSettledetailsInfoCopy(models.Model):
+    partner_transaction_id = models.CharField(db_column='Partner_transaction_id', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    amount = models.DecimalField(db_column='Amount', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    rmb_amount = models.DecimalField(db_column='Rmb_amount', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    fee = models.DecimalField(db_column='Fee', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    settlement = models.DecimalField(db_column='Settlement', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    rmb_settlement = models.DecimalField(db_column='Rmb_settlement', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    currency = models.CharField(db_column='Currency', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    rate = models.DecimalField(db_column='Rate', max_digits=18, decimal_places=8, blank=True, null=True)  # Field name made lowercase.
+    payment_time = models.DateTimeField(db_column='Payment_time', blank=True, null=True)  # Field name made lowercase.
+    settlement_time = models.DateTimeField(db_column='Settlement_time', blank=True, null=True)  # Field name made lowercase.
+    type = models.CharField(db_column='Type', max_length=3, blank=True, null=True)  # Field name made lowercase.
+    statu = models.CharField(db_column='Statu', max_length=3, blank=True, null=True)  # Field name made lowercase.
+    stem_from = models.CharField(db_column='Stem_from', max_length=3, blank=True, null=True)  # Field name made lowercase.
+    remarks = models.CharField(db_column='Remarks', max_length=200, blank=True, null=True)  # Field name made lowercase.
+    settle_batch_no = models.CharField(db_column='Settle_batch_no', max_length=50, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'load_settledetails_info_copy'
+
+
 class LoadSettlefeeInfo(models.Model):
     payment_time = models.CharField(db_column='Payment_time', max_length=50, blank=True, null=True)  # Field name made lowercase.
     transaction_id = models.CharField(db_column='Transaction_id', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -391,13 +421,10 @@ class LoadTmallsodetailInfo(models.Model):
     memo = models.CharField(max_length=20)
     order_status = models.CharField(max_length=20)
     shop_code = models.CharField(max_length=20)
-    goods_rate = models.DecimalField(max_digits=18, decimal_places=4, blank=True, null=True)
-    goods_total = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'load_tmallsodetail_info'
-        unique_together = (('id', 'order_id'),)
 
 
 class LoadTransactionInfo(models.Model):
@@ -416,7 +443,6 @@ class LoadTransactionInfo(models.Model):
     class Meta:
         managed = False
         db_table = 'load_transaction_info'
-        unique_together = (('id', 'order_id'),)
 
 
 class TBasAreaInfo(models.Model):
@@ -550,7 +576,7 @@ class TGroupMyaccountInfo(models.Model):
 
 
 class TGroupSettledetailsInfo(models.Model):
-    order_id = models.CharField(unique=True, max_length=50, blank=True, null=True)
+    order_id = models.CharField(max_length=50)
     amount = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
     amount_usd = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
 
@@ -642,6 +668,7 @@ class TOrderAmount(models.Model):
     class Meta:
         managed = False
         db_table = 't_order_amount'
+        unique_together = (('id', 'order_id'),)
 
 
 class TOrderAnalyse(models.Model):
@@ -677,16 +704,38 @@ class TOrderArea(models.Model):
         db_table = 't_order_area'
 
 
-class TPeriodNumInfo(models.Model):
+class TPeriodNumsInfo(models.Model):
     goods_id = models.CharField(max_length=80, blank=True, null=True)
     goods_name = models.CharField(max_length=200, blank=True, null=True)
     fee_order = models.CharField(max_length=2, blank=True, null=True)
     fee_type = models.CharField(max_length=200, blank=True, null=True)
+    p201509 = models.DecimalField(db_column='P201509', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201510 = models.DecimalField(db_column='P201510', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201511 = models.DecimalField(db_column='P201511', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201512 = models.DecimalField(db_column='P201512', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201601 = models.DecimalField(db_column='P201601', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201602 = models.DecimalField(db_column='P201602', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201603 = models.DecimalField(db_column='P201603', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201604 = models.DecimalField(db_column='P201604', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201605 = models.DecimalField(db_column='P201605', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201606 = models.DecimalField(db_column='P201606', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201607 = models.DecimalField(db_column='P201607', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201608 = models.DecimalField(db_column='P201608', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201609 = models.DecimalField(db_column='P201609', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201610 = models.DecimalField(db_column='P201610', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201611 = models.DecimalField(db_column='P201611', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201612 = models.DecimalField(db_column='P201612', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201701 = models.DecimalField(db_column='P201701', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201702 = models.DecimalField(db_column='P201702', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201703 = models.DecimalField(db_column='P201703', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201704 = models.DecimalField(db_column='P201704', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201705 = models.DecimalField(db_column='P201705', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    p201706 = models.DecimalField(db_column='P201706', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
     p201707 = models.DecimalField(db_column='P201707', max_digits=18, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = 't_period_num_info'
+        db_table = 't_period_nums_info'
 
 
 class TRecieverInfo(models.Model):
@@ -793,6 +842,42 @@ class TTransactionGroupInfo(models.Model):
     class Meta:
         managed = False
         db_table = 't_transaction_group_info'
+
+
+class TempProductInfo(models.Model):
+    product_name = models.CharField(max_length=255, blank=True, null=True)
+    cargo_code = models.CharField(max_length=255, blank=True, null=True)
+    num = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'temp_product_info'
+
+
+class TempTmalldetailRateInfo(models.Model):
+    order_id = models.CharField(max_length=50)
+    product_name = models.CharField(max_length=200, blank=True, null=True)
+    number = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    price = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    goods_rate = models.DecimalField(max_digits=18, decimal_places=4, blank=True, null=True)
+    goods_total = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'temp_tmalldetail_rate_info'
+
+
+class TempTmallsoRateInfo(models.Model):
+    order_id = models.CharField(max_length=50)
+    create_time = models.CharField(max_length=20, blank=True, null=True)
+    actual_paid = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    refund = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+    order_status = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'temp_tmallso_rate_info'
+        unique_together = (('id', 'order_id'),)
 
 
 class TmpTmallMonthly(models.Model):
