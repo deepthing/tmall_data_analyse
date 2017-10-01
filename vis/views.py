@@ -27,9 +27,10 @@ def jump_to_load(request):
         return HttpResponse("success")
     except Exception as identifier:
         return HttpResponse("false")
-    
+
 
 def upload(request):
+    
     if request.method == "POST":
         zipfile = request.FILES.get("zipfile",None)
         if not zipfile:

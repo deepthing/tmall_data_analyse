@@ -8,7 +8,6 @@ import tmall_data_analyse.settings as setting
 import load_and_analyse.sql_templates as sql
 import MySQLdb
 import commands
-
 # file_type = ['fee','inventory','myaccount','order','settlebatch','settledetails','settlefee','strade','tmallsodetails','tmallso','transaction']
 
 def upzip(zipfilename):
