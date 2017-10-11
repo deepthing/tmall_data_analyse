@@ -1,4 +1,253 @@
-<html>
-{% include 'nav.html' %} fee_vis
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% include 'nav.html' %}
+<br/>
+<div class="container-fluid">
+    <div class="col-md-10">
+
+        <div class="panel panel-success" id="fee_amount">
+            <div class="panel-heading">
+                <h3>订单提取时间(金额统计)</h3>
+            </div>
+            <div class="panel-body">
+                <h4>这里显示图表</h4>
+
+            </div>
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th>月份</th>
+                        <th>支付宝订单提取金额</th>
+                        <th>支付宝订单收到金额</th>
+                        <th>支付宝订单费用扣除</th>
+                        <th>支付宝订单提取金额(USD)</th>
+                        <th>支付宝订单收到金额(USD)</th>
+                        <th>支付宝订单费用扣除(USD)</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for index_fee_amount in fee_amount %}
+                    <tr>
+                        <td>{{index_fee_amount.period}}</td>
+                        <td>{{index_fee_amount.Alipay_Settlement}}</td>
+                        <td>{{index_fee_amount.Alipay_Amount}}</td>
+                        <td>{{index_fee_amount.Alipay_Settlement_Fee}}</td>
+                        <td>{{index_fee_amount.Alipay_Settlement_Usd}}</td>
+                        <td>{{index_fee_amount.Alipay_Amount_Usd}}</td>
+                        <td>{{index_fee_amount.Alipay_Settlement_Fee_Usd}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel panel-success" id="fee_time">
+            <div class="panel-heading">
+                <h3>订单提取时间(费用明细)</h3>
+            </div>
+            <div class="panel-body">
+                <h4>这里显示图表</h4>
+
+            </div>
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th>月份</th>
+                        <th>菜鸟-税费</th>
+                        <th>菜鸟-服务费</th>
+                        <th>阿里费用</th>
+                        <th>天猫费用</th>
+                        <th>聚划算费用</th>
+                        <th>菜鸟-税费(USD)</th>
+                        <th>菜鸟-服务费(USD)</th>
+                        <th>阿里费用(USD)</th>
+                        <th>天猫费用(USD)</th>
+                        <th>聚划算费用(USD)</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for index_fee_time in fee_time %}
+                    <tr>
+                        <td>{{index_fee_time.fee_time}}</td>
+                        <td>{{index_fee_time.logisitic_tax}}</td>
+                        <td>{{index_fee_time.logisitic_service}}</td>
+                        <td>{{index_fee_time.alipay_service}}</td>
+                        <td>{{index_fee_time.tmall}}</td>
+                        <td>{{index_fee_time.juhuasuan}}</td>
+                        <td>{{index_fee_time.logisitic_tax_usd}}</td>
+                        <td>{{index_fee_time.logisitic_service_usd}}</td>
+                        <td>{{index_fee_time.alipay_service_usd}}</td>
+                        <td>{{index_fee_time.tmall_usd}}</td>
+                        <td>{{index_fee_time.juhuasuan_usd}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel panel-success" id="fee_order">
+            <div class="panel-heading">
+                <h3>订单生成时间(金额统计)</h3>
+            </div>
+            <div class="panel-body">
+                <h4>这里显示图表</h4>
+
+            </div>
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th>月份</th>
+                        <th>买家拍下支付金额</th>
+                        <th>买家拍下退款金额(总共)</th>
+                        <th>买家实际支付金额</th>
+                        <th>支付宝费用扣除</th>
+                        <th>支付宝提取金额 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index_fee_order in fee_order %}
+                    <tr>
+                        <td>{{index_fee_order.period}}</td>
+                        <td>{{index_fee_order.tmall_order}}</td>
+                        <td>{{index_fee_order.tmall_order_refund}}</td>
+                        <td>{{index_fee_order.tmall_order_actual_pay}}</td>
+                        <td>{{index_fee_order.alipay_Fee}}</td>
+                        <td>{{index_fee_order.alipay_settlement}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel panel-success" id="fee_order_detail">
+            <div class="panel-heading">
+                <h3>订单生成时间(费用明细)</h3>
+            </div>
+            <div class="panel-body">
+                <h4>这里显示图表</h4>
+
+            </div>
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th>月份</th>
+                        <th>菜鸟-税费</th>
+                        <th>菜鸟-服务费</th>
+                        <th>阿里费用</th>
+                        <th>天猫费用</th>
+                        <th>聚划算费用</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index_fee_order_detail in fee_order_detail %}
+                    <tr>
+                        <td>{{index_fee_order_detail.period}}</td>
+                        <td>{{index_fee_order_detail.logisitic_tax}}</td>
+                        <td>{{index_fee_order_detail.logisitic_service}}</td>
+                        <td>{{index_fee_order_detail.alipay_service}}</td>
+                        <td>{{index_fee_order_detail.tmall}}</td>
+                        <td>{{index_fee_order_detail.juhuasuan}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel panel-success" id="fee_payment">
+            <div class="panel-heading">
+                <h3>我的账户支出</h3>
+            </div>
+            <div class="panel-body">
+                <h4>这里显示图表</h4>
+
+            </div>
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th>月份</th>
+                        <th>充值</th>
+                        <th>退还</th>
+                        <th>支付</th>
+                        <th>订单支付</th>
+                        <th>非订单支付</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for index_fee_payment in fee_payment %}
+                    <tr>
+                        <td>{{index_fee_payment.period}}</td>
+                        <td>{{index_fee_payment.Recharge}}</td>
+                        <td>{{index_fee_payment.Refund}}</td>
+                        <td>{{index_fee_payment.Payments}}</td>
+                        <td>{{index_fee_payment.order_payment}}</td>
+                        <td>{{index_fee_payment.not_order_payment}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="col-md-2">
+        <div data-spy="affix">
+            <nav class="nav nav-pills nav-stacked  ">
+                <li role="presentation" id="li_fee_amount" class="active"><a href="#fee_amount">订单提取时间(金额统计)</a></li>
+                <li role="presentation" id="li_fee_time"><a href="#fee_time">订单提取时间(费用明细)</a></li>
+                <li role="presentation" id="li_fee_order"><a href="#fee_order">订单生成时间(金额统计)</a></li>
+                <li role="presentation" id="li_fee_order_detail"><a href="#fee_order_detail">订单生成时间(费用明细)</a></li>
+                <li role="presentation" id="li_fee_payment"><a href="#fee_payment">我的账户支出</a></li>
+            </nav>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#li_fee_amount").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_fee_amount').addClass('active');
+
+        })
+        $("#li_fee_time").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_fee_time').addClass('active');
+        })
+        $("#li_fee_order").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_fee_order').addClass('active');
+
+        })
+        $("#li_fee_order_detail").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_fee_order_detail').addClass('active');
+        })
+        $("#li_fee_payment").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_fee_payment').addClass('active');
+        })
+    })
+</script>
 
 </html>
