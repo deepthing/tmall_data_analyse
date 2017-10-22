@@ -41,6 +41,7 @@ def order_vis(request):
         FORMAT(SUM(close_return_amount),2) as sum_close_unpaid_amount
         from t_order_analyse
         GROUP BY SUBSTR(fin_period FROM 1 FOR 7)
+        desc
     '''
     data.execute(strr_order)
     order_analyse = data.fetchall()
@@ -59,7 +60,8 @@ def order_vis(request):
         FORMAT(new_orders_amount ,2) as new_orders_amount,
         FORMAT(old_orders_amount ,2) as old_orders_amount
         from t_member_alanlyse_info
-        order by period;
+        order by period
+        desc
     '''
     data.execute(strr_buyer)
     status_analyse = data.fetchall()
@@ -75,6 +77,7 @@ def order_vis(request):
     GROUP BY
         SUBSTR(fin_period FROM 1 FOR 7),
         area_info
+    ORDER BY period desc
     '''
     data.execute(strr_region)
     status_region = data.fetchall()
@@ -148,13 +151,14 @@ def fee_vis(request):
         FROM
         t_settle_amount_info
         GROUP BY SUBSTR(period FROM 1 FOR 7)
+        desc
     '''
     data.execute(strr_fee_amount)
-    fee_amount = data.fetchall()
+    fee_amount_rows = data.fetchall()
 
     strr_fee_time = '''
         select  
-        fee_time,
+        CONCAT(SUBSTR(fee_time FROM 1 FOR 4),'-',SUBSTR(fee_time FROM 5 FOR 6)) as fee_time,
         FORMAT(SUM(logisitic_tax),2) as logisitic_tax,
         FORMAT(SUM(logisitic_service),2) as logisitic_service,
         FORMAT(SUM(alipay_service),2) as alipay_service,
@@ -167,10 +171,19 @@ def fee_vis(request):
         FORMAT(SUM(juhuasuan_usd),2) as juhuasuan_usd
         FROM
         t_settle_fee_info
-        GROUP BY fee_time;
+        GROUP BY fee_time
+        desc
     '''
     data.execute(strr_fee_time)
-    fee_time = data.fetchall()
+    fee_time_rows = data.fetchall()
+
+    dictMergedRow = []
+    for strr_fee_amount_index in fee_amount_rows:
+        for strr_fee_time_index in fee_time_rows:
+            if strr_fee_time_index['fee_time'] == strr_fee_amount_index['period']:
+                dictMerged=strr_fee_amount_index.copy()
+                dictMerged.update(strr_fee_time_index)
+                dictMergedRow.append(dictMerged)
 
     strr_fee_order = '''
         select 
@@ -180,9 +193,9 @@ def fee_vis(request):
         FORMAT(SUM(actual_paid),2) as tmall_order_actual_pay,
         FORMAT(SUM(order_fee*-1),2) as alipay_Fee,
         FORMAT(SUM(alipay_get*-1),2) as alipay_settlement
-        -- SUM(account_fee)
         from t_order_amount 
-        GROUP BY SUBSTR(fin_period FROM 1 FOR 7);
+        GROUP BY SUBSTR(fin_period FROM 1 FOR 7)
+        desc
     '''
     data.execute(strr_fee_order)
     fee_order = data.fetchall()
@@ -196,10 +209,19 @@ def fee_vis(request):
         FORMAT(SUM(t.tmall),2) as tmall,
         FORMAT(SUM(t.juhuasuan),2) as juhuasuan
         from t_fee_info t
-        GROUP BY SUBSTR(payment_time FROM 1 FOR 7);
+        GROUP BY SUBSTR(payment_time FROM 1 FOR 7)
+        desc
     '''
     data.execute(strr_fee_order_detail)
     fee_order_detail = data.fetchall()
+
+    fee_order_rows = []
+    for fee_order_index in fee_order:
+        for fee_order_detail_index in fee_order_detail:
+            if fee_order_index['period'] == fee_order_detail_index['period']:
+                dictMerged=fee_order_index.copy()
+                dictMerged.update(fee_order_detail_index)
+                fee_order_rows.append(dictMerged)
 
     strr_fee_payment = '''
         select 
@@ -210,12 +232,13 @@ def fee_vis(request):
         FORMAT(SUM(order_payment),2) as order_payment,
         FORMAT(SUM(not_order_payment),2) as not_order_payment
         from t_myaccount_monthly_info
-        GROUP BY SUBSTR(period FROM 1 FOR 7);
+        GROUP BY SUBSTR(period FROM 1 FOR 7)
+        desc
     '''
     data.execute(strr_fee_payment)
     fee_payment =  data.fetchall()
 
-    content = {'fee_amount':fee_amount,'fee_time':fee_time,'fee_order':fee_order,'fee_order_detail':fee_order_detail,'fee_payment':fee_payment}
+    content = {'dictMergedRow':dictMergedRow,'fee_order_rows':fee_order_rows,'fee_payment':fee_payment}
 
     return render(request,'fee_vis.html',content)
 
@@ -229,24 +252,26 @@ def inv_vis(request):
 
     strr = '''
         select period,goods_id,goods_name,
-        sum(sale_num) as sale_num,
-        sum(sale_out_number*-1) as sale_out_number,
-        sum(order_deal_num) as order_deal_num,
-        sum(sale_amount) as sale_amount,
-        sum(sale_out_amount) as sale_out_amount,
-        sum(order_deal_amount) as order_deal_amount,
-        sum(opening_inventory) as opening_inventory,
-        sum(purchase_in) as purchase_in,
-        sum(other_in) as other_in,
-        sum(trade_out) as trade_out,
-        sum(other_out) as other_out,
-        sum(ending_inventory) as ending_inventory,
-        sum(diff_inventory) as diff_inventory,
-        sum(in_out_num) as in_out_num,
-        sum(trans_amount) as trans_amount
+        FORMAT(sum(sale_num),0) as sale_num,
+        FORMAT(sum(sale_out_number*-1),0) as sale_out_number,
+        FORMAT(sum(order_deal_num),0) as order_deal_num,
+        FORMAT(sum(sale_amount),2) as sale_amount,
+        FORMAT(sum(sale_out_amount),2) as sale_out_amount,
+        FORMAT(sum(order_deal_amount),2) as order_deal_amount,
+        FORMAT(sum(opening_inventory),0) as opening_inventory,
+        FORMAT(sum(purchase_in),0) as purchase_in,
+        FORMAT(sum(other_in),0) as other_in,
+        FORMAT(sum(trade_out),0) as trade_out,
+        FORMAT(sum(other_out),0) as other_out,
+        FORMAT(sum(ending_inventory),0) as ending_inventory,
+        FORMAT(sum(diff_inventory),0) as diff_inventory,
+        FORMAT(sum(in_out_num),0) as in_out_num,
+        FORMAT(sum(trans_amount),2) as trans_amount
         from t_goods_num_info
+	    WHERE goods_id is NOT null and LENGTH(goods_id)>0
         group by period,goods_id,goods_name
-        ORDER BY period;
+        ORDER BY period
+        desc
     '''
 
     data.execute(strr)

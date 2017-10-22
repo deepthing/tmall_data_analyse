@@ -7,35 +7,39 @@
 
         <div class="panel panel-success" id="fee_amount">
             <div class="panel-heading">
-                <h3>订单提取时间(金额统计)</h3>
+                <h3>订单提取时间</h3>
             </div>
-            <div class="panel-body">
-                <h4>这里显示图表</h4>
+            {% comment %} <div class="panel-body">
 
-            </div>
+            </div> {% endcomment %}
             <table data-toggle="table" data-pagination=true>
                 <thead>
                     <tr>
-                        <th>月份</th>
-                        <th>支付宝订单提取金额</th>
-                        <th>支付宝订单收到金额</th>
-                        <th>支付宝订单费用扣除</th>
-                        <th>支付宝订单提取金额(USD)</th>
-                        <th>支付宝订单收到金额(USD)</th>
-                        <th>支付宝订单费用扣除(USD)</th>
+                        <th data-align='center'>月份</th>
+                        <th data-align='center'>支付宝订单提取金额</th>
+                        <th data-align='center'>支付宝订单收到金额</th>
+                        <th data-align='center'>支付宝订单费用扣除</th>
+                        <th data-align='center'>菜鸟-税费</th>
+                        <th data-align='center'>菜鸟-服务费</th>
+                        <th data-align='center'>阿里费用</th>
+                        <th data-align='center'>天猫费用</th>
+                        <th data-align='center'>聚划算费用</th>
+
                     </tr>
 
                 </thead>
                 <tbody>
-                    {% for index_fee_amount in fee_amount %}
+                    {% for index_dictMergedRow in dictMergedRow %}
                     <tr>
-                        <td>{{index_fee_amount.period}}</td>
-                        <td>{{index_fee_amount.Alipay_Settlement}}</td>
-                        <td>{{index_fee_amount.Alipay_Amount}}</td>
-                        <td>{{index_fee_amount.Alipay_Settlement_Fee}}</td>
-                        <td>{{index_fee_amount.Alipay_Settlement_Usd}}</td>
-                        <td>{{index_fee_amount.Alipay_Amount_Usd}}</td>
-                        <td>{{index_fee_amount.Alipay_Settlement_Fee_Usd}}</td>
+                        <td>{{index_dictMergedRow.period}}</td>
+                        <td>¥{{index_dictMergedRow.Alipay_Settlement}}</td>
+                        <td>¥{{index_dictMergedRow.Alipay_Amount}}</td>
+                        <td>¥{{index_dictMergedRow.Alipay_Settlement_Fee}}</td>
+                        <td>¥{{index_dictMergedRow.logisitic_tax}}</td>
+                        <td>¥{{index_dictMergedRow.logisitic_service}}</td>
+                        <td>¥{{index_dictMergedRow.alipay_service}}</td>
+                        <td>¥{{index_dictMergedRow.tmall}}</td>
+                        <td>¥{{index_dictMergedRow.juhuasuan}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -43,45 +47,40 @@
         </div>
 
 
-        <div class="panel panel-success" id="fee_time">
+        <div class="panel panel-success" id="fee_time" style="display:none;">
             <div class="panel-heading">
-                <h3>订单提取时间(费用明细)</h3>
+                <h3>订单提取时间</h3>
             </div>
-            <div class="panel-body">
-                <h4>这里显示图表</h4>
+            {% comment %} <div class="panel-body">
 
-            </div>
+            </div> {% endcomment %}
             <table data-toggle="table" data-pagination=true>
                 <thead>
                     <tr>
-                        <th>月份</th>
-                        <th>菜鸟-税费</th>
-                        <th>菜鸟-服务费</th>
-                        <th>阿里费用</th>
-                        <th>天猫费用</th>
-                        <th>聚划算费用</th>
-                        <th>菜鸟-税费(USD)</th>
-                        <th>菜鸟-服务费(USD)</th>
-                        <th>阿里费用(USD)</th>
-                        <th>天猫费用(USD)</th>
-                        <th>聚划算费用(USD)</th>
+                        <th data-align='center'>月份</th>
+                        <th data-align='center'>支付宝订单提取金额(USD)</th>
+                        <th data-align='center'>支付宝订单收到金额(USD)</th>
+                        <th data-align='center'>支付宝订单费用扣除(USD)</th>
+                        <th data-align='center'>菜鸟-税费(USD)</th>
+                        <th data-align='center'>菜鸟-服务费(USD)</th>
+                        <th data-align='center'>阿里费用(USD)</th>
+                        <th data-align='center'>天猫费用(USD)</th>
+                        <th data-align='center'>聚划算费用(USD)</th>
                     </tr>
 
                 </thead>
                 <tbody>
-                    {% for index_fee_time in fee_time %}
+                    {% for index_dictMergedRow_usd in dictMergedRow %}
                     <tr>
-                        <td>{{index_fee_time.fee_time}}</td>
-                        <td>{{index_fee_time.logisitic_tax}}</td>
-                        <td>{{index_fee_time.logisitic_service}}</td>
-                        <td>{{index_fee_time.alipay_service}}</td>
-                        <td>{{index_fee_time.tmall}}</td>
-                        <td>{{index_fee_time.juhuasuan}}</td>
-                        <td>{{index_fee_time.logisitic_tax_usd}}</td>
-                        <td>{{index_fee_time.logisitic_service_usd}}</td>
-                        <td>{{index_fee_time.alipay_service_usd}}</td>
-                        <td>{{index_fee_time.tmall_usd}}</td>
-                        <td>{{index_fee_time.juhuasuan_usd}}</td>
+                        <td>{{index_dictMergedRow_usd.fee_time}}</td>
+                        <td>${{index_dictMergedRow_usd.Alipay_Settlement_Usd}}</td>
+                        <td>${{index_dictMergedRow_usd.Alipay_Amount_Usd}}</td>
+                        <td>${{index_dictMergedRow_usd.Alipay_Settlement_Fee_Usd}}</td>
+                        <td>${{index_dictMergedRow_usd.logisitic_tax_usd}}</td>
+                        <td>${{index_dictMergedRow_usd.logisitic_service_usd}}</td>
+                        <td>${{index_dictMergedRow_usd.alipay_service_usd}}</td>
+                        <td>${{index_dictMergedRow_usd.tmall_usd}}</td>
+                        <td>${{index_dictMergedRow_usd.juhuasuan_usd}}</td>
                     </tr>
                     {% endfor %}
 
@@ -92,32 +91,41 @@
 
         <div class="panel panel-success" id="fee_order">
             <div class="panel-heading">
-                <h3>订单生成时间(金额统计)</h3>
+                <h3>订单生成时间</h3>
             </div>
-            <div class="panel-body">
-                <h4>这里显示图表</h4>
+            {% comment %} <div class="panel-body">
 
-            </div>
+            </div> {% endcomment %}
             <table data-toggle="table" data-pagination=true>
                 <thead>
                     <tr>
-                        <th>月份</th>
-                        <th>买家拍下支付金额</th>
-                        <th>买家拍下退款金额(总共)</th>
-                        <th>买家实际支付金额</th>
-                        <th>支付宝费用扣除</th>
-                        <th>支付宝提取金额 </th>
+                        <th data-align='center'>月份</th>
+                        <th data-align='center'>买家拍下支付金额</th>
+                        <th data-align='center'>买家拍下退款金额</th>
+                        <th data-align='center'>买家实际支付金额</th>
+                        <th data-align='center'>支付宝费用扣除</th>
+                        <th data-align='center'>支付宝提取金额 </th>
+                        <th data-align='center'>菜鸟-税费</th>
+                        <th data-align='center'>菜鸟-服务费</th>
+                        <th data-align='center'>阿里费用</th>
+                        <th data-align='center'>天猫费用</th>
+                        <th data-align='center'>聚划算费用</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for index_fee_order in fee_order %}
+                    {% for index_fee_order_rows in fee_order_rows %}
                     <tr>
-                        <td>{{index_fee_order.period}}</td>
-                        <td>{{index_fee_order.tmall_order}}</td>
-                        <td>{{index_fee_order.tmall_order_refund}}</td>
-                        <td>{{index_fee_order.tmall_order_actual_pay}}</td>
-                        <td>{{index_fee_order.alipay_Fee}}</td>
-                        <td>{{index_fee_order.alipay_settlement}}</td>
+                        <td>{{index_fee_order_rows.period}}</td>
+                        <td>¥{{index_fee_order_rows.tmall_order}}</td>
+                        <td>¥{{index_fee_order_rows.tmall_order_refund}}</td>
+                        <td>¥{{index_fee_order_rows.tmall_order_actual_pay}}</td>
+                        <td>¥{{index_fee_order_rows.alipay_Fee}}</td>
+                        <td>¥{{index_fee_order_rows.alipay_settlement}}</td>
+                        <td>¥{{index_fee_order_rows.logisitic_tax}}</td>
+                        <td>¥{{index_fee_order_rows.logisitic_service}}</td>
+                        <td>¥{{index_fee_order_rows.alipay_service}}</td>
+                        <td>¥{{index_fee_order_rows.tmall}}</td>
+                        <td>¥{{index_fee_order_rows.juhuasuan}}</td>
                     </tr>
                     {% endfor %}
 
@@ -125,65 +133,28 @@
             </table>
         </div>
 
-
-        <div class="panel panel-success" id="fee_order_detail">
+        <div class="panel panel-success" id="shipment">
             <div class="panel-heading">
-                <h3>订单生成时间(费用明细)</h3>
+                <h3>订单发货时间</h3>
             </div>
-            <div class="panel-body">
-                <h4>这里显示图表</h4>
+            {% comment %} <div class="panel-body">
 
-            </div>
+            </div> {% endcomment %}
             <table data-toggle="table" data-pagination=true>
                 <thead>
                     <tr>
-                        <th>月份</th>
-                        <th>菜鸟-税费</th>
-                        <th>菜鸟-服务费</th>
-                        <th>阿里费用</th>
-                        <th>天猫费用</th>
-                        <th>聚划算费用</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for index_fee_order_detail in fee_order_detail %}
-                    <tr>
-                        <td>{{index_fee_order_detail.period}}</td>
-                        <td>{{index_fee_order_detail.logisitic_tax}}</td>
-                        <td>{{index_fee_order_detail.logisitic_service}}</td>
-                        <td>{{index_fee_order_detail.alipay_service}}</td>
-                        <td>{{index_fee_order_detail.tmall}}</td>
-                        <td>{{index_fee_order_detail.juhuasuan}}</td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-
-
-        <div class="panel panel-success" id="fee_payment">
-            <div class="panel-heading">
-                <h3>我的账户支出</h3>
-            </div>
-            <div class="panel-body">
-                <h4>这里显示图表</h4>
-
-            </div>
-            <table data-toggle="table" data-pagination=true>
-                <thead>
-                    <tr>
-                        <th>月份</th>
-                        <th>充值</th>
-                        <th>退还</th>
-                        <th>支付</th>
-                        <th>订单支付</th>
-                        <th>非订单支付</th>
+                        <th data-align='center'>月份</th>
+                        <th data-align='center'>期间交易出库金额</th>
+                        <th data-align='center'>菜鸟-税费</th>
+                        <th data-align='center'>菜鸟-服务费</th>
+                        <th data-align='center'>阿里费用</th>
+                        <th data-align='center'>天猫费用</th>
+                        <th data-align='center'>聚划算费用</th>
                     </tr>
 
                 </thead>
                 <tbody>
-                    {% for index_fee_payment in fee_payment %}
+                    {% comment %} {% for index_fee_payment in fee_payment %}
                     <tr>
                         <td>{{index_fee_payment.period}}</td>
                         <td>{{index_fee_payment.Recharge}}</td>
@@ -191,6 +162,43 @@
                         <td>{{index_fee_payment.Payments}}</td>
                         <td>{{index_fee_payment.order_payment}}</td>
                         <td>{{index_fee_payment.not_order_payment}}</td>
+                    </tr>
+                    {% endfor %} {% endcomment %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <div class="panel panel-success" id="fee_payment">
+            <div class="panel-heading">
+                <h3>我的账户支出</h3>
+            </div>
+            {% comment %} <div class="panel-body">
+
+            </div> {% endcomment %}
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th data-align='center'>月份</th>
+                        <th data-align='center'>充值</th>
+                        <th data-align='center'>退还</th>
+                        <th data-align='center'>支付</th>
+                        <th data-align='center'>订单支付</th>
+                        <th data-align='center'>非订单支付</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for index_fee_payment in fee_payment %}
+                    <tr>
+                        <td>{{index_fee_payment.period}}</td>
+                        <td>¥{{index_fee_payment.Recharge}}</td>
+                        <td>¥{{index_fee_payment.Refund}}</td>
+                        <td>¥{{index_fee_payment.Payments}}</td>
+                        <td>¥{{index_fee_payment.order_payment}}</td>
+                        <td>¥{{index_fee_payment.not_order_payment}}</td>
                     </tr>
                     {% endfor %}
 
@@ -203,10 +211,9 @@
     <div class="col-md-2">
         <div data-spy="affix">
             <nav class="nav nav-pills nav-stacked  ">
-                <li role="presentation" id="li_fee_amount" class="active"><a href="#fee_amount">订单提取时间(金额统计)</a></li>
-                <li role="presentation" id="li_fee_time"><a href="#fee_time">订单提取时间(费用明细)</a></li>
-                <li role="presentation" id="li_fee_order"><a href="#fee_order">订单生成时间(金额统计)</a></li>
-                <li role="presentation" id="li_fee_order_detail"><a href="#fee_order_detail">订单生成时间(费用明细)</a></li>
+                <li role="presentation" id="li_fee_amount" class="active"><a href="#fee_amount">订单提取时间</a></li>
+                <li role="presentation" id="li_fee_order"><a href="#fee_order">订单生成时间</a></li>
+                <li role="presentation" id="li_shipment"><a href="#shipment">订单发货时间</a></li>
                 <li role="presentation" id="li_fee_payment"><a href="#fee_payment">我的账户支出</a></li>
             </nav>
         </div>
@@ -246,6 +253,12 @@
                 $(this).removeClass('active');
             })
             $('#li_fee_payment').addClass('active');
+        })
+        $("#li_shipment").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_shipment').addClass('active');
         })
     })
 </script>
