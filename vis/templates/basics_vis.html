@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% include 'nav.html' %}
+<br/>
+<div class="container-fluid">
+    <div class="col-md-10">
+
+        <div class="panel panel-success" id="basics_tax">
+            <div class="panel-heading">
+                <h3>税率</h3>
+            </div>
+            {% comment %} <div class="panel-body">
+                <h4>这里显示图表</h4>
+
+            </div> {% endcomment %}
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th data-align='center' data-valign='middle'>月份</th>
+                        <th data-align='center' data-valign='middle'>税率</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for tax_rate in tax %}
+                    <tr>
+                        <td>{{tax_rate.time}}</td>
+                        <td>{{tax_rate.tax}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel panel-success" id="basics_goods">
+                <div class="panel-heading">
+                    <h3>货品</h3>
+                </div>
+                {% comment %} <div class="panel-body">
+                    <h4>这里显示图表</h4>
+    
+                </div> {% endcomment %}
+                <table data-toggle="table" data-pagination=true>
+                    <thead>
+                        <tr>
+                            <th data-align='center' data-valign='middle'>货品</th>
+                            <th data-align='center' data-valign='middle'>货品说明</th>
+                            <th data-align='center' data-valign='middle'>代码</th>
+                        </tr>
+    
+                    </thead>
+                    <tbody>
+                        {% for goods_list in goods %}
+
+                        <tr>
+                            <td>{{goods_list.goods_id}}</td>
+                            <td>{{goods_list.goods_name}}</td>
+                            <td>{{goods_list.gpc}}</td>
+                        </tr>
+                        {% endfor %}
+    
+                    </tbody>
+                </table>
+        </div>
+
+
+
+        <div class="panel panel-success" id="basics_sku">
+            <div class="panel-heading">
+                <h3>权重</h3>
+            </div>
+            {% comment %} <div class="panel-body">
+                <h4>这里显示图表</h4>
+
+            </div> {% endcomment %}
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th data-align='center' data-valign='middle'>序号</th>
+                        <th data-align='center' data-valign='middle'>货品代码</th>
+                        <th data-align='center' data-valign='middle'>名称</th>
+                        <th data-align='center' data-valign='middle'>权重值</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for sku_list in sku %}
+                    <tr>
+                        <td>{{sku_list.seq_no}}</td>
+                        <td>{{sku_list.sku_id}}</td>
+                        <td>{{sku_list.sku_name}}</td>
+                        <td>{{sku_list.price}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div data-spy="affix">
+            <nav class="nav nav-pills nav-stacked  ">
+                <li role="presentation" id="li_basics_tax" class="active"><a href="#basics_tax">税率</a></li>
+                <li role="presentation" id="li_basics_goods" ><a href="#basics_goods">货品</a></li>
+                <li role="presentation" id="li_basics_sku" ><a href="#basics_sku">权重</a></li>
+            </nav>
+        </div>
+
+    </div>
+</div>
+<script>
+        $(document).ready(function() {
+            $("#li_basics_tax").click(function(e) {
+                $('li').each(function() {
+                    $(this).removeClass('active');
+                })
+                $('#li_basics_tax').addClass('active');
+    
+            })
+            $("#li_basics_goods").click(function(e) {
+                $('li').each(function() {
+                    $(this).removeClass('active');
+                })
+                $('#li_basics_goods').addClass('active');
+            })
+            $("#li_basics_sku").click(function(e) {
+                $('li').each(function() {
+                    $(this).removeClass('active');
+                })
+                $('#li_basics_sku').addClass('active');
+            })
+    
+    
+        })
+    </script>
+</html>

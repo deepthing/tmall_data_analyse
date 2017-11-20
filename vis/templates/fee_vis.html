@@ -9,7 +9,8 @@
             <div class="panel-heading">
                 <h3>订单提取时间</h3>
             </div>
-            {% comment %} <div class="panel-body">
+            {% comment %}
+            <div class="panel-body">
 
             </div> {% endcomment %}
             <table data-toggle="table" data-pagination=true>
@@ -51,7 +52,8 @@
             <div class="panel-heading">
                 <h3>订单提取时间</h3>
             </div>
-            {% comment %} <div class="panel-body">
+            {% comment %}
+            <div class="panel-body">
 
             </div> {% endcomment %}
             <table data-toggle="table" data-pagination=true>
@@ -93,7 +95,8 @@
             <div class="panel-heading">
                 <h3>订单生成时间</h3>
             </div>
-            {% comment %} <div class="panel-body">
+            {% comment %}
+            <div class="panel-body">
 
             </div> {% endcomment %}
             <table data-toggle="table" data-pagination=true>
@@ -133,11 +136,13 @@
             </table>
         </div>
 
+
         <div class="panel panel-success" id="shipment">
             <div class="panel-heading">
                 <h3>订单发货时间</h3>
             </div>
-            {% comment %} <div class="panel-body">
+            {% comment %}
+            <div class="panel-body">
 
             </div> {% endcomment %}
             <table data-toggle="table" data-pagination=true>
@@ -150,20 +155,24 @@
                         <th data-align='center'>阿里费用</th>
                         <th data-align='center'>天猫费用</th>
                         <th data-align='center'>聚划算费用</th>
+                        <th data-align='center'>期间退款金额</th>
                     </tr>
 
                 </thead>
                 <tbody>
-                    {% comment %} {% for index_fee_payment in fee_payment %}
+                    {% for index_fee_detail_monthly in fee_detail_monthly %}
                     <tr>
-                        <td>{{index_fee_payment.period}}</td>
-                        <td>{{index_fee_payment.Recharge}}</td>
-                        <td>{{index_fee_payment.Refund}}</td>
-                        <td>{{index_fee_payment.Payments}}</td>
-                        <td>{{index_fee_payment.order_payment}}</td>
-                        <td>{{index_fee_payment.not_order_payment}}</td>
+                        <td>{{index_fee_detail_monthly.fee_time}}</td>
+                        <td>¥{{index_fee_detail_monthly.out_stock}}</td>
+                        <td>¥{{index_fee_detail_monthly.cainiao_tax}}</td>
+                        <td>¥{{index_fee_detail_monthly.cainiao_service}}</td>
+                        <td>¥{{index_fee_detail_monthly.alipay}}</td>
+                        <td>¥{{index_fee_detail_monthly.tmall}}</td>
+                        <td>¥{{index_fee_detail_monthly.juhuasuan}}</td>
+                        <td>¥{{index_fee_detail_monthly.refund}}</td>
+
                     </tr>
-                    {% endfor %} {% endcomment %}
+                    {% endfor %}
 
                 </tbody>
             </table>
@@ -175,7 +184,8 @@
             <div class="panel-heading">
                 <h3>我的账户支出</h3>
             </div>
-            {% comment %} <div class="panel-body">
+            {% comment %}
+            <div class="panel-body">
 
             </div> {% endcomment %}
             <table data-toggle="table" data-pagination=true>
@@ -205,6 +215,57 @@
                 </tbody>
             </table>
         </div>
+
+
+        <div class="panel panel-success" id="other_fee_detail">
+            <div class="panel-heading">
+                <h3>我的费用分析</h3>
+            </div>
+            {% comment %}
+            <div class="panel-body">
+
+            </div> {% endcomment %}
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th data-align='center'>月份</th>
+                        <th data-align='center'>仓储费</th>
+                        <th data-align='center'>保险费</th>
+                        <th data-align='center'>销毁费</th>
+                        <th data-align='center'>商家赔付给消费者费用</th>
+                        <th data-align='center'>菜鸟赔付给商家费用(货款赔付)</th>
+                        <th data-align='center'>菜鸟赔付商给家费用(保证金赔付)</th>
+                        <th data-align='center'>推广补助</th>
+                        <th data-align='center'>其他账户返还</th>
+                        <th data-align='center'>天猫广告推广费</th>
+                        <th data-align='center'>返现金额和CRM</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for index_other_fee_detail in other_fee_detail %}
+                    <tr>
+                        <td>{{index_other_fee_detail.trans_date}}</td>
+                        <td>¥{{index_other_fee_detail.tmall_warehouse_fee}}</td>
+                        <td>¥{{index_other_fee_detail.insurance_fee}}</td>
+                        <td>¥{{index_other_fee_detail.destory_fee}}</td>
+                        <td>¥{{index_other_fee_detail.merchant_pay_to_custom}}</td>
+                        <td>¥{{index_other_fee_detail.cainiao_pay_goodsfee_to_merchant}}</td>
+                        <td>{{index_other_fee_detail.cainiao_pay_deposit_to_merchant}}</td>
+                        <td>¥{{index_other_fee_detail.popularize_fee}}</td>
+                        <td>¥{{index_other_fee_detail.other_payback_fee}}</td>
+                        <td>¥{{index_other_fee_detail.tmall_popularize_fee}}</td>
+                        <td>¥{{index_other_fee_detail.return_cash}}</td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+
     </div>
 
 
@@ -215,6 +276,7 @@
                 <li role="presentation" id="li_fee_order"><a href="#fee_order">订单生成时间</a></li>
                 <li role="presentation" id="li_shipment"><a href="#shipment">订单发货时间</a></li>
                 <li role="presentation" id="li_fee_payment"><a href="#fee_payment">我的账户支出</a></li>
+                <li role="presentation" id="li_other_fee_detail"><a href="#other_fee_detail">我的费用分析</a></li>
             </nav>
         </div>
 
@@ -260,6 +322,13 @@
             })
             $('#li_shipment').addClass('active');
         })
+        $("#li_other_fee_detail").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_other_fee_detail').addClass('active');
+        })
+
     })
 </script>
 

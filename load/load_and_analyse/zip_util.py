@@ -1,4 +1,4 @@
-# coding:cp936
+#-*- coding:utf-8 -*- 
 # Zfile.py
 # xxteach.com
 import zipfile 

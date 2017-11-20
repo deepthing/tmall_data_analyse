@@ -532,6 +532,9 @@ class TGoodsNumInfo(models.Model):
     period = models.CharField(max_length=10)
     goods_id = models.CharField(max_length=30)
     goods_name = models.CharField(max_length=200)
+    products = models.CharField(max_length=255)
+    sku = models.CharField(max_length=255)
+    gpc = models.CharField(max_length=255)
     sale_num = models.IntegerField()
     order_deal_num = models.DecimalField(max_digits=18, decimal_places=2)
     order_close_num = models.DecimalField(max_digits=18, decimal_places=2)
@@ -893,3 +896,25 @@ class TmpTmallMonthly(models.Model):
     class Meta:
         managed = False
         db_table = 'tmp_tmall_monthly'
+
+class Taxrate(models.Model):
+    id = models.AutoField(primary_key=True)
+    time = models.DateTimeField(db_column='time', blank=True, null=True)
+    deal_amount = models.DecimalField(max_digits=18, decimal_places=6, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tax_rate'
+
+class Goods(models.Model):
+    id = models.AutoField(primary_key=True)
+    goods_id = models.CharField(max_length=255, blank=True, null=True)
+    goods_name = models.CharField(max_length=255, blank=True, null=True)
+    gpc = models.CharField(max_length=255, blank=True, null=True)
+    sku = models.CharField(max_length=255, blank=True, null=True)
+    products = models.CharField(max_length=255, blank=True, null=True)
+   
+
+    class Meta:
+        managed = False
+        db_table = 'goods'

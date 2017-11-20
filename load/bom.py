@@ -11,7 +11,7 @@ sys.setdefaultencoding('utf-8')
 
 def insertDetail(goods_code,goods_id,num,price,total):
 	
-	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+	db = MySQLdb.connect("127.0.0.1","root","bsztz","tmall",charset='utf8');
 	detail = db.cursor(MySQLdb.cursors.DictCursor)
 	rate = 0
 	if float(total) > 0 :
@@ -25,7 +25,7 @@ def insertDetail(goods_code,goods_id,num,price,total):
 
 
 def getFieldsList():
-	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+	db = MySQLdb.connect("127.0.0.1","root","bsztz","tmall",charset='utf8');
         fields = db.cursor(MySQLdb.cursors.DictCursor)
 	fields.execute("desc BOM")
 	data = fields.fetchall();
@@ -38,7 +38,7 @@ def getFieldsList():
 	return result
 
 def getPriceByGoodsId(goods_id):
-	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+	db = MySQLdb.connect("127.0.0.1","root","bsztz","tmall",charset='utf8');
         detail = db.cursor(MySQLdb.cursors.DictCursor)
         value=[goods_id]
         detail.execute('select price from t_bas_sku_price where sku_id =%s',value);
@@ -50,14 +50,14 @@ def getPriceByGoodsId(goods_id):
 
 
 def truncateDetail():
-        db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+        db = MySQLdb.connect("127.0.0.1","root","bsztz","tmall",charset='utf8');
         detail = db.cursor(MySQLdb.cursors.DictCursor)
 	detail.execute('TRUNCATE TABLE bom_detail')
         db.commit();
         detail.close();
         db.close();
 
-db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+db = MySQLdb.connect("127.0.0.1","root","bsztz","tmall",charset='utf8');
 bom = db.cursor(MySQLdb.cursors.DictCursor)
 
 try:

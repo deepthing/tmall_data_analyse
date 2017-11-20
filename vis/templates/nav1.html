@@ -1,0 +1,72 @@
+{% load i18n %}
+<head>
+    <meta charset="utf-8">
+    <title>{% blocktrans %}果瑞氏数据可视化{% endblocktrans %}</title>
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap.css'%}>
+    <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap-table.css'%}>
+    <script src={% static 'js/jquery.min.js'%}></script>
+    <script src={% static 'js/bootstrap.js'%}></script>
+    <script src={% static 'js/d3.js'%}></script>
+    <script src={% static 'js/bootstrap-table.js'%}></script>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+            <a class="navbar-brand" href="#">{% blocktrans %}果瑞氏{% endblocktrans %}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li id="order_analyse"><a href="/order/">{% blocktrans %}订单分析{% endblocktrans %}</a></li>
+                <li id="fee_analyse"><a href="/fee/">{% blocktrans %}金额分析{% endblocktrans %}</a></li>
+                <li id="inv_analyse"><a href="/inv">{% blocktrans %}货品分析{% endblocktrans %}</a></li>
+                <li id="inv_analyse"><a href="/basics">{% blocktrans %}基础数据{% endblocktrans %}</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li id="intnational"><a href="#">{% blocktrans %}数据加载{% endblocktrans %}</a></li>
+                <li id="intnational"><a href="#" onclick="uplge()">{% blocktrans %}中英文切换{% endblocktrans %}</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<script>
+    $(document).ready(function() {
+        $("#order_analyse").click(function(e) {
+            $("#fee_analyse").removeClass('active');
+            $("#order_analyse").addClass('active');
+
+        })
+        $("#fee_analyse").click(function(e) {
+            $("#order_analyse").removeClass('active');
+            $("#fee_analyse").addClass('active');
+        })
+    })
+    function uplge(){
+        $.ajax({
+            url:'/uplge/',
+            type:'get',
+            success:function(callback){
+                location.reload() 
+            }
+        })
+    }
+</script>

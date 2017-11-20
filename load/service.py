@@ -150,7 +150,14 @@ def analyse_data(num):
             print "库存数量分析 - 行转列"
             execsql("load_and_analyse/sql/init_t_period_num_info.sql")
             execfile("load_and_analyse/goods_num.py")
-        
+        if(num ==0 or num == 15):
+            print "金额账户分析"
+            execsql("load_and_analyse/sql/t_other_fee_info.sql")
+            execfile("load_and_analyse/other_refund.py")
+        if(num ==0 or num == 16):
+            print "金额发货分析"
+            execfile("load_and_analyse/fee_detail_monthly.py")
+
         print '执行完毕'
     except Exception,e:
         print str(e)

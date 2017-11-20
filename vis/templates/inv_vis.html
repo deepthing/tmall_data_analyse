@@ -17,6 +17,7 @@
                 <thead>
                     <tr>
                         <th data-align='center' data-valign='middle'>月份</th>
+                        <th data-align='center' data-valign='middle'>代码</th>
                         <th data-align='center' data-valign='middle'>货品</th>
                         <th data-align='center' data-valign='middle'>货品说明</th>
                         <th data-align='center' data-valign='middle'>订单销售数量<br>(拍下)</th>
@@ -33,6 +34,7 @@
                     {% for index_inv_count in inv_count %}
                     <tr>
                         <td>{{index_inv_count.period}}</td>
+                         <td>{{index_inv_count.gpc}}</td>
                         <td>{{index_inv_count.goods_id}}</td>
                         <td>{{index_inv_count.goods_name}}</td>
                         <td>{{index_inv_count.sale_num}}</td>
@@ -61,6 +63,8 @@
                     <thead>
                         <tr>
                             <th data-align='center' data-valign='middle'>月份</th>
+                            
+                            <th data-align='center' data-valign='middle'>代码</th>
                             <th data-align='center' data-valign='middle'>货品</th>
                             <th data-align='center' data-valign='middle'>货品说明</th>
                             <th data-align='center' data-valign='middle'>期初数量</th>
@@ -80,6 +84,7 @@
 
                         <tr>
                             <td>{{index_inv_count.period}}</td>
+                             <td>{{index_inv_count.gpc}}</td>
                             <td>{{index_inv_count.goods_id}}</td>
                             <td>{{index_inv_count.goods_name}}</td>
                             <td>{{index_inv_count.opening_inventory}}</td>

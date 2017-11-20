@@ -1,0 +1,336 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% include 'nav1.html' %}
+<br/>
+<div class="container-fluid">
+    <div class="col-md-10">
+
+        <div class="panel panel-success" id="fee_amount">
+            <div class="panel-heading">
+                <h3>{% blocktrans %}订单提取时间{% endblocktrans %}</h3>
+            </div>
+            {% comment %}
+            <div class="panel-body">
+
+            </div> {% endcomment %}
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}支付宝订单提取金额{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}支付宝订单收到金额{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}支付宝订单费用扣除{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}菜鸟-税费{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}菜鸟-服务费{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}阿里费用{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}天猫费用{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}聚划算费用{% endblocktrans %}</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for index_dictMergedRow in dictMergedRow %}
+                    <tr>
+                        <td>{{index_dictMergedRow.period}}</td>
+                        <td>${{index_dictMergedRow.Alipay_Settlement}}</td>
+                        <td>${{index_dictMergedRow.Alipay_Amount}}</td>
+                        <td>${{index_dictMergedRow.Alipay_Settlement_Fee}}</td>
+                        <td>${{index_dictMergedRow.logisitic_tax}}</td>
+                        <td>${{index_dictMergedRow.logisitic_service}}</td>
+                        <td>${{index_dictMergedRow.alipay_service}}</td>
+                        <td>${{index_dictMergedRow.tmall}}</td>
+                        <td>${{index_dictMergedRow.juhuasuan}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel panel-success" id="fee_time" style="display:none;">
+            <div class="panel-heading">
+                <h3>{% blocktrans %}订单提取时间{% endblocktrans %}</h3>
+            </div>
+            {% comment %}
+            <div class="panel-body">
+
+            </div> {% endcomment %}
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}支付宝订单提取金额(USD){% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}支付宝订单收到金额(USD){% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}支付宝订单费用扣除(USD){% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}菜鸟-税费(USD){% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}菜鸟-服务费(USD){% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}阿里费用(USD){% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}天猫费用(USD){% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}聚划算费用(USD){% endblocktrans %}</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for index_dictMergedRow_usd in dictMergedRow %}
+                    <tr>
+                        <td>{{index_dictMergedRow_usd.fee_time}}</td>
+                        <td>${{index_dictMergedRow_usd.Alipay_Settlement_Usd}}</td>
+                        <td>${{index_dictMergedRow_usd.Alipay_Amount_Usd}}</td>
+                        <td>${{index_dictMergedRow_usd.Alipay_Settlement_Fee_Usd}}</td>
+                        <td>${{index_dictMergedRow_usd.logisitic_tax_usd}}</td>
+                        <td>${{index_dictMergedRow_usd.logisitic_service_usd}}</td>
+                        <td>${{index_dictMergedRow_usd.alipay_service_usd}}</td>
+                        <td>${{index_dictMergedRow_usd.tmall_usd}}</td>
+                        <td>${{index_dictMergedRow_usd.juhuasuan_usd}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel panel-success" id="fee_order">
+            <div class="panel-heading">
+                <h3>{% blocktrans %}订单生成时间{% endblocktrans %}</h3>
+            </div>
+            {% comment %}
+            <div class="panel-body">
+
+            </div> {% endcomment %}
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}买家拍下支付金额{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}买家拍下退款金额{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}买家实际支付金额{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}支付宝费用扣除{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}支付宝提取金额 {% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}菜鸟-税费{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}菜鸟-服务费{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}阿里费用{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}天猫费用{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}聚划算费用{% endblocktrans %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index_fee_order_rows in fee_order_rows %}
+                    <tr>
+                        <td>{{index_fee_order_rows.period}}</td>
+                        <td>${{index_fee_order_rows.tmall_order}}</td>
+                        <td>${{index_fee_order_rows.tmall_order_refund}}</td>
+                        <td>${{index_fee_order_rows.tmall_order_actual_pay}}</td>
+                        <td>${{index_fee_order_rows.alipay_Fee}}</td>
+                        <td>${{index_fee_order_rows.alipay_settlement}}</td>
+                        <td>${{index_fee_order_rows.logisitic_tax}}</td>
+                        <td>${{index_fee_order_rows.logisitic_service}}</td>
+                        <td>${{index_fee_order_rows.alipay_service}}</td>
+                        <td>${{index_fee_order_rows.tmall}}</td>
+                        <td>${{index_fee_order_rows.juhuasuan}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel panel-success" id="shipment">
+            <div class="panel-heading">
+                <h3>{% blocktrans %}订单发货时间{% endblocktrans %}</h3>
+            </div>
+            {% comment %}
+            <div class="panel-body">
+
+            </div> {% endcomment %}
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}期间交易出库金额{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}菜鸟-税费{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}菜鸟-服务费{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}阿里费用{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}天猫费用{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}聚划算费用{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}期间退款金额{% endblocktrans %}</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for index_fee_detail_monthly in fee_detail_monthly %}
+                    <tr>
+                        <td>{{index_fee_detail_monthly.fee_time}}</td>
+                        <td>${{index_fee_detail_monthly.out_stock}}</td>
+                        <td>${{index_fee_detail_monthly.cainiao_tax}}</td>
+                        <td>${{index_fee_detail_monthly.cainiao_service}}</td>
+                        <td>${{index_fee_detail_monthly.alipay}}</td>
+                        <td>${{index_fee_detail_monthly.tmall}}</td>
+                        <td>${{index_fee_detail_monthly.juhuasuan}}</td>
+                        <td>${{index_fee_detail_monthly.refund}}</td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <div class="panel panel-success" id="fee_payment">
+            <div class="panel-heading">
+                <h3>{% blocktrans %}我的账户支出{% endblocktrans %}</h3>
+            </div>
+            {% comment %}
+            <div class="panel-body">
+
+            </div> {% endcomment %}
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}充值{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}退还{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}支付{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}订单支付{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}非订单支付{% endblocktrans %}</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for index_fee_payment in fee_payment %}
+                    <tr>
+                        <td>{{index_fee_payment.period}}</td>
+                        <td>${{index_fee_payment.Recharge}}</td>
+                        <td>${{index_fee_payment.Refund}}</td>
+                        <td>${{index_fee_payment.Payments}}</td>
+                        <td>${{index_fee_payment.order_payment}}</td>
+                        <td>${{index_fee_payment.not_order_payment}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel panel-success" id="other_fee_detail">
+            <div class="panel-heading">
+                <h3>{% blocktrans %}我的费用分析{% endblocktrans %}</h3>
+            </div>
+            {% comment %}
+            <div class="panel-body">
+
+            </div> {% endcomment %}
+            <table data-toggle="table" data-pagination=true>
+                <thead>
+                    <tr>
+                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}仓储费{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}保险费{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}销毁费{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}商家赔付给消费者费用{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}菜鸟赔付给商家费用(货款赔付）{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}菜鸟赔付商给家费用(保证金赔付){% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}推广补助{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}其他账户返还{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}天猫广告推广费{% endblocktrans %}</th>
+                        <th data-align='center'>{% blocktrans %}返现金额和CRM{% endblocktrans %}</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for index_other_fee_detail in other_fee_detail %}
+                    <tr>
+                        <td>{{index_other_fee_detail.trans_date}}</td>
+                        <td>${{index_other_fee_detail.tmall_warehouse_fee}}</td>
+                        <td>${{index_other_fee_detail.insurance_fee}}</td>
+                        <td>${{index_other_fee_detail.destory_fee}}</td>
+                        <td>${{index_other_fee_detail.merchant_pay_to_custom}}</td>
+                        <td>￥{{index_other_fee_detail.cainiao_pay_goodsfee_to_merchant}}</td>
+                        <td>{{index_other_fee_detail.cainiao_pay_deposit_to_merchant}}</td>
+                        <td>${{index_other_fee_detail.popularize_fee}}</td>
+                        <td>${{index_other_fee_detail.other_payback_fee}}</td>
+                        <td>${{index_other_fee_detail.tmall_popularize_fee}}</td>
+                        <td>${{index_other_fee_detail.return_cash}}</td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+
+    <div class="col-md-2">
+        <div data-spy="affix">
+            <nav class="nav nav-pills nav-stacked  ">
+                <li role="presentation" id="li_fee_amount" class="active"><a href="#fee_amount">{% blocktrans %}订单提取时间{% endblocktrans %}</a></li>
+                <li role="presentation" id="li_fee_order"><a href="#fee_order">{% blocktrans %}订单生成时间{% endblocktrans %}</a></li>
+                <li role="presentation" id="li_shipment"><a href="#shipment">{% blocktrans %}订单发货时间{% endblocktrans %}</a></li>
+                <li role="presentation" id="li_fee_payment"><a href="#fee_payment">{% blocktrans %}我的账户支出{% endblocktrans %}</a></li>
+                <li role="presentation" id="li_other_fee_detail"><a href="#other_fee_detail">{% blocktrans %}我的费用分析{% endblocktrans %}</a></li>
+            </nav>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#li_fee_amount").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_fee_amount').addClass('active');
+
+        })
+        $("#li_fee_time").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_fee_time').addClass('active');
+        })
+        $("#li_fee_order").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_fee_order').addClass('active');
+
+        })
+        $("#li_fee_order_detail").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_fee_order_detail').addClass('active');
+        })
+        $("#li_fee_payment").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_fee_payment').addClass('active');
+        })
+        $("#li_shipment").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_shipment').addClass('active');
+        })
+        $("#li_other_fee_detail").click(function(e) {
+            $('li').each(function() {
+                $(this).removeClass('active');
+            })
+            $('#li_other_fee_detail').addClass('active');
+        })
+
+    })
+</script>
+
+</html>

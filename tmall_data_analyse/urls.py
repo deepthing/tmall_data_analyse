@@ -26,4 +26,6 @@ urlpatterns = [
     url(r'^load/$',visual.jump_to_load),
     url(r'^upload/$',visual.upload),
     url(r'^testd3/$',visual.testd3),
+    url(r'^uplge/$',visual.uplge),
+    url(r'^basics/$',visual.basics_vis),
 ]

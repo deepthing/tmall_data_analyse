@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8">
-    <title>果瑞士数据可视化</title>
+    <title>果瑞氏数据可视化</title>
     {%load static%}
     <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap.css'%}>
     <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap-table.css'%}>
@@ -25,7 +25,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 </button>
-            <a class="navbar-brand" href="#">果瑞士</a>
+            <a class="navbar-brand" href="#">果瑞氏</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -34,13 +34,13 @@
                 <li id="order_analyse"><a href="/order/">订单分析</a></li>
                 <li id="fee_analyse"><a href="/fee/">金额分析</a></li>
                 <li id="inv_analyse"><a href="/inv">货品分析</a></li>
-                
+                <li id="inv_analyse"><a href="/basics">基础数据</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
 
                 <li id="intnational"><a href="#">数据加载</a></li>
-                <li id="intnational"><a href="#">中英文切换</a></li>
+                <li id="intnational"><a href="#" onclick="uplge()">中英文切换</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -59,4 +59,13 @@
             $("#fee_analyse").addClass('active');
         })
     })
+    function uplge(){
+        $.ajax({
+            url:'/uplge/',
+            type:'get',
+            success:function(callback){
+                location.reload() 
+            }
+        })
+    }
 </script>

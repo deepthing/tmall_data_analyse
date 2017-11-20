@@ -1,0 +1,424 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-10 10:41+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\vis\views.py:14
+msgid "果瑞氏"
+msgstr "GracelandFruit"
+
+msgid "基础数据"
+msgstr "Basic data"
+
+msgid "税率"
+msgstr "TAX RATE"
+
+msgid "货品代码"
+msgstr "SKU"
+
+msgid "序号"
+msgstr "NO."
+
+msgid "名称"
+msgstr "NAME"
+
+msgid "权重值"
+msgstr "VALUE"
+
+msgid "权重"
+msgstr "Weight"
+
+msgid "货品"
+msgstr "Goods"
+
+msgid "果瑞氏数据可视化"
+msgstr "Data visualization of GracelandFruit"
+
+msgid "订单分析"
+msgstr "Order Analysis"
+
+msgid "金额分析"
+msgstr "Sum Analysis"
+
+msgid "货品分析"
+msgstr "Commodity Analysis"
+
+msgid "数据加载"
+msgstr "Data loading"
+
+msgid "中英文切换"
+msgstr "Chinese-English Switch"
+
+msgid "我的费用分析"
+msgstr "MyAccount Analysis"
+
+msgid "月份"
+msgstr "MOUTH"
+
+
+msgid "状态分析(数量)"
+msgstr "Order Status (by Volume)"
+
+msgid "订单总数量"
+msgstr "Total Orders"
+
+msgid "交易成功订单数量"
+msgstr "Successful Orders"
+
+msgid "交易关闭订单数量"
+msgstr "Closed Orders"
+
+msgid "其他状态订单数量"
+msgstr "Open Orders"
+
+msgid "关闭(买家未付款)订单数量"
+msgstr "Closed Orders due to no payment"
+
+msgid "关闭(退款)订单数量"
+msgstr "Closed orders due to refunds"
+
+msgid "状态分析(金额)"
+msgstr "Order Status (by USD)"
+
+msgid "订单总金额"
+msgstr "Total Orders"
+
+msgid "交易成功订单金额"
+msgstr "Successful Orders"
+
+msgid "交易关闭订单金额"
+msgstr "Closed Orders"
+
+msgid "其他状态订单金额"
+msgstr "Open Orders"
+
+msgid "关闭(买家未付款)订单金额"
+msgstr "Closed Orders due to no payment"
+
+msgid "关闭(退款)订单金额"
+msgstr "Closed orders due to refunds"
+
+msgid "账号分析(数量)"
+msgstr "Buyers Analysis (by Vol)"
+
+msgid "账号总数"
+msgstr "Total Buyers"
+
+msgid "新账号数"
+msgstr "New Buyers"
+
+msgid "老账号数"
+msgstr "Repeat Buyers"
+
+msgid "无账号订单数"
+msgstr "Orders from non-alipay accounts"
+
+msgid "新账号订单数"
+msgstr "# of orders from New buyers"
+
+msgid "老账号订单数"
+msgstr "# of orders from Repeat Buyers"
+
+msgid "账号分析(金额)"
+msgstr "Buyers Analysis (by USD)"
+
+msgid "账号总订单金额"
+msgstr "order amount from Total Buyers "
+
+msgid "无账号订单金额"
+msgstr "order amount from non alipay ID buyers"
+
+msgid "新账号订单金额"
+msgstr "order amount from new buyers"
+
+msgid "老账号订单金额"
+msgstr "Order amount from repeat buyers"
+
+msgid "区域分析(数量)"
+msgstr "Region Analysis (by Vol)"
+
+msgid "华东订单数量"
+msgstr "East Region"
+
+msgid "华中订单数量"
+msgstr "Mid Region"
+
+msgid "华南订单数量"
+msgstr "South Region"
+
+msgid "西南订单数量"
+msgstr "Southwest Region"
+
+msgid "东北订单数量"
+msgstr "Northeast Region"
+
+msgid "华北订单数量"
+msgstr "North Region"
+
+msgid "西北订单数量"
+msgstr "Northwest Region"
+
+msgid "其他区域订单"
+msgstr "Others"
+
+msgid "区域分析(金额)"
+msgstr "Region Analysis (By USD)"
+
+msgid "华东订单金额"
+msgstr "East Region"
+
+msgid "华中订单金额"
+msgstr "Mid Region"
+
+msgid "华南订单金额"
+msgstr "South Region"
+
+msgid "西南订单金额"
+msgstr "Southwest Region"
+
+msgid "东北订单金额"
+msgstr "Northeast Region"
+
+msgid "华北订单金额"
+msgstr "North Region"
+
+msgid "西北订单金额"
+msgstr "Northwest Region"
+
+msgid "其他区域金额"
+msgstr "Others"
+
+
+
+
+
+msgid "订单提取时间"
+msgstr "Based on Order settled time"
+
+msgid "支付宝订单提取金额"
+msgstr "Settlement Amount (Alipay)"
+
+msgid "支付宝订单收到金额"
+msgstr "Payment amount (alipay)"
+
+msgid "支付宝订单费用扣除"
+msgstr "Fees deducted (alipay)"
+
+msgid "菜鸟-税费"
+msgstr "Cross boarder Tax"
+
+msgid "菜鸟-服务费"
+msgstr "Logistic Service Fee"
+
+msgid "阿里费用"
+msgstr "Alipay Comm"
+
+msgid "天猫费用"
+msgstr "Tmall Comm"
+
+msgid "聚划算费用"
+msgstr "Great Deal Comm"
+
+
+
+msgid "订单生成时间"
+msgstr "Based on order placed time"
+
+msgid "买家拍下支付金额"
+msgstr "Total Orders"
+
+msgid "买家拍下退款金额"
+msgstr "Refunds amount"
+
+msgid "买家实际支付金额"
+msgstr "Payment Amount"
+
+msgid "支付宝费用扣除"
+msgstr "Fees deducted by Alipay"
+
+msgid "支付宝提取金额"
+msgstr "Alipay Settlement"
+
+
+
+msgid "订单发货时间"
+msgstr "Based on order shipped time"
+
+msgid "期间交易出库金额"
+msgstr "Sales revenue"
+
+msgid "期间退款金额"
+msgstr "CUSTOMER REFUNDS"
+
+msgid "我的账户支出"
+msgstr "Balance in Alipay's MyAccount "
+
+msgid "充值"
+msgstr "Deposit"
+
+msgid "退还"
+msgstr "Refunds from Tmall"
+
+msgid "支付"
+msgstr "Total Payouts"
+
+msgid "订单支付"
+msgstr "Payouts for Orders"
+
+msgid "非订单支付"
+msgstr "Non order related payouts"
+
+
+msgid "账户费用分析"
+msgstr "MyAccount Analysis"
+
+msgid "仓储费"
+msgstr "TMALL WAREHOUSE FEES"
+
+msgid "保险费"
+msgstr "INSURANCE  FEES"
+
+msgid "销毁费"
+msgstr "DESTROY FEES"
+
+msgid "商家赔付给消费者费用"
+msgstr "To Consumer"
+
+msgid "菜鸟赔付给商家费用(货款赔付）"
+msgstr "Refund for Goods"
+
+msgid "菜鸟赔付商给家费用(保证金赔付)"
+msgstr "Refund for Bond"
+
+msgid "推广补助"
+msgstr "Refund for Extension subsidy"
+
+msgid "其他账户返还"
+msgstr "OTHER"
+
+msgid "天猫广告推广费"
+msgstr "BANNER/KEYWORDS ADVERTISING"
+
+msgid "返现金额和CRM"
+msgstr "IN STORE MARKETING PROMOTIONS"
+
+msgid "货品金额分析"
+msgstr "Sum Analysis"
+
+msgid "货品库存分析"
+msgstr "Inventory Analysis"
+
+msgid "代码"
+msgstr "GPC"
+
+msgid "货品说明"
+msgstr "PRODUCTS"
+
+msgid "订单销售数量"
+msgstr "SALES QUANTITY  BASED"
+
+msgid "（仓库）"
+msgstr "ON ORDERS PLACED"
+
+msgid "（最终成交）"
+msgstr "ON ORDERS PLACED"
+
+msgid "（拍下）"
+msgstr "ON ORDERS PLACED"
+
+msgid "订单出库数量"
+msgstr "QUANTITY SHIPPED BASED"
+
+msgid "交易成功订单销售数量"
+msgstr "SUCCESSFUL TRADE QUANTITY  BASED"
+
+msgid "订单销售金额"
+msgstr "SALES REVENUE BASED"
+
+msgid "订单出库金额"
+msgstr "REVENUE SHIPPED BASED"
+
+msgid "交易成功订单销售金额"
+msgstr "SUCCESSFUL TRADE  REVENUE BASED"
+
+msgid "期初数量"
+msgstr " QUANTITY BEGINNING"
+
+msgid "期间采购入库"
+msgstr "QUANTITY RECEIVED"
+
+msgid "期间其他入库"
+msgstr "OTHER QUANTITY RECEIVED"
+
+msgid "期间交易出库"
+msgstr "QUANTITY SHIPPED"
+
+msgid "期间其他出库"
+msgstr "OTHER QUANTITY SHIPPED"
+
+msgid "期末数量"
+msgstr "QUANTITY ENDING"
+
+msgid "期末-期初"
+msgstr "ENDING - BEGINNING"
+
+msgid "期间出入库流水总数量"
+msgstr "QUANTITY SOLD"
+
+msgid "Graceland Fruit 蔓越莓切片果干 226.8克"
+msgstr "Graceland Fruit Cran 8oz"
+
+msgid "Graceland Fruit 酸樱桃果干 40克"
+msgstr "Graceland Fruit Cherry 40g"
+
+msgid "Graceland Fruit 整粒蔓越莓果干 40克"
+msgstr "Graceland Fruit Whole Cran 40g"
+
+msgid "Graceland Fruit 整粒蔓越莓果干 1000克"
+msgstr "Graceland Fruit Whole Cran 1kg"
+
+msgid "Graceland Fruit 蔓越莓切片果干 40克"
+msgstr "Graceland Fruit Cran 40g"
+
+msgid "Graceland Fruit 整粒蔓越莓果干 226.8克"
+msgstr "Graceland Fruit Whole Cran 8oz"
+
+msgid "Graceland Fruit 蓝莓果干 40克"
+msgstr "Graceland Fruit Blueberry 40g"
+
+msgid "Graceland Fruit 蔓越莓切片果干 1000克"
+msgstr "Graceland Fruit Cran 1kg"
+
+msgid "Graceland Fruit 酸樱桃果干 141.7克"
+msgstr "Graceland Fruit Cherry 5oz"
+
+msgid "Graceland Fruit 蓝莓果干 1000克"
+msgstr "Graceland Fruit Blueberry 1kg"
+
+msgid "Graceland Fruit 蓝莓果干 141.7克"
+msgstr "Graceland Fruit Blueberry 5oz"
+
+msgid "Graceland Fruit 酸樱桃果干 1000克"
+msgstr "Graceland Fruit Cherry 1kg"
+
+msgid "GracelandFruit莓果橙皮 混合果干 454克"
+msgstr "GracelandFruitZest Blends 1lb"
+
+msgid "GracelandFruit芒果莓果 混合果干 454克"
+msgstr "GracelandFruitMango Blends 1lb"
+
+msgid "GracelandFruit全美苹果 混合果干 454克"
+msgstr "GracelandFruitApple Blends 1lb"
