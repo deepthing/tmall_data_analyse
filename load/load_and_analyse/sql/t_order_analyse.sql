@@ -1,4 +1,5 @@
-TRUNCATE TABLE t_order_analyse; insert into t_order_analyse( fin_period , order_num , saled_num , closed_num , waiting_num , close_unpaid_num , close_return_num , order_amount , saled_amount , closed_amount , waiting_amount , close_unpaid_amount , close_return_amount)
+TRUNCATE TABLE t_order_analyse; 
+insert into t_order_analyse( fin_period , order_num , saled_num , closed_num , waiting_num , close_unpaid_num , close_return_num , order_amount , saled_amount , closed_amount , waiting_amount , close_unpaid_amount , close_return_amount)
 SELECT create_date ,
          sum(order_num) ,
          sum(saled_num) ,

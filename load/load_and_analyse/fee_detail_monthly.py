@@ -25,6 +25,7 @@ for month in monthlist:
     str3 = "INSERT into tmp_fee_info_monthly SELECT * from t_fee_info WHERE SUBSTR(fee_time FROM 1 FOR 7)=\'%s\'"%(month)
     con.execute(str3)
     db.commit()
+    con.execute("UPDATE tmp_load_transaction_info_monthly SET outter_order_id = REPLACE(REPLACE(outter_order_id, CHAR(10), ''), CHAR(13),'');")
     con.execute("SELECT sum(b.actual_paid) FROM tmp_load_transaction_info_monthly a LEFT JOIN tmp_load_tmallso_info_monthly b on a.outter_order_id = b.order_id")
     actual_paid = con.fetchall()
     con.execute("SELECT sum(b.refund) FROM tmp_load_transaction_info_monthly a LEFT JOIN tmp_load_tmallso_info_monthly b on a.outter_order_id = b.order_id")

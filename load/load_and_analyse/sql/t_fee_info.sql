@@ -1,5 +1,6 @@
-UPDATE load_fee_info SET Partner_transaction_id = trim('\t'
-FROM Partner_transaction_id); TRUNCATE TABLE t_fee_info; INSERT INTO t_fee_info( order_id , fee_time , payment_time , logisitic_tax , logisitic_service , alipay_service , tmall , juhuasuan , order_fee , account_fee , logisitic_tax_usd , logisitic_service_usd , alipay_service_usd , tmall_usd , juhuasuan_usd , order_fee_usd , account_fee_usd )
+UPDATE load_fee_info SET Partner_transaction_id = trim('\t' FROM Partner_transaction_id); 
+TRUNCATE TABLE t_fee_info; 
+INSERT INTO t_fee_info( order_id , fee_time , payment_time , logisitic_tax , logisitic_service , alipay_service , tmall , juhuasuan , order_fee , account_fee , logisitic_tax_usd , logisitic_service_usd , alipay_service_usd , tmall_usd , juhuasuan_usd , order_fee_usd , account_fee_usd )
 SELECT t.order_id ,
          t.Fee_date ,
          t.Payment_date ,

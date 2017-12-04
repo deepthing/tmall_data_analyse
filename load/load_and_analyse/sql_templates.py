@@ -144,7 +144,6 @@ class sql_templates():
 	type_order = '''
 	LOAD DATA LOCAL INFILE '@templates_filename' INTO TABLE load_order_info CHARACTER
 	SET 'gbk' FIELDS ESCAPED BY '\\\\' TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\\n' IGNORE 1 LINES(
-		@num ,
 		shop_name ,
 		warehouse_name ,
 		order_time ,

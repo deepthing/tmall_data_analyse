@@ -1,5 +1,7 @@
-ßdrop TABLE if EXISTS t_period_nums_info; create table t_period_nums_info( id int auto_increment , goods_id varchar(80) COMMENT '商品编码' , goods_name varchar(200) COMMENT '商品名称' , fee_order varchar(2) COMMENT '费用顺序' , fee_type varchar(200) COMMENT '费用名称' ,
-         PRIMARY KEY(id)) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 COLLATE = utf8_general_ci; insert into t_period_nums_info( goods_id ,
+drop TABLE if EXISTS t_period_nums_info; 
+create table t_period_nums_info( id int auto_increment , goods_id varchar(80) COMMENT '商品编码' , goods_name varchar(200) COMMENT '商品名称' , fee_order varchar(2) COMMENT '费用顺序' , fee_type varchar(200) COMMENT '费用名称' ,
+         PRIMARY KEY(id)) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 COLLATE = utf8_general_ci; 
+insert into t_period_nums_info( goods_id ,
          goods_name ,
          fee_order ,
          fee_type)

@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # coding:UTF-8
 import sys
-sys.path.append("..")
 import service 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -10,6 +9,9 @@ sys.setdefaultencoding('utf-8')
 # print name[name.rfind("_")+1:name.rfind(".")]
 # service.upzip("2017年7月.zip")
 
-# service.loaddata("/data/graceland/upload/2017年7月/")
+# service.loaddata("/Users/dengliang/Downloads/201708/")
+# service.loaddata("/Users/dengliang/Downloads/201709/")
+# service.loaddata("/Users/dengliang/Downloads/201710/")
 
-service.analyse_data(16)
+# service.analyse_data(0)
+service.analyse_data(0)

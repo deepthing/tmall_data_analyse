@@ -36,15 +36,15 @@ def loaddata(csvfilepath):
 
                 load_data_to_db(db,data,csvfilename,name.lower())
 
-                db.commit();
-                data.close();
-                db.close();
+                db.commit()
+                data.close()
+                db.close()
 
-        for root, dirs, files in os.walk(".", topdown=False):
-            for name in files:
-                os.remove((os.path.join(csvfilepath,os.path.join(root, name))).replace("./",""))
-            for name in dirs:
-                os.removedirs((os.path.join(csvfilepath,os.path.join(root, name))).replace("./",""))
+        # for root, dirs, files in os.walk(".", topdown=False):
+        #     for name in files:
+        #         os.remove((os.path.join(csvfilepath,os.path.join(root, name))).replace("./",""))
+        #     for name in dirs:
+        #         os.removedirs((os.path.join(csvfilepath,os.path.join(root, name))).replace("./",""))
                 
     else:
         return
@@ -55,6 +55,7 @@ def load_data_to_db(db,data,filename,name):
     if '.csv' in name:
         if 'settlefee' in name:
             strr = sql.sql_templates.type_settlefee
+            print name+" get date:"+name[name.rfind(".")-6:name.rfind(".")]
             strr = strr.replace("@templates_cut",""+name[name.rfind(".")-6:name.rfind(".")])
         elif 'inventory' in name:
             strr = sql.sql_templates.type_inventory
@@ -64,23 +65,26 @@ def load_data_to_db(db,data,filename,name):
             strr = sql.sql_templates.type_order
         elif 'settlebatch' in name:
             strr = sql.sql_templates.type_settlebatch
-        elif 'settledetails' in name:
+        elif 'settledetail' in name:
             strr = sql.sql_templates.type_settledetails
+            print name+" get date:"+name[name.rfind("_")+1:name.rfind(".")]
             strr = strr.replace("@templates_cut",""+name[name.rfind("_")+1:name.rfind(".")])
-        elif 'fee' in name:
+        elif ('fee' in name) and ('settlefee' not in name):
             strr = sql.sql_templates.type_fee
-            strr = strr.replace("@templates_fee_date",name[3:7]+"-"+name[7:9]+"-01")
+            print name+" get date:"+name[4:8]+"-"+name[8:10]+"-01"
+            strr = strr.replace("@templates_fee_date",name[4:8]+"-"+name[8:10]+"-01")
         elif 'strade' in name:
             strr = sql.sql_templates.type_strade
         elif 'tmallsodetails' in name:
             strr = sql.sql_templates.type_tmallsodetail
-        elif 'tmallso' in  name:
+        elif ('tmallso' in  name) and ('tmallsodetails' not in name):
             strr = sql.sql_templates.type_tmallso
         elif 'transaction' in name:
             strr = sql.sql_templates.tpye_transaction
 
     if strr != '':
         strr = strr.replace("@templates_filename",filename)
+        print filename
         print strr
         data.execute(strr)
 
