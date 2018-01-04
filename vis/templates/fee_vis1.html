@@ -108,7 +108,7 @@
                         <th data-align='center'>{% blocktrans %}买家拍下退款金额{% endblocktrans %}</th>
                         <th data-align='center'>{% blocktrans %}买家实际支付金额{% endblocktrans %}</th>
                         <th data-align='center'>{% blocktrans %}支付宝费用扣除{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}支付宝提取金额 {% endblocktrans %}</th>
+                        <th data-align='center'>Alipay Settlement</th>
                         <th data-align='center'>{% blocktrans %}菜鸟-税费{% endblocktrans %}</th>
                         <th data-align='center'>{% blocktrans %}菜鸟-服务费{% endblocktrans %}</th>
                         <th data-align='center'>{% blocktrans %}阿里费用{% endblocktrans %}</th>
@@ -163,11 +163,11 @@
                 <tbody>
                     {% for index_fee_detail_monthly in fee_detail_monthly %}
                     <tr>
-                        <td>{{index_fee_detail_monthly.fee_time}}</td>
-                        <td>${{index_fee_detail_monthly.out_stock}}</td>
-                        <td>${{index_fee_detail_monthly.cainiao_tax}}</td>
-                        <td>${{index_fee_detail_monthly.cainiao_service}}</td>
-                        <td>${{index_fee_detail_monthly.alipay}}</td>
+                        <td>{{index_fee_detail_monthly.time}}</td>
+                        <td>${{index_fee_detail_monthly.actual_paid}}</td>
+                        <td>${{index_fee_detail_monthly.logisitic_tax}}</td>
+                        <td>${{index_fee_detail_monthly.logisitic_service}}</td>
+                        <td>${{index_fee_detail_monthly.alipay_service}}</td>
                         <td>${{index_fee_detail_monthly.tmall}}</td>
                         <td>${{index_fee_detail_monthly.juhuasuan}}</td>
                         <td>${{index_fee_detail_monthly.refund}}</td>
@@ -251,8 +251,8 @@
                         <td>${{index_other_fee_detail.insurance_fee}}</td>
                         <td>${{index_other_fee_detail.destory_fee}}</td>
                         <td>${{index_other_fee_detail.merchant_pay_to_custom}}</td>
-                        <td>￥{{index_other_fee_detail.cainiao_pay_goodsfee_to_merchant}}</td>
-                        <td>{{index_other_fee_detail.cainiao_pay_deposit_to_merchant}}</td>
+                        <td>${{index_other_fee_detail.cainiao_pay_goodsfee_to_merchant}}</td>
+                        <td>${{index_other_fee_detail.cainiao_pay_deposit_to_merchant}}</td>
                         <td>${{index_other_fee_detail.popularize_fee}}</td>
                         <td>${{index_other_fee_detail.other_payback_fee}}</td>
                         <td>${{index_other_fee_detail.tmall_popularize_fee}}</td>

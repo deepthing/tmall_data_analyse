@@ -28,4 +28,8 @@ urlpatterns = [
     url(r'^testd3/$',visual.testd3),
     url(r'^uplge/$',visual.uplge),
     url(r'^basics/$',visual.basics_vis),
+    url(r'^export_vis/$',visual.export_vis),
+    url(r'^excel_export/$',visual.excel_export),
+    url(r'^export_order/$',visual.order_export),
+    url(r'^excel_export2/$',visual.excel_export2),
 ]

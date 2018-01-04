@@ -9,9 +9,8 @@ sys.setdefaultencoding('utf-8')
 # print name[name.rfind("_")+1:name.rfind(".")]
 # service.upzip("2017年7月.zip")
 
-# service.loaddata("/Users/dengliang/Downloads/201708/")
+#service.loaddata("/Users/dengliang/Downloads/导入数据0104/12月份/")
 # service.loaddata("/Users/dengliang/Downloads/201709/")
 # service.loaddata("/Users/dengliang/Downloads/201710/")
 
-# service.analyse_data(0)
 service.analyse_data(0)

@@ -162,14 +162,14 @@
                 <tbody>
                     {% for index_fee_detail_monthly in fee_detail_monthly %}
                     <tr>
-                        <td>{{index_fee_detail_monthly.fee_time}}</td>
-                        <td>¥{{index_fee_detail_monthly.out_stock}}</td>
-                        <td>¥{{index_fee_detail_monthly.cainiao_tax}}</td>
-                        <td>¥{{index_fee_detail_monthly.cainiao_service}}</td>
-                        <td>¥{{index_fee_detail_monthly.alipay}}</td>
-                        <td>¥{{index_fee_detail_monthly.tmall}}</td>
-                        <td>¥{{index_fee_detail_monthly.juhuasuan}}</td>
-                        <td>¥{{index_fee_detail_monthly.refund}}</td>
+                        <td>{{index_fee_detail_monthly.date_time}}</td>
+                        <td>￥{{index_fee_detail_monthly.actual_paid}}</td>
+                        <td>￥{{index_fee_detail_monthly.logisitic_tax}}</td>
+                        <td>￥{{index_fee_detail_monthly.ls}}</td>
+                        <td>￥{{index_fee_detail_monthly.alipay_service}}</td>
+                        <td>￥{{index_fee_detail_monthly.tmall}}</td>
+                        <td>￥{{index_fee_detail_monthly.juhuasuan}}</td>
+                        <td>￥{{index_fee_detail_monthly.refund}}</td>
 
                     </tr>
                     {% endfor %}
@@ -251,7 +251,7 @@
                         <td>¥{{index_other_fee_detail.destory_fee}}</td>
                         <td>¥{{index_other_fee_detail.merchant_pay_to_custom}}</td>
                         <td>¥{{index_other_fee_detail.cainiao_pay_goodsfee_to_merchant}}</td>
-                        <td>{{index_other_fee_detail.cainiao_pay_deposit_to_merchant}}</td>
+                        <td>¥{{index_other_fee_detail.cainiao_pay_deposit_to_merchant}}</td>
                         <td>¥{{index_other_fee_detail.popularize_fee}}</td>
                         <td>¥{{index_other_fee_detail.other_payback_fee}}</td>
                         <td>¥{{index_other_fee_detail.tmall_popularize_fee}}</td>

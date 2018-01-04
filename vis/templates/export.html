@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% include 'nav.html' %}
+<br/>
+<script>
+onload = function (){
+   var year=new Date().getFullYear(); //获取当前年份
+   $("#sel").find("option[value="+year+"]").prop("selected",true);
+}
+</script>
+<style>
+.panel-heading{margin-bottom:20px;}
+.item p{line-height:30px;}
+.item{margin-bottom:10px}
+.item select{padding:6px 12px;border-radius:4px;}
+.report{width：30%;background:#337ab7;color:#fff;margin-bottom:20px;}
+.report:hover,.report:active{background:#337ab7;color:#fff;}
+</style>
+<div class="container-fluid">
+    <div class="col-md-8 col-md-offset-2">
+
+        <div class="panel panel-success" id="fee_amount">
+            <div class="panel-heading">
+                <h3>数据导出</h3>
+            </div>
+            {% comment %}
+            <div class="panel-body">
+            </div> {% endcomment %}
+            <div class="clearfix item">
+            	<p class="col-sm-2">报表类型</p>
+            	<select id="lei" class="col-sm-4">
+				  <option value ="1">订单分析</option>
+				  <option value ="2">金额分析</option>
+				  <option value ="3">货品分析</option>
+				</select>
+            </div>
+            <div class="clearfix item">
+            	<p class="col-sm-2">年份</p>
+            	<select id="sel" class="col-sm-4">
+            		{% for years in all_years %}
+            			<option value = {{years.yy}} >{{years.yy}}</option>
+            		{% endfor %}
+    			</select>
+            </div>
+            <div>
+            	<input id="exp" type="button" value="生成报表" class="col-sm-offset-2 report btn"/>
+            </div>
+        </div>
+</div>
+<script type="text/javascript">
+	$("#exp").click(function(){
+		var sel=$("#sel").val();
+	
+ 		if($("#lei").val()=='1'){
+			location.href="/export_order/?sel="+sel;
+		}
+		if($("#lei").val()=='2'){
+			location.href="/excel_export2/?sel="+sel;
+		}
+		if($("#lei").val()=='3'){
+			location.href="/excel_export/?sel="+sel;
+		} 
+	})
+</script>
+</html>
