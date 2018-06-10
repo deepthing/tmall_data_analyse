@@ -71,8 +71,16 @@ class sql_templates():
 		jufengbao_coupon ,
 		is_o2o ,
 		is_idcard ,
+		new_retail_type ,
+		new_retail_shopname ,
+		new_retail_shopid ,
+		new_retail_shipname ,
+		new_retail_shipid ,
 		refund ,
-		shop
+		shop ,
+		receipt_time ,
+		money_maker ,
+		red
 	)
 	SET order_id = MID(
 		@order_id ,
@@ -177,15 +185,16 @@ class sql_templates():
 	type_myaccount = '''
 	LOAD DATA LOCAL INFILE '@templates_filename' INTO TABLE load_myaccount_info CHARACTER
 	SET 'gbk' FIELDS ESCAPED BY '\\\\' TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\\n' IGNORE 1 LINES(
+                Trans_Date ,
 		Order_No ,
 		Partner_Transaction_ID ,
 		Transaction_ID ,
 		Type ,
 		Currency ,
 		Amount ,
-		Balance ,
-		Trans_Date ,
-		Remarks
+		Balance ,		
+		Remarks ,
+		Alipay_Order
 	);
 	'''
 

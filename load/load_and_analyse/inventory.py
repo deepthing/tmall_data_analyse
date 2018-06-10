@@ -8,12 +8,12 @@ from decimal import *
 sys.setdefaultencoding('utf-8')
 
 
-def update_inventroy(goods_id,period,opening,ending,order_num,order_amount,trans_amount):
+def update_inventroy(goods_id,period,opening,ending,order_num,order_amount,trans_num,trans_amount):
 	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
         detail = db.cursor(MySQLdb.cursors.DictCursor)
 	diff = int(ending) - int(opening)
-        value=[str(opening),str(ending), str(diff) ,str(order_num),str(order_amount),str(trans_amount),goods_id,period]
-        detail.execute('update t_goods_num_info set opening_inventory=%s,ending_inventory=%s,diff_inventory=%s, sale_out_number=%s,sale_out_amount=%s,trans_amount=%s where goods_id =%s and period=%s',value);
+        value=[str(opening),str(ending), str(diff) ,str(order_num),round(order_amount,6),str(trans_num),round(trans_amount,6),goods_id,period]
+        detail.execute('update t_goods_num_info set opening_inventory=%s,ending_inventory=%s,diff_inventory=%s, sale_out_number=%s,sale_out_amount=%s,trans_num=%s,trans_amount=%s where goods_id =%s and period=%s',value);
         db.commit();
         detail.close();
         db.close();
@@ -88,9 +88,9 @@ try:
 		opening,ending = getInventory(goods_id,period)
 		order_num,order_amount = getTranactionNumber(goods_id,period)
 		trans_num,trans_amount = getTranactionAmount(goods_id,period)
-		print goods_id,period,opening,ending,order_num,order_amount,trans_amount 
+		print goods_id,period,opening,ending,order_num,order_amount,trans_num,trans_amount
 
-		update_inventroy(goods_id,period,opening,ending,order_num,order_amount,trans_amount)
+		update_inventroy(goods_id,period,opening,ending,order_num,order_amount,trans_num,trans_amount)
 except Exception,e:
         print "error: unable fetch data",e.args
 

@@ -1,0 +1,83 @@
+1，导入数据
+	service.loaddata("C:/Users/alooyang/Desktop/201509")
+
+2，初始化
+	execsql("load_and_analyse/sql/init.sql")
+	execsql("load_and_analyse/sql/init2.sql")
+
+3，计算myaccount的各项费用明细
+	execsql("load_and_analyse/sql/t_other_fee_info2.sql") 
+
+4，找BOM缺失并补充
+        execsql("load_and_analyse/sql/bom.sql")
+
+5，BOM金额计算
+	execfile("load_and_analyse/bom_price.py")
+	execfile("load_and_analyse/bom.py")
+
+6，计算货品库存数量和金额
+	execsql("load_and_analyse/sql/t_good_num_info.sql")
+	execfile("load_and_analyse/inventory.py")
+
+7，验证BOM分解数据和菜鸟数据是否一致，并修正BOM回到节点4
+        execsql("load_and_analyse/sql/bom2.sql")
+
+8，计算每个自然期间的提取金额和税率
+	execsql("load_and_analyse/sql/t_settle_amount_info.sql")
+	execsql("load_and_analyse/sql/rate.sql")
+
+9，生成每个自然期间的订单五大费用明细
+          execsql("load_and_analyse/sql/t_fee_info.sql")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1O,根据发货时间汇总订单金额与订单费用
+          execfile("load_and_analyse/fee_detail_monthly.py")
+
+
+
+
+
+第7点，验证，还需要看left join
+第8点，看税率
+缺少15年的数据
+       
+        if(num ==0 or num == 5):
+            print "订单金额分析 - 订单金额"
+            execsql("load_and_analyse/sql/t_group_strade_info.sql")
+            execsql("load_and_analyse/sql/t_order_amount.sql")
+        if(num ==0 or num == 6):
+           print "订单金额分析 - 订单费用"
+ 
+        if(num ==0 or num == 7):
+            print "订单金额分析 - 月份金额"
+            execsql("load_and_analyse/sql/t_monthly_order_amount.sql")
+        if(num ==0 or num == 8):
+            print "订单金额分析 - 月份费用"
+            execsql("load_and_analyse/sql/t_fee_monthly_info.sql")
+      
+
+        if(num ==0 or num == 11):
+            print "订单提取时间 - 金额统计"
+            execsql("load_and_analyse/sql/t_settle_amount_info.sql")
+        if(num ==0 or num == 12):
+            print "订单提取时间 - 费用明细"
+            execsql("load_and_analyse/sql/t_settle_fee_info.sql")
+        if(num ==0 or num == 16):
+            print "金额发货分析"
+            execfile("load_and_analyse/fee_detail_monthly.py")
+

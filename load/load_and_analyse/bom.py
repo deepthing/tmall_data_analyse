@@ -13,10 +13,9 @@ def insertDetail(goods_code,goods_id,num,price,total):
 	
 	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
 	detail = db.cursor(MySQLdb.cursors.DictCursor)
-	rate = 0
+	rate = 100
 	if float(total) > 0 :
-		rate = (float(num) * float(price) / float(total)) *100
-
+		rate = round((float(num) * float(price) / float(total)) *100,6)
 	value=[goods_code,goods_id,num,rate]
 	detail.execute('insert into bom_detail (product_name,goods_id,goods_count,rate) values(%s,%s,%s,%s)',value);
 	db.commit();
@@ -27,7 +26,7 @@ def insertDetail(goods_code,goods_id,num,price,total):
 def getFieldsList():
 	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
         fields = db.cursor(MySQLdb.cursors.DictCursor)
-	fields.execute("desc BOM")
+	fields.execute("desc bom")
 	data = fields.fetchall();
         lst = [];
 	result = [];
@@ -62,7 +61,7 @@ bom = db.cursor(MySQLdb.cursors.DictCursor)
 
 try:
 	truncateDetail()	
-        bom.execute("select * from BOM")
+        bom.execute("select * from bom")
         bom_data = bom.fetchall();
 	fields = getFieldsList();
 

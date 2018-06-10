@@ -16,7 +16,7 @@ def updateBomTotalPrice(goods_code,price):
 	detail = db.cursor(MySQLdb.cursors.DictCursor)
 
 	value=[str(price),goods_code]
-	detail.execute('update BOM set price=%s where product_name=%s', value);
+	detail.execute('update bom set price=%s where product_name=%s', value);
 	db.commit();
 	detail.close();
 	db.close();
@@ -27,8 +27,9 @@ def updateBomTotalPrice(goods_code,price):
 def getPriceList():
 	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
         fields = db.cursor(MySQLdb.cursors.DictCursor)
-	fields.execute("desc BOM")
-	def getPriceBySku(goods_id):
+	fields.execute("desc bom")
+	
+        def getPriceBySku(goods_id):
 		db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
 		detail = db.cursor(MySQLdb.cursors.DictCursor)
 		value=[goods_id]
@@ -36,8 +37,9 @@ def getPriceList():
 		if detail.rowcount ==0:
 			return "0"
 		else:
-			row = detail.fetchone();
+			row = detail.fetchone();			
 			return row["price"]
+	
 	data = fields.fetchall();
         lst = [];
 	result = [];
@@ -49,7 +51,7 @@ def getPriceList():
 		
 		price = getPriceBySku(lst[i])
 		result.append(price)
-
+                
 		fields.append(lst[i])
 	return result,fields
 
@@ -58,7 +60,7 @@ db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
 bom = db.cursor(MySQLdb.cursors.DictCursor)
 
 try:
-        bom.execute("select * from BOM")
+        bom.execute("select * from bom")
         bom_data = bom.fetchall();
 	priceList,fields = getPriceList();
 	print priceList,fields
