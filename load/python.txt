@@ -1,56 +1,56 @@
 	 if(num ==0 or num == 1):
-            print "³õÊ¼»¯&&¸üĞÂBOMĞÅÏ¢±í"
+            print "åˆå§‹åŒ–&&æ›´æ–°BOMä¿¡æ¯è¡¨"
             execsql("load_and_analyse/sql/init.sql")
             execfile("load_and_analyse/bom.py")
             execfile("load_and_analyse/bom_price.py")      
          if(num ==0 or num == 2):
-            print "¶©µ¥ÊıÁ¿·ÖÎö - ×´Ì¬·ÖÎö"
+            print "è®¢å•æ•°é‡åˆ†æ - çŠ¶æ€åˆ†æ"
             execsql("load_and_analyse/sql/t_order_analyse.sql")
         if(num ==0 or num == 3):
-            print "¶©µ¥ÊıÁ¿·ÖÎö - ÕËºÅ·ÖÎö"
+            print "è®¢å•æ•°é‡åˆ†æ - è´¦å·åˆ†æ"
             execsql("load_and_analyse/sql/t_buyer_info.sql")
         if(num ==0 or num == 4):
-            print "¶©µ¥ÊıÁ¿·ÖÎö - ÇøÓò·ÖÎö"
+            print "è®¢å•æ•°é‡åˆ†æ - åŒºåŸŸåˆ†æ"
             execsql("load_and_analyse/sql/t_order_area.sql")
         if(num ==0 or num == 5):
-            print "¶©µ¥½ğ¶î·ÖÎö - ¶©µ¥½ğ¶î"
+            print "è®¢å•é‡‘é¢åˆ†æ - è®¢å•é‡‘é¢"
             execsql("load_and_analyse/sql/t_group_strade_info.sql")
             execsql("load_and_analyse/sql/t_order_amount.sql")
         if(num ==0 or num == 6):
-           print "¶©µ¥½ğ¶î·ÖÎö - ¶©µ¥·ÑÓÃ"
+           print "è®¢å•é‡‘é¢åˆ†æ - è®¢å•è´¹ç”¨"
            execsql("load_and_analyse/sql/t_fee_info.sql")
         if(num ==0 or num == 7):
-            print "¶©µ¥½ğ¶î·ÖÎö - ÔÂ·İ½ğ¶î"
+            print "è®¢å•é‡‘é¢åˆ†æ - æœˆä»½é‡‘é¢"
             execsql("load_and_analyse/sql/t_monthly_order_amount.sql")
         if(num ==0 or num == 8):
-            print "¶©µ¥½ğ¶î·ÖÎö - ÔÂ·İ·ÑÓÃ"
+            print "è®¢å•é‡‘é¢åˆ†æ - æœˆä»½è´¹ç”¨"
             execsql("load_and_analyse/sql/t_fee_monthly_info.sql")
         if(num ==0 or num == 9):
-            print "bom¸üĞÂ"
+            print "bomæ›´æ–°"
             execsql("load_and_analyse/sql/temp_product_info.sql")
             execfile("load_and_analyse/bom_update.py")
         if(num ==0 or num == 10):
-            print "¿â´æÊıÁ¿·ÖÎö"
+            print "åº“å­˜æ•°é‡åˆ†æ"
             execsql("load_and_analyse/sql/t_good_num_info.sql")
             execfile("load_and_analyse/inventory.py")
         if(num ==0 or num == 11):
-            print "¶©µ¥ÌáÈ¡Ê±¼ä - ½ğ¶îÍ³¼Æ"
+            print "è®¢å•æå–æ—¶é—´ - é‡‘é¢ç»Ÿè®¡"
             execsql("load_and_analyse/sql/t_settle_amount_info.sql")
         if(num ==0 or num == 12):
-            print "¶©µ¥ÌáÈ¡Ê±¼ä - ·ÑÓÃÃ÷Ï¸"
+            print "è®¢å•æå–æ—¶é—´ - è´¹ç”¨æ˜ç»†"
             execsql("load_and_analyse/sql/t_settle_fee_info.sql")
         if(num ==0 or num == 13):
-            print "ÎÒµÄÕË»§Ö§³ö"
+            print "æˆ‘çš„è´¦æˆ·æ”¯å‡º"
             execsql("load_and_analyse/sql/t_myaccount_monthly_info.sql")
         if(num ==0 or num == 14):
-            print "¿â´æÊıÁ¿·ÖÎö - ĞĞ×ªÁĞ"
+            print "åº“å­˜æ•°é‡åˆ†æ - è¡Œè½¬åˆ—"
             execsql("load_and_analyse/sql/init_t_period_num_info.sql")
             execfile("load_and_analyse/goods_num.py")
         if(num ==0 or num == 15):
-            print "½ğ¶îÕË»§·ÖÎö"
+            print "é‡‘é¢è´¦æˆ·åˆ†æ"
             execsql("load_and_analyse/sql/t_other_fee_info.sql")
             execfile("load_and_analyse/other_refund.py")
         if(num ==0 or num == 16):
-            print "½ğ¶î·¢»õ·ÖÎö"
+            print "é‡‘é¢å‘è´§åˆ†æ"
             execfile("load_and_analyse/fee_detail_monthly.py")
 
