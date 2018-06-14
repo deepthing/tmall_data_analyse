@@ -1,18 +1,17 @@
 <head>
     <meta charset="utf-8">
     <title>果瑞氏数据可视化</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {%load static%}
     <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap.css'%}>
     <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap-table.css'%}>
+    <link rel="stylesheet" type="text/css" href={% static 'css/style.css'%}>
     <script src={% static 'js/jquery.min.js'%}></script>
     <script src={% static 'js/bootstrap.js'%}></script>
-    <script src={% static 'js/d3.js'%}></script>
     <script src={% static 'js/bootstrap-table.js'%}></script>
-    <style>
-        body {
-            padding-top: 50px;
-        }
-    </style>
+    
 </head>
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -39,7 +38,7 @@
 
             <ul class="nav navbar-nav navbar-right">
 				<li id="intnational"><a href="/export_vis/">数据导出</a></li>
-                <li id="intnational"><a href="#">数据加载</a></li>
+                <li id="intnational"><a href="/loadcsv">数据加载</a></li>
                 <li id="intnational"><a href="#" onclick="uplge()">中英文切换</a></li>
             </ul>
         </div>

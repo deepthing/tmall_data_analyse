@@ -1,4 +1,4 @@
 {
     "python.linting.pylintEnabled": false,
-    "python.pythonPath": "/usr/bin/python"
+    "python.pythonPath": "/Users/dengliang/anaconda3/envs/python27/bin/python"
 }

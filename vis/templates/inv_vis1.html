@@ -2,133 +2,184 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 {% include 'nav1.html' %}
-<br/>
-<div class="container-fluid">
-    <div class="col-md-10">
+<body>
+<div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                    果瑞士
+                    </a>
+                </li>
+                <li>
+                    <a href="#inv_amount"><i class="fa fa-fw fa-file-o"></i> {% blocktrans %}货品金额分析{% endblocktrans %}</a>        
+                </li>
+                <li>
+                    <a href="#inv_count"><i class="fa fa-fw fa-file-o"></i> {% blocktrans %}货品库存分析{% endblocktrans %}</a>
+                </li>
+                
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
 
-        <div class="panel panel-success" id="inv_amount">
-            <div class="panel-heading">
-                <h3>{% blocktrans %}货品金额分析{% endblocktrans %}</h3>
-            </div>
-            {% comment %} <div class="panel-body">
-                <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
-
-            </div> {% endcomment %}
-            <table data-toggle="table" data-pagination=true>
-                <thead>
-                    <tr>
-                        <th data-align='center' data-valign='middle'>{% blocktrans %}月份{% endblocktrans %}</th>
-                        <th data-align='center' data-valign='middle'>GPC</th>
-                        <th data-align='center' data-valign='middle'>SKU</th>
-                        <th data-align='center' data-valign='middle'>{% blocktrans %}货品说明{% endblocktrans %}</th>
-                        <th data-align='center' data-valign='middle'>{% blocktrans %}订单销售数量{% endblocktrans %}<br>{% blocktrans %}（拍下）{% endblocktrans %}</th>
-                        <th data-align='center' data-valign='middle'>{% blocktrans %}订单出库数量{% endblocktrans %}<br>{% blocktrans %}（仓库）{% endblocktrans %}</th>
-                        <th data-align='center' data-valign='middle'>{% blocktrans %}交易成功订单销售数量{% endblocktrans %}<br>{% blocktrans %}（最终成交）{% endblocktrans %}</th>
-                        <th data-align='center' data-valign='middle'>{% blocktrans %}订单销售金额{% endblocktrans %}<br>{% blocktrans %}（拍下）{% endblocktrans %}</th>
-                        <th data-align='center' data-valign='middle'>{% blocktrans %}订单出库金额{% endblocktrans %}<br>{% blocktrans %}（仓库）{% endblocktrans %}</th>
-                        <th data-align='center' data-valign='middle'>{% blocktrans %}交易成功订单销售金额{% endblocktrans %}<br>{% blocktrans %}（最终成交）{% endblocktrans %}</th>
-                        <th data-align='center' data-valign='middle'>{% blocktrans %}期间交易出库金额{% endblocktrans %}</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    {% for index_inv_count in inv_count %}
-                    <tr>
-                        <td>{{index_inv_count.period}}</td>
-                        <td>{{index_inv_count.gpc}}</td>
-                        <td>{{index_inv_count.sku}}</td>
-                        <td>{{index_inv_count.products}}</td>
-                        <td>{{index_inv_count.sale_num}}</td>
-                        <td>{{index_inv_count.sale_out_number}}</td>
-                        <td>{{index_inv_count.order_deal_num}}</td>
-                        <td>${{index_inv_count.sale_amount}}</td>
-                        <td>${{index_inv_count.sale_out_amount}}</td>
-                        <td>${{index_inv_count.order_deal_amount}}</td>
-                        <td>${{index_inv_count.trans_amount}}</td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="panel panel-success" id="inv_count">
-                <div class="panel-heading">
-                    <h3>{% blocktrans %}货品库存分析{% endblocktrans %}</h3>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+          </button>
+        
+        <!-- container-->
+        <div class="container">
+                <div class="row">
+            
+                    <div class="panel panel-success" id="inv_amount">
+                        <div class="panel-heading">
+                            <h3>{% blocktrans %}货品金额分析{% endblocktrans %}</h3>
+                        </div>
+                        {% comment %} <div class="panel-body">
+                            <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
+            
+                        </div> {% endcomment %}
+                        <table data-toggle="table" data-pagination=true>
+                            <thead>
+                                <tr>
+                                    <th data-align='center' data-valign='middle'>{% blocktrans %}月份{% endblocktrans %}</th>
+                                    <th data-align='center' data-valign='middle'>GPC</th>
+                                    <th data-align='center' data-valign='middle'>SKU</th>
+                                    <th data-align='center' data-valign='middle'>{% blocktrans %}货品说明{% endblocktrans %}</th>
+                                    <th data-align='center' data-valign='middle'>{% blocktrans %}订单销售数量{% endblocktrans %}<br>{% blocktrans %}（拍下）{% endblocktrans %}</th>
+                                    <th data-align='center' data-valign='middle'>{% blocktrans %}订单出库数量{% endblocktrans %}<br>{% blocktrans %}（仓库）{% endblocktrans %}</th>
+                                    <th data-align='center' data-valign='middle'>{% blocktrans %}交易成功订单销售数量{% endblocktrans %}<br>{% blocktrans %}（最终成交）{% endblocktrans %}</th>
+                                    <th data-align='center' data-valign='middle'>{% blocktrans %}订单销售金额{% endblocktrans %}<br>{% blocktrans %}（拍下）{% endblocktrans %}</th>
+                                    <th data-align='center' data-valign='middle'>{% blocktrans %}订单出库金额{% endblocktrans %}<br>{% blocktrans %}（仓库）{% endblocktrans %}</th>
+                                    <th data-align='center' data-valign='middle'>{% blocktrans %}交易成功订单销售金额{% endblocktrans %}<br>{% blocktrans %}（最终成交）{% endblocktrans %}</th>
+                                    <th data-align='center' data-valign='middle'>{% blocktrans %}期间交易出库金额{% endblocktrans %}</th>
+                                </tr>
+            
+                            </thead>
+                            <tbody>
+                                {% for index_inv_count in inv_count %}
+                                <tr>
+                                    <td>{{index_inv_count.period}}</td>
+                                    <td>{{index_inv_count.gpc}}</td>
+                                    <td>{{index_inv_count.sku}}</td>
+                                    <td>{{index_inv_count.products}}</td>
+                                    <td>{{index_inv_count.sale_num}}</td>
+                                    <td>{{index_inv_count.sale_out_number}}</td>
+                                    <td>{{index_inv_count.order_deal_num}}</td>
+                                    <td>${{index_inv_count.sale_amount}}</td>
+                                    <td>${{index_inv_count.sale_out_amount}}</td>
+                                    <td>${{index_inv_count.order_deal_amount}}</td>
+                                    <td>${{index_inv_count.trans_amount}}</td>
+                                </tr>
+                                {% endfor %}
+            
+                            </tbody>
+                        </table>
+                    </div>
+            
+                    <div class="panel panel-success" id="inv_count">
+                            <div class="panel-heading">
+                                <h3>{% blocktrans %}货品库存分析{% endblocktrans %}</h3>
+                            </div>
+                            {% comment %} <div class="panel-body">
+                                <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
+                
+                            </div> {% endcomment %}
+                            <table data-toggle="table" data-pagination=true>
+                                <thead>
+                                    <tr>
+                                        <th data-align='center' data-valign='middle'>{% blocktrans %}月份{% endblocktrans %}</th>
+                                            <th data-align='center' data-valign='middle'>GPC</th>
+                                         <th data-align='center' data-valign='middle'>SKU</th>
+                                        <th data-align='center' data-valign='middle'>{% blocktrans %}货品说明{% endblocktrans %}</th>
+                                        <th data-align='center' data-valign='middle'>{% blocktrans %}期初数量{% endblocktrans %}</th>
+                                        <th data-align='center' data-valign='middle'>{% blocktrans %}期间采购入库{% endblocktrans %}</th>
+                                        <th data-align='center' data-valign='middle'>{% blocktrans %}期间其他入库{% endblocktrans %}</th>
+                                        <th data-align='center' data-valign='middle'>{% blocktrans %}期间交易出库{% endblocktrans %}</th>
+                                        <th data-align='center' data-valign='middle'>{% blocktrans %}期间其他出库{% endblocktrans %}</th>
+                                        <th data-align='center' data-valign='middle'>{% blocktrans %}期末数量{% endblocktrans %}</th>
+                                        <th data-align='center' data-valign='middle'>{% blocktrans %}期末-期初{% endblocktrans %}</th>
+                                        <th data-align='center' data-valign='middle'>{% blocktrans %}期间出入库流水总数量{% endblocktrans %}</th>
+            
+                                    </tr>
+                
+                                </thead>
+                                <tbody>
+                                    {% for index_inv_count in inv_count %}
+            
+                                    <tr>
+                                        <td>{{index_inv_count.period}}</td>
+                                       <td>{{index_inv_count.gpc}}</td>
+                                       <td>{{index_inv_count.sku}}</td>
+                                        <td>{{index_inv_count.products}}</td>
+                                        <td>{{index_inv_count.opening_inventory}}</td>
+                                        <td>{{index_inv_count.purchase_in}}</td>
+                                        <td>{{index_inv_count.other_in}}</td>
+                                        <td>{{index_inv_count.trade_out}}</td>
+                                        <td>{{index_inv_count.other_out}}</td>
+                                        <td>{{index_inv_count.ending_inventory}}</td>
+                                        <td>{{index_inv_count.diff_inventory}}</td>
+                                        <td>{{index_inv_count.in_out_num}}</td>
+                                    </tr>
+                                    {% endfor %}
+                
+                                </tbody>
+                            </table>
+                        </div>
                 </div>
-                {% comment %} <div class="panel-body">
-                    <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
-    
-                </div> {% endcomment %}
-                <table data-toggle="table" data-pagination=true>
-                    <thead>
-                        <tr>
-                            <th data-align='center' data-valign='middle'>{% blocktrans %}月份{% endblocktrans %}</th>
-                                <th data-align='center' data-valign='middle'>GPC</th>
-                             <th data-align='center' data-valign='middle'>SKU</th>
-                            <th data-align='center' data-valign='middle'>{% blocktrans %}货品说明{% endblocktrans %}</th>
-                            <th data-align='center' data-valign='middle'>{% blocktrans %}期初数量{% endblocktrans %}</th>
-                            <th data-align='center' data-valign='middle'>{% blocktrans %}期间采购入库{% endblocktrans %}</th>
-                            <th data-align='center' data-valign='middle'>{% blocktrans %}期间其他入库{% endblocktrans %}</th>
-                            <th data-align='center' data-valign='middle'>{% blocktrans %}期间交易出库{% endblocktrans %}</th>
-                            <th data-align='center' data-valign='middle'>{% blocktrans %}期间其他出库{% endblocktrans %}</th>
-                            <th data-align='center' data-valign='middle'>{% blocktrans %}期末数量{% endblocktrans %}</th>
-                            <th data-align='center' data-valign='middle'>{% blocktrans %}期末-期初{% endblocktrans %}</th>
-                            <th data-align='center' data-valign='middle'>{% blocktrans %}期间出入库流水总数量{% endblocktrans %}</th>
-
-                        </tr>
-    
-                    </thead>
-                    <tbody>
-                        {% for index_inv_count in inv_count %}
-
-                        <tr>
-                            <td>{{index_inv_count.period}}</td>
-                           <td>{{index_inv_count.gpc}}</td>
-                           <td>{{index_inv_count.sku}}</td>
-                            <td>{{index_inv_count.products}}</td>
-                            <td>{{index_inv_count.opening_inventory}}</td>
-                            <td>{{index_inv_count.purchase_in}}</td>
-                            <td>{{index_inv_count.other_in}}</td>
-                            <td>{{index_inv_count.trade_out}}</td>
-                            <td>{{index_inv_count.other_out}}</td>
-                            <td>{{index_inv_count.ending_inventory}}</td>
-                            <td>{{index_inv_count.diff_inventory}}</td>
-                            <td>{{index_inv_count.in_out_num}}</td>
-                        </tr>
-                        {% endfor %}
-    
-                    </tbody>
-                </table>
+                <div class="col-md-2" style="display:none">
+                    <div data-spy="affix">
+                        <nav class="nav nav-pills nav-stacked  ">
+                            <li role="presentation" id="li_inv_amount" class="active"><a href="#inv_amount">{% blocktrans %}货品金额分析{% endblocktrans %}</a></li>
+                            <li role="presentation" id="li_inv_count" ><a href="#inv_count">{% blocktrans %}货品库存分析{% endblocktrans %}</a></li>
+                        </nav>
+                    </div>
+            
+                </div>
             </div>
+        <!-- container end-->
     </div>
-    <div class="col-md-2">
-        <div data-spy="affix">
-            <nav class="nav nav-pills nav-stacked  ">
-                <li role="presentation" id="li_inv_amount" class="active"><a href="#inv_amount">{% blocktrans %}货品金额分析{% endblocktrans %}</a></li>
-                <li role="presentation" id="li_inv_count" ><a href="#inv_count">{% blocktrans %}货品库存分析{% endblocktrans %}</a></li>
-            </nav>
-        </div>
+<!-- /#page-content-wrapper -->
 
-    </div>
 </div>
-<script>
-        $(document).ready(function() {
-            $("#li_inv_amount").click(function(e) {
-                $('li').each(function() {
-                    $(this).removeClass('active');
-                })
-                $('#li_inv_amount').addClass('active');
-    
-            })
-            $("#li_inv_count").click(function(e) {
-                $('li').each(function() {
-                    $(this).removeClass('active');
-                })
-                $('#li_inv_count').addClass('active');
-            })
-    
-    
-        })
-    </script>
+<!-- /#wrapper -->
+</body>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+      var trigger = $('.hamburger'),
+          overlay = $('.overlay'),
+         isClosed = false;
+
+        trigger.click(function () {
+          hamburger_cross();      
+        });
+
+        function hamburger_cross() {
+
+          if (isClosed == true) {          
+            overlay.hide();
+            trigger.removeClass('is-open');
+            trigger.addClass('is-closed');
+            isClosed = false;
+          } else {   
+            overlay.show();
+            trigger.removeClass('is-closed');
+            trigger.addClass('is-open');
+            isClosed = true;
+          }
+      }
+      
+      $('[data-toggle="offcanvas"]').click(function () {
+            $('#wrapper').toggleClass('toggled');
+      });  
+    });
+</script>
 </html>

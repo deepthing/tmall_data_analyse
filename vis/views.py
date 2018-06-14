@@ -32,6 +32,9 @@ def uplge(request):
             request.session["lge"] = 'en'  
     return HttpResponse(request.session.get("lge"))
 
+def loadcsv(request):
+    return render(request,'load_csv_vis.html')
+
 def testd3(request):
     return render(request,'d3.html')
 def export_vis(request):
@@ -1119,11 +1122,11 @@ def fee_vis(request):
             send_date["time"] = fee["time"]
             send_date["actual_paid"] = fee["actual_paid"]
             send_date["refund"] = fee["refund"]
-            send_date["logisitic_tax"]=fee_detail_monthly1[i]["logisitic_tax"] 
-            send_date["logisitic_service"]=fee_detail_monthly1[i]["logisitic_service"]
-            send_date["tmall"]=fee_detail_monthly1[i]["tmall"]  
-            send_date["juhuasuan"]=fee_detail_monthly1[i]["juhuasuan"]
-            send_date["alipay_service"]=fee_detail_monthly1[i]["alipay_service"]    
+            # send_date["logisitic_tax"]=fee_detail_monthly1[i]["logisitic_tax"] 
+            # send_date["logisitic_service"]=fee_detail_monthly1[i]["logisitic_service"]
+            # send_date["tmall"]=fee_detail_monthly1[i]["tmall"]  
+            # send_date["juhuasuan"]=fee_detail_monthly1[i]["juhuasuan"]
+            # send_date["alipay_service"]=fee_detail_monthly1[i]["alipay_service"]    
             union_rows.append(send_date)
             i+=1
           

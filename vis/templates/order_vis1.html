@@ -2,309 +2,328 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 {% include 'nav1.html' %}
-<br/>
+<body>
+<div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                    果瑞士
+                    </a>
+                </li>
+                <li>
+                    <a href="#order_count"><i class="fa fa-fw fa-file-o"></i> {% blocktrans %}状态分析(数量){% endblocktrans %}</a>        
+                </li>
+                <li>
+                    <a href="#order_amount"><i class="fa fa-fw fa-file-o"></i> {% blocktrans %}状态分析(金额){% endblocktrans %}</a>
+                </li>
+                <li>
+                    <a href="#buyer_count"><i class="fa fa-fw fa-file-o"></i> {% blocktrans %}账号分析(数量){% endblocktrans %}</a>
+                </li>
+                <li>
+                    <a href="#buyer_amount"><i class="fa fa-fw fa-file-o"></i> {% blocktrans %}账号分析(金额){% endblocktrans %}</a>
+                </li>
+                <li>
+                    <a href="#region_count"><i class="fa fa-fw fa-file-o"></i>{% blocktrans %}区域分析(数量){% endblocktrans %}</a>
+                </li>
+                <li>
+                    <a href="#region_amount"><i class="fa fa-fw fa-file-o"></i> {% blocktrans %}区域分析(金额){% endblocktrans %}</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
 
-<div class="container-fluid">
-    <div class="col-md-10">
-        <div class="panel panel-success" id="order_count">
-            <div class="panel-heading">
-                <h3>{% blocktrans %}状态分析(数量){% endblocktrans %}</h3>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+          </button>
+        
+        <!-- container-->
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-success" id="order_count">
+                    <div class="panel-heading">
+                        <h3>{% blocktrans %}状态分析(数量){% endblocktrans %}</h3>
+                    </div>
+                    <!-- <div class="panel-body">
+        
+                        <svg width="1000" height="500"></svg>
+        
+                    </div> -->
+        
+                    <table data-toggle="table" data-pagination=true>
+                        <thead>
+                            <tr>
+                                <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}订单总数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}交易成功订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}交易关闭订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}其他状态订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}关闭(买家未付款)订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}关闭(退款)订单数量{% endblocktrans %}</th>
+        
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order_status in order_status_list %}
+                            <tr>
+                                <td>{{order_status.period}}</td>
+                                <td>{{order_status.sum_order_num}}</td>
+                                <td>{{order_status.sum_saled_num}}</td>
+                                <td>{{order_status.sum_closed_num}}</td>
+                                <td>{{order_status.sum_waiting_num}}</td>
+                                <td>{{order_status.sum_close_unpaid_num}}</td>
+                                <td>{{order_status.sum_close_return_num}}</td>
+                            </tr>
+                            {% endfor %}
+        
+        
+                        </tbody>
+                    </table>
+        
+                </div>
+                <div class="panel panel-success" id="order_amount">
+                    <div class="panel-heading">
+                        <h3>{% blocktrans %}状态分析(金额){% endblocktrans %}</h3>
+                    </div>
+                    {% comment %} <div class="panel-body">
+                        <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
+        
+                    </div> {% endcomment %}
+                    <table data-toggle="table" data-pagination=true>
+                        <thead>
+                            <tr>
+                                <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}订单总金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}交易成功订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}交易关闭订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}其他状态订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}关闭(买家未付款)订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}关闭(退款)订单金额{% endblocktrans %}</th>
+                            </tr>
+        
+                        </thead>
+                        <tbody>
+                            {% for order_status in order_status_list %}
+                            <tr>
+                                <td>{{order_status.period}}</td>
+                                <td>${{order_status.sum_order_amount}}</td>
+                                <td>${{order_status.sum_saled_amount}}</td>
+                                <td>${{order_status.sum_closed_amount}}</td>
+                                <td>${{order_status.sum_waiting_amount}}</td>
+                                <td>${{order_status.sum_close_unpaid_amount}}</td>
+                                <td>${{order_status.sum_close_unpaid_amount}}</td>
+                            </tr>
+                            {% endfor %}
+        
+                        </tbody>
+                    </table>
+                </div>
+        
+                <div class="panel panel-success" id="buyer_count">
+                    <div class="panel-heading">
+                        <h3>{% blocktrans %}账号分析(数量){% endblocktrans %}</h3>
+                    </div>
+                    {% comment %} <div class="panel-body">
+                        <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
+        
+                    </div> {% endcomment %}
+                    <table data-toggle="table" data-pagination=true>
+                        <thead>
+                            <tr>
+                                <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}账号总数{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}新账号数{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}老账号数{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}无账号订单数{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}新账号订单数{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}老账号订单数{% endblocktrans %}</th>
+                            </tr>
+        
+                        </thead>
+                        <tbody>
+                            {% for buyer_status in buyer_status_list %}
+                            <tr>
+                                <td>{{buyer_status.period}}</td>
+                                <td>{{buyer_status.total_count}}</td>
+                                <td>{{buyer_status.new_count}}</td>
+                                <td>{{buyer_status.old_count}}</td>
+                                <td>{{buyer_status.no_account_orders}}</td>
+                                <td>{{buyer_status.new_orders}}</td>
+                                <td>{{buyer_status.old_orders}}</td>
+                            </tr>
+                            {% endfor %}
+        
+                        </tbody>
+                    </table>
+                </div>
+        
+                <div class="panel panel-success" id="buyer_amount">
+                    <div class="panel-heading">
+                        <h3>{% blocktrans %}账号分析(金额){% endblocktrans %}</h3>
+                    </div>
+                    {% comment %} <div class="panel-body">
+                        <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
+        
+                    </div> {% endcomment %}
+                    <table data-toggle="table" data-pagination=true>
+                        <thead>
+                            <tr>
+                                <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}账号总订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}无账号订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}新账号订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}老账号订单金额{% endblocktrans %}</th>
+                            </tr>
+        
+                        </thead>
+                        <tbody>
+                            {% for buyer_status in buyer_status_list %}
+                            <tr>
+                                <td>{{buyer_status.period}}</td>
+                                <td>${{buyer_status.total_amount}}</td>
+                                <td>${{buyer_status.no_account_amount}}</td>
+                                <td>${{buyer_status.new_orders_amount}}</td>
+                                <td>${{buyer_status.old_orders_amount}}</td>
+                            </tr>
+                            {% endfor %}
+        
+                        </tbody>
+                    </table>
+                </div>
+        
+                <div class="panel panel-success" id="region_count">
+                    <div class="panel-heading">
+                        <h3>{% blocktrans %}区域分析(数量){% endblocktrans %}</h3>
+                    </div>
+                    {% comment %} <div class="panel-body">
+                        <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
+        
+                    </div> {% endcomment %}
+                    <table data-toggle="table" data-pagination=true>
+                        <thead>
+                            <tr>
+                                <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}华东订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}华中订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}华南订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}西南订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}东北订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}华北订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}西北订单数量{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}其他区域订单{% endblocktrans %}</th>
+                            </tr>
+        
+                        </thead>
+                        <tbody>
+                            {% for region_status in region_status_list %}
+                            <tr>
+                                <td>{{region_status.period}}</td>
+                                <td>{{region_status.1}}</td>
+                                <td>{{region_status.2}}</td>
+                                <td>{{region_status.3}}</td>
+                                <td>{{region_status.4}}</td>
+                                <td>{{region_status.5}}</td>
+                                <td>{{region_status.6}}</td>
+                                <td>{{region_status.7}}</td>
+                                <td>{{region_status.9}}</td>
+                            </tr>
+                            {% endfor %}
+        
+                        </tbody>
+                    </table>
+                </div>
+        
+                <div class="panel panel-success" id="region_amount">
+                    <div class="panel-heading">
+                        <h3>{% blocktrans %}区域分析(金额){% endblocktrans %}</h3>
+                    </div>
+                    {% comment %} <div class="panel-body">
+                        <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
+        
+                    </div> {% endcomment %}
+                    <table data-toggle="table" data-pagination=true>
+                        <thead>
+                            <tr>
+                                <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}华东订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}华中订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}华南订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}西南订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}东北订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}华北订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}西北订单金额{% endblocktrans %}</th>
+                                <th data-align='center'>{% blocktrans %}其他区域金额{% endblocktrans %}</th>
+                            </tr>
+        
+                        </thead>
+                        <tbody>
+                            {% for region_status in status_region_amount_list %}
+                            <tr>
+                                <td>{{region_status.period}}</td>
+                                <td>${{region_status.1}}</td>
+                                <td>${{region_status.2}}</td>
+                                <td>${{region_status.3}}</td>
+                                <td>${{region_status.4}}</td>
+                                <td>${{region_status.5}}</td>
+                                <td>${{region_status.6}}</td>
+                                <td>${{region_status.7}}</td>
+                                <td>${{region_status.9}}</td>
+                            </tr>
+                            {% endfor %}
+        
+                        </tbody>
+                    </table>
+                </div>
+        
+        
             </div>
-            <!-- <div class="panel-body">
-
-                <svg width="1000" height="500"></svg>
-
-            </div> -->
-
-            <table data-toggle="table" data-pagination=true>
-                <thead>
-                    <tr>
-                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}订单总数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}交易成功订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}交易关闭订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}其他状态订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}关闭(买家未付款)订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}关闭(退款)订单数量{% endblocktrans %}</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order_status in order_status_list %}
-                    <tr>
-                        <td>{{order_status.period}}</td>
-                        <td>{{order_status.sum_order_num}}</td>
-                        <td>{{order_status.sum_saled_num}}</td>
-                        <td>{{order_status.sum_closed_num}}</td>
-                        <td>{{order_status.sum_waiting_num}}</td>
-                        <td>{{order_status.sum_close_unpaid_num}}</td>
-                        <td>{{order_status.sum_close_return_num}}</td>
-                    </tr>
-                    {% endfor %}
-
-
-                </tbody>
-            </table>
-
+            
+        
         </div>
-        <div class="panel panel-success" id="order_amount">
-            <div class="panel-heading">
-                <h3>{% blocktrans %}状态分析(金额){% endblocktrans %}</h3>
-            </div>
-            {% comment %} <div class="panel-body">
-                <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
-
-            </div> {% endcomment %}
-            <table data-toggle="table" data-pagination=true>
-                <thead>
-                    <tr>
-                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}订单总金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}交易成功订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}交易关闭订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}其他状态订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}关闭(买家未付款)订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}关闭(退款)订单金额{% endblocktrans %}</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    {% for order_status in order_status_list %}
-                    <tr>
-                        <td>{{order_status.period}}</td>
-                        <td>${{order_status.sum_order_amount}}</td>
-                        <td>${{order_status.sum_saled_amount}}</td>
-                        <td>${{order_status.sum_closed_amount}}</td>
-                        <td>${{order_status.sum_waiting_amount}}</td>
-                        <td>${{order_status.sum_close_unpaid_amount}}</td>
-                        <td>${{order_status.sum_close_unpaid_amount}}</td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="panel panel-success" id="buyer_count">
-            <div class="panel-heading">
-                <h3>{% blocktrans %}账号分析(数量){% endblocktrans %}</h3>
-            </div>
-            {% comment %} <div class="panel-body">
-                <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
-
-            </div> {% endcomment %}
-            <table data-toggle="table" data-pagination=true>
-                <thead>
-                    <tr>
-                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}账号总数{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}新账号数{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}老账号数{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}无账号订单数{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}新账号订单数{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}老账号订单数{% endblocktrans %}</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    {% for buyer_status in buyer_status_list %}
-                    <tr>
-                        <td>{{buyer_status.period}}</td>
-                        <td>{{buyer_status.total_count}}</td>
-                        <td>{{buyer_status.new_count}}</td>
-                        <td>{{buyer_status.old_count}}</td>
-                        <td>{{buyer_status.no_account_orders}}</td>
-                        <td>{{buyer_status.new_orders}}</td>
-                        <td>{{buyer_status.old_orders}}</td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="panel panel-success" id="buyer_amount">
-            <div class="panel-heading">
-                <h3>{% blocktrans %}账号分析(金额){% endblocktrans %}</h3>
-            </div>
-            {% comment %} <div class="panel-body">
-                <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
-
-            </div> {% endcomment %}
-            <table data-toggle="table" data-pagination=true>
-                <thead>
-                    <tr>
-                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}账号总订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}无账号订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}新账号订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}老账号订单金额{% endblocktrans %}</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    {% for buyer_status in buyer_status_list %}
-                    <tr>
-                        <td>{{buyer_status.period}}</td>
-                        <td>${{buyer_status.total_amount}}</td>
-                        <td>${{buyer_status.no_account_amount}}</td>
-                        <td>${{buyer_status.new_orders_amount}}</td>
-                        <td>${{buyer_status.old_orders_amount}}</td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="panel panel-success" id="region_count">
-            <div class="panel-heading">
-                <h3>{% blocktrans %}区域分析(数量){% endblocktrans %}</h3>
-            </div>
-            {% comment %} <div class="panel-body">
-                <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
-
-            </div> {% endcomment %}
-            <table data-toggle="table" data-pagination=true>
-                <thead>
-                    <tr>
-                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}华东订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}华中订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}华南订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}西南订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}东北订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}华北订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}西北订单数量{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}其他区域订单{% endblocktrans %}</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    {% for region_status in region_status_list %}
-                    <tr>
-                        <td>{{region_status.period}}</td>
-                        <td>{{region_status.1}}</td>
-                        <td>{{region_status.2}}</td>
-                        <td>{{region_status.3}}</td>
-                        <td>{{region_status.4}}</td>
-                        <td>{{region_status.5}}</td>
-                        <td>{{region_status.6}}</td>
-                        <td>{{region_status.7}}</td>
-                        <td>{{region_status.9}}</td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="panel panel-success" id="region_amount">
-            <div class="panel-heading">
-                <h3>{% blocktrans %}区域分析(金额){% endblocktrans %}</h3>
-            </div>
-            {% comment %} <div class="panel-body">
-                <h4>{% blocktrans %}这里显示图表{% endblocktrans %}</h4>
-
-            </div> {% endcomment %}
-            <table data-toggle="table" data-pagination=true>
-                <thead>
-                    <tr>
-                        <th data-align='center'>{% blocktrans %}月份{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}华东订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}华中订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}华南订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}西南订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}东北订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}华北订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}西北订单金额{% endblocktrans %}</th>
-                        <th data-align='center'>{% blocktrans %}其他区域金额{% endblocktrans %}</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    {% for region_status in status_region_amount_list %}
-                    <tr>
-                        <td>{{region_status.period}}</td>
-                        <td>${{region_status.1}}</td>
-                        <td>${{region_status.2}}</td>
-                        <td>${{region_status.3}}</td>
-                        <td>${{region_status.4}}</td>
-                        <td>${{region_status.5}}</td>
-                        <td>${{region_status.6}}</td>
-                        <td>${{region_status.7}}</td>
-                        <td>${{region_status.9}}</td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-
-
+        <!-- container end-->
     </div>
-    <div class="col-md-2">
-        <div data-spy="affix">
-            <nav class="nav nav-pills nav-stacked  ">
-                <li role="presentation" id="li_order_count" class="active"><a href="#order_count">{% blocktrans %}状态分析(数量){% endblocktrans %}</a></li>
-                <li role="presentation" id="li_order_amount"><a href="#order_amount">{% blocktrans %}状态分析(金额){% endblocktrans %}</a></li>
-                <li role="presentation" id="li_buyer_count"><a href="#buyer_count">{% blocktrans %}账号分析(数量){% endblocktrans %}</a></li>
-                <li role="presentation" id="li_buyer_amount"><a href="#buyer_amount">{% blocktrans %}账号分析(金额){% endblocktrans %}</a></li>
-                <li role="presentation" id="li_region_count"><a href="#region_count">{% blocktrans %}区域分析(数量){% endblocktrans %}</a></li>
-                <li role="presentation" id="li_region_amount"><a href="#region_amount">{% blocktrans %}区域分析(金额){% endblocktrans %}</a></li>
-            </nav>
-        </div>
-
-    </div>
+<!-- /#page-content-wrapper -->
 
 </div>
+<!-- /#wrapper -->
+</body>
 
 
+<script type="text/javascript">
+    $(document).ready(function () {
+      var trigger = $('.hamburger'),
+          overlay = $('.overlay'),
+         isClosed = false;
 
-<script>
-    $(document).ready(function() {
-        $("#li_order_count").click(function(e) {
-            $('li').each(function() {
-                $(this).removeClass('active');
-            })
-            $('#li_order_count').addClass('active');
+        trigger.click(function () {
+          hamburger_cross();      
+        });
 
-        })
-        $("#li_order_amount").click(function(e) {
-            $('li').each(function() {
-                $(this).removeClass('active');
-            })
-            $('#li_order_amount').addClass('active');
-        })
-        $("#li_buyer_count").click(function(e) {
-            $('li').each(function() {
-                $(this).removeClass('active');
-            })
-            $('#li_buyer_count').addClass('active');
+        function hamburger_cross() {
 
-        })
-        $("#li_buyer_amount").click(function(e) {
-            $('li').each(function() {
-                $(this).removeClass('active');
-            })
-            $('#li_buyer_amount').addClass('active');
-        })
-        $("#li_region_count").click(function(e) {
-            $('li').each(function() {
-                $(this).removeClass('active');
-            })
-            $('#li_region_count').addClass('active');
-        })
-        $("#li_region_amount").click(function(e) {
-            $('li').each(function() {
-                $(this).removeClass('active');
-            })
-            $('#li_region_amount').addClass('active');
-        })
-
-
-    })
+          if (isClosed == true) {          
+            overlay.hide();
+            trigger.removeClass('is-open');
+            trigger.addClass('is-closed');
+            isClosed = false;
+          } else {   
+            overlay.show();
+            trigger.removeClass('is-closed');
+            trigger.addClass('is-open');
+            isClosed = true;
+          }
+      }
+      
+      $('[data-toggle="offcanvas"]').click(function () {
+            $('#wrapper').toggleClass('toggled');
+      });  
+    });
 </script>
-
-
 </html>
