@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from __future__ import unicode_literals
 from django.utils.translation import ugettext
 from django.shortcuts import render
 import os
@@ -7,12 +7,12 @@ from django.http import HttpResponse
 import tmall_data_analyse.settings as settings
 import load.service as service
 import MySQLdb 
-import io
+import StringIO
 from django.template import loader
 import tmall_data_analyse.settings as setting
 import time
-from .models import TGoodsNumInfo
-from builtins import int
+from models import TGoodsNumInfo
+from __builtin__ import int
 from numpy.f2py.auxfuncs import isfalse
 from _ctypes import Union
 
@@ -563,7 +563,7 @@ def order_export(request):
    
             for iv in  areas:
                 if len(it)<9:
-                    if (iv in it)==False:
+                    if it.has_key(iv)==False:
                         it[iv] = "0"
          
             w.write(30, int(it['period'])+1, it['1'],style_yy)
@@ -636,7 +636,7 @@ def order_export(request):
         for  it in  status_region_amount_list:
             for iv in  areas:
                 if len(it)<9:
-                    if (iv in it)==False:
+                    if it.has_key(iv)==False:
                         it[iv] = "0"
             if request.session.get("lge")=="en":
                 w.write(38, int(it['period'])+1, "$"+it['1'],style_yy)
@@ -664,7 +664,7 @@ def order_export(request):
             os.remove(r"order.xls")  
             ws.save("order.xls")  
         ############################  
-        sio = io.StringIO()  
+        sio = StringIO.StringIO()  
         ws.save(sio)  
         sio.seek(0)  
         response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')  
@@ -2473,7 +2473,7 @@ def excel_export(request):
         os.remove(r"goods.xls")  
     ws.save("goods.xls")  
     ############################  
-    sio = io.StringIO()  
+    sio = StringIO.StringIO()  
     ws.save(sio)  
     sio.seek(0)  
     response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')  
@@ -5034,7 +5034,7 @@ def excel_export2(request):
         os.remove(r"sum.xls")  
     ws.save("sum.xls")  
     ############################  
-    sio = io.StringIO()  
+    sio = StringIO.StringIO()  
     ws.save(sio)  
     sio.seek(0)  
     response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')  

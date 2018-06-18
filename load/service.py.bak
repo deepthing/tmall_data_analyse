@@ -3,11 +3,11 @@ import os
 import sys
 sys.path.append("..")
 sys.path.append("../..")
-from . import zip_util as zip
+import load_and_analyse.zip_util as zip
 import tmall_data_analyse.settings as setting
-from . import sql_templates as sql
+import load_and_analyse.sql_templates as sql
 import MySQLdb
-import subprocess
+import commands
 # file_type = ['fee','inventory','myaccount','order','settlebatch','settledetails','settlefee','strade','tmallsodetails','tmallso','transaction']
 
 def upzip(zipfilename):
@@ -16,7 +16,7 @@ def upzip(zipfilename):
         os.rename(setting.BASE_FILE_PATH.get('upzip_path')+zipfilename,setting.BASE_FILE_PATH.get('backup_path')+zipfilename)
         return 'success'
     except e:
-        print(str(e))
+        print str(e)
         return 'false'
 
 def loaddata(csvfilepath):
@@ -58,7 +58,7 @@ def load_data_to_db(db,data,filename,name):
     if '.csv' in name:
         if 'settlefee' in name:
             strr = sql.sql_templates.type_settlefee
-            print(name+" get date:"+name[name.rfind(".")-6:name.rfind(".")])
+            print name+" get date:"+name[name.rfind(".")-6:name.rfind(".")]
             strr = strr.replace("@templates_cut",""+name[name.rfind(".")-6:name.rfind(".")])
         elif 'inventory' in name:
             strr = sql.sql_templates.type_inventory
@@ -70,11 +70,11 @@ def load_data_to_db(db,data,filename,name):
             strr = sql.sql_templates.type_settlebatch
         elif 'settledetail' in name:
             strr = sql.sql_templates.type_settledetails
-            print(name+" get date:"+name[name.rfind("_")+1:name.rfind(".")])
+            print name+" get date:"+name[name.rfind("_")+1:name.rfind(".")]
             strr = strr.replace("@templates_cut",""+name[name.rfind("_")+1:name.rfind(".")])
         elif ('fee' in name) and ('settlefee' not in name):
             strr = sql.sql_templates.type_fee
-            print(name+" get date:"+name[4:8]+"-"+name[8:10]+"-01")
+            print name+" get date:"+name[4:8]+"-"+name[8:10]+"-01"
             strr = strr.replace("@templates_fee_date",name[4:8]+"-"+name[8:10]+"-01")
         elif 'strade' in name:
             strr = sql.sql_templates.type_strade
@@ -87,8 +87,8 @@ def load_data_to_db(db,data,filename,name):
 
     if strr != '':
         strr = strr.replace("@templates_filename",filename)
-        print(filename)
-        print(strr)
+        print filename
+        print strr
         data.execute(strr)
 
 def readfile(name):
@@ -102,17 +102,17 @@ def readfile(name):
 
 def execsql(name):
     sql = "".join(["mysql -u bsztz -pbsztz tmall> ",name])
-    print("commend",sql)
+    print "commend",sql
 
-    subprocess.getstatusoutput(sql)
+    commands.getstatusoutput(sql)
 
 
 def analyse_data(num):
     try:
-        print("开始执行")
-        exec(compile(open("load_and_analyse/inventory.py").read(), "load_and_analyse/inventory.py", 'exec'))
-        print('执行完毕')
-    except Exception as e:
-        print(str(e))
+        print u"开始执行"
+	execfile("load_and_analyse/inventory.py")
+        print u'执行完毕'
+    except Exception,e:
+        print str(e)
 
     
