@@ -3,8 +3,9 @@
 import MySQLdb
 from decimal import *
 import sys
+import imp
  
-reload(sys)
+imp.reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
@@ -70,17 +71,17 @@ try:
 		total = row["price"]
 		for i in range(0,len(fields)):
 			fieldname = fields[i]
-			print fieldname,goods_code
-			if None <> row[fieldname]:
+			print(fieldname,goods_code)
+			if None != row[fieldname]:
 				goods_id = fieldname
 				goods_num = row[fieldname]
-				if goods_num <>"" and goods_num is not None:
+				if goods_num !="" and goods_num is not None:
 					price = getPriceByGoodsId(goods_id)
-					print fieldname, goods_code,"num:", goods_num,goods_id,price,total
+					print(fieldname, goods_code,"num:", goods_num,goods_id,price,total)
 					insertDetail(goods_code,goods_id,goods_num,price,total);
 			
-except Exception,e:
-        print "error: unable fetch data",e.args
+except Exception as e:
+        print("error: unable fetch data",e.args)
 
 db.close();
-print "search complete"
+print("search complete")

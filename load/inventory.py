@@ -2,7 +2,8 @@
 
 import MySQLdb
 import sys
-reload(sys)
+import imp
+imp.reload(sys)
 from decimal import *
 
 sys.setdefaultencoding('utf-8')
@@ -88,11 +89,11 @@ try:
 		opening,ending = getInventory(goods_id,period)
 		order_num,order_amount = getTranactionNumber(goods_id,period)
 		trans_num,trans_amount = getTranactionAmount(goods_id,period)
-		print goods_id,period,opening,ending,order_num,order_amount,trans_num,trans_amount
+		print(goods_id,period,opening,ending,order_num,order_amount,trans_num,trans_amount)
 
 		update_inventroy(goods_id,period,opening,ending,order_num,order_amount,trans_num,trans_amount)
-except Exception,e:
-        print "error: unable fetch data",e.args
+except Exception as e:
+        print("error: unable fetch data",e.args)
 
 db.close();
-print "inventory caculation complete"
+print("inventory caculation complete")

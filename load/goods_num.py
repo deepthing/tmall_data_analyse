@@ -4,14 +4,15 @@ import MySQLdb
 import numpy as np
 import sys 
 from decimal import *
+import imp
 
-reload(sys)
+imp.reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
 
 def updatePrice(goods_code,period,fee_type,price):
-        print goods_code,period,fee_type,price
+        print(goods_code,period,fee_type,price)
         db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
         detail = db.cursor(MySQLdb.cursors.DictCursor)
 
@@ -22,7 +23,7 @@ def updatePrice(goods_code,period,fee_type,price):
         db.close();
 
 def createColumn(period):
-    	print "period:"+period
+    	print("period:"+period)
         db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8')
         detail = db.cursor()
         detail.execute('ALTER TABLE t_period_nums_info ADD '+period+' DECIMAL(18,2)')
@@ -100,8 +101,8 @@ try:
 			updatePrice(goods_id,col_period,'in_out_num',in_out_num);
 			updatePrice(goods_id,col_period,'trans_amount',trans_amount);
 
-except Exception,e:
-        print "error: unable fetch data",e.args
+except Exception as e:
+        print("error: unable fetch data",e.args)
 
 db.close();
-print "search complete"
+print("search complete")

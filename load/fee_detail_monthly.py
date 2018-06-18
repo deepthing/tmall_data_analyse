@@ -3,8 +3,9 @@
 import MySQLdb
 import decimal
 import sys
+import imp
  
-reload(sys)
+imp.reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
@@ -38,9 +39,9 @@ for month in monthlist:
     exestr = "insert into t_fee_detail_monthly_info (fee_time,out_stock,cainiao_tax,cainiao_service,alipay,tmall,juhuasuan,refund) values(\'%s\',%s,%s,%s,%s,%s,%s,%s)"%(str(reslist[0]),str(reslist[1]),str(reslist[2]),str(reslist[3]),str(reslist[4]),str(reslist[5]),str(reslist[6]),str(reslist[7]))
     con.execute(exestr)
     db.commit()
-    print "t_fee_detail_monthly_info-->插入一条"
+    print("t_fee_detail_monthly_info-->插入一条")
 
-print "t_fee_detail_monthly_info-->插入完成"
+print("t_fee_detail_monthly_info-->插入完成")
 
 
 

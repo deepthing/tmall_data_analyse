@@ -3,8 +3,9 @@
 import MySQLdb
 import sys 
 import decimal
+import imp
 
-reload(sys)
+imp.reload(sys)
 sys.setdefaultencoding('utf-8')
 
 db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
@@ -45,7 +46,7 @@ for data_index in data:
 
 for update_date_list_index in update_date_list:
     strr = "update t_other_fee_info set other_payback_fee = "+update_date_list_index['other_refund']+" where trans_date = '"+update_date_list_index['trans_date'] +"'"
-    print strr
+    print(strr)
     con.execute(strr)
 db.commit()
 con.close()
