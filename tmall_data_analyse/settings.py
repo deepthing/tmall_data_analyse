@@ -145,4 +145,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "common_static"),
 )
 
-BASE_FILE_PATH = {'upload_path':'/data/graceland/upload/','upzip_path':'/data/graceland/upzip/','backup_path':'/data/graceland/backup/'}
+BASE_FILE_PATH = {'upload_path':'upload/','upzip_path':'upload/upzip/','backup_path':'upload/backup/'}

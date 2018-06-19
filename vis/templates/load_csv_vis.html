@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 {% include 'nav.html' %}
+
 <body>
-<div id="wrapper">
+    <div id="wrapper">
         <div class="overlay"></div>
-    
+
         <!-- Sidebar -->
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                    果瑞士
+                        果瑞士
                     </a>
                 </li>
                 <li>
-                    <a href="#order_count"><i class="fa fa-fw fa-file-o"></i> 状态分析（数量）</a>        
+                    <a href="#order_count">
+                        <i class="fa fa-fw fa-file-o"></i> 上传数据</a>
                 </li>
                 <li>
-                    <a href="#order_amount"><i class="fa fa-fw fa-file-o"></i> 状态分析（金额）</a>
+                    <a href="#order_amount">
+                        <i class="fa fa-fw fa-file-o"></i> 预览数据</a>
                 </li>
             </ul>
         </nav>
@@ -25,54 +28,200 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
-            <span class="hamb-top"></span>
-            <span class="hamb-middle"></span>
-            <span class="hamb-bottom"></span>
-          </button>
-        
-        <!-- container-->
-        <div class="container">
-            
+            <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
 
+            <!-- container-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-success" id="order_count">
+                            <div class="panel-heading">
+                                <h3>上传数据</h3>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">settlefee</span>
+                                        <input type="file" name="file" id="settlefee" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('settlefee')">上传</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">inventory</span>
+                                        <input type="file" name="file" id="inventory" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('inventory')">上传</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">myaccount</span>
+                                        <input type="file" name="file" id="myaccount" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('myaccount')">上传</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">order</span>
+                                        <input type="file" name="file" id="order" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('order')">上传</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">settlebatch</span>
+                                        <input type="file" name="file" id="settlebatch" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('settlebatch')">上传</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">settledetail</span>
+                                        <input type="file" name="file" id="settledetail" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('settledetail')">上传</button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">fee</span>
+                                        <input type="file" name="file" id="fee" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('fee')">上传</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">strade</span>
+                                        <input type="file" name="file" id="strade" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('strade')">上传</button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">tmallsodetails</span>
+                                        <input type="file" name="file" id="tmallsodetails" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('tmallsodetails')">上传</button>
+                                        </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">tmallso</span>
+                                        <input type="file" name="file" id="tmallso" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('tmallso')">上传</button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width:120px">transaction</span>
+                                        <input type="file" name="file" id="transaction" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="FileUpload('transaction')">上传</button>
+                                        </span>
+                                    </div>
+
+                                   
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <hr>
+                <div>
+                    <div class="panel panel-success" id="order_count">
+                        <div class="panel-heading">
+                            <h3>预览数据</h3>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- container end-->
         </div>
-        <!-- container end-->
-    </div>
-<!-- /#page-content-wrapper -->
+        <!-- /#page-content-wrapper -->
 
-</div>
-<!-- /#wrapper -->
+    </div>
+    <!-- /#wrapper -->
 </body>
 
 
 <script type="text/javascript">
     $(document).ready(function () {
-      var trigger = $('.hamburger'),
-          overlay = $('.overlay'),
-         isClosed = false;
+        var trigger = $('.hamburger'),
+            overlay = $('.overlay'),
+            isClosed = false;
 
         trigger.click(function () {
-          hamburger_cross();      
+            hamburger_cross();
         });
 
         function hamburger_cross() {
 
-          if (isClosed == true) {          
-            overlay.hide();
-            trigger.removeClass('is-open');
-            trigger.addClass('is-closed');
-            isClosed = false;
-          } else {   
-            overlay.show();
-            trigger.removeClass('is-closed');
-            trigger.addClass('is-open');
-            isClosed = true;
-          }
-      }
-      
-      $('[data-toggle="offcanvas"]').click(function () {
+            if (isClosed == true) {
+                overlay.hide();
+                trigger.removeClass('is-open');
+                trigger.addClass('is-closed');
+                isClosed = false;
+            } else {
+                overlay.show();
+                trigger.removeClass('is-closed');
+                trigger.addClass('is-open');
+                isClosed = true;
+            }
+        }
+
+        $('[data-toggle="offcanvas"]').click(function () {
             $('#wrapper').toggleClass('toggled');
-      });  
+        });
     });
 </script>
+<script>
+    function FileUpload(id) {
+        console.log(id);
+        var form_data = new FormData();
+        var file_info = $('#'+id+'')[0].files[0];
+        form_data.append('file', file_info);
+    
+        if(file_info==undefined){
+            alert('你没有选择任何文件');
+            return false
+        }
+        
+        $.ajax({
+            url: 'upload/',
+            type: 'POST',
+            data: form_data,
+            processData: false, // tell jquery not to process the data
+            contentType: false, // tell jquery not to set contentType
+            success: function (callback) {
+
+                console.log('ok')
+            }
+        });
+
+    }
+</script>
+
 </html>

@@ -15,7 +15,7 @@ from .models import TGoodsNumInfo
 from builtins import int
 from numpy.f2py.auxfuncs import isfalse
 from _ctypes import Union
-
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -1308,15 +1308,15 @@ def jump_to_load(request):
     except Exception as identifier:
         return HttpResponse("false")
 
-
+@csrf_exempt
 def upload(request):
     
     if request.method == "POST":
-        zipfile = request.FILES.get("zipfile",None)
-        if not zipfile:
+        file = request.FILES.get("file",None)
+        if not file:
             return HttpResponse("empty")
-        storefile = open(os.path.join(settings.BASE_FILE_PATH.get('upzip_path')),'wb+')
-        for chunk in zipfile.chunks():
+        storefile = open(os.path.join(settings.BASE_DIR, settings.BASE_FILE_PATH.get('upload_path'),file.name),'wb+')
+        for chunk in file.chunks():
             storefile.write(chunk)
         storefile.close()
         

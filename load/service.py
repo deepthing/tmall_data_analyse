@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-sys.path.append("..")
-sys.path.append("../..")
-from . import zip_util as zip
 import tmall_data_analyse.settings as setting
-from . import sql_templates as sql
 import MySQLdb
 import subprocess
+sys.path.append("..")
+sys.path.append("../..")
+from . import sql_templates as sql
+from . import zip_util as zip
 # file_type = ['fee','inventory','myaccount','order','settlebatch','settledetails','settlefee','strade','tmallsodetails','tmallso','transaction']
 
 def upzip(zipfilename):
@@ -15,7 +15,7 @@ def upzip(zipfilename):
         zip.extract(setting.BASE_FILE_PATH.get('upzip_path')+zipfilename,setting.BASE_FILE_PATH.get('upload_path'))
         os.rename(setting.BASE_FILE_PATH.get('upzip_path')+zipfilename,setting.BASE_FILE_PATH.get('backup_path')+zipfilename)
         return 'success'
-    except e:
+    except Exception as e:
         print(str(e))
         return 'false'
 
