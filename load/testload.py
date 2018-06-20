@@ -9,10 +9,10 @@ sys.setdefaultencoding('utf-8')
 # print name[name.rfind("_")+1:name.rfind(".")]
 # service.upzip("201801.zip")
 
-# service.loaddata("C:/Users/alooyang/Desktop/201801")
+service.readcsv("/Users/dengliang/work/tmall/201804/fee_201804.csv")
 # service.loaddata("/Users/dengliang/Downloads/201709/")
 # service.loaddata("/Users/dengliang/Downloads/201710/")
 
 # service.loaddata("C:/Users/alooyang/Desktop/2018")
 
-service.analyse_data(0)
+# service.analyse_data(0)

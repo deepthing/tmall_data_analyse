@@ -16,7 +16,7 @@ from builtins import int
 from numpy.f2py.auxfuncs import isfalse
 from _ctypes import Union
 from django.views.decorators.csrf import csrf_exempt
-
+import json
 
 
 def index(request):
@@ -1310,19 +1310,25 @@ def jump_to_load(request):
 
 @csrf_exempt
 def upload(request):
+    try:
+        if request.method == "POST":
+            file = request.FILES.get("file",None)
+            if not file:
+                return HttpResponse("empty")
+            storefile = open(os.path.join(settings.BASE_DIR, settings.BASE_FILE_PATH.get('upload_path'),file.name),'wb+')
+            for chunk in file.chunks():
+                storefile.write(chunk)
+            storefile.close()
+            csvfilename = os.path.join(settings.BASE_DIR, settings.BASE_FILE_PATH.get('upload_path'),file.name)
+            print(csvfilename)
+            return HttpResponse(json.dumps(service.readcsv(csvfilename)),content_type="application/json") 
     
-    if request.method == "POST":
-        file = request.FILES.get("file",None)
-        if not file:
-            return HttpResponse("empty")
-        storefile = open(os.path.join(settings.BASE_DIR, settings.BASE_FILE_PATH.get('upload_path'),file.name),'wb+')
-        for chunk in file.chunks():
-            storefile.write(chunk)
-        storefile.close()
+        else:
+            return HttpResponse("wrong")
+    except UnicodeDecodeError as identifier:
+        return HttpResponse("decodeError")
         
-        return HttpResponse("success")
-    else:
-        return HttpResponse("wrong")
+    
     
     
     

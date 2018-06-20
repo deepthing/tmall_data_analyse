@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+sys.path.append("..")
+sys.path.append("../..")
 import tmall_data_analyse.settings as setting
 import MySQLdb
 import subprocess
-sys.path.append("..")
-sys.path.append("../..")
+
 from . import sql_templates as sql
 from . import zip_util as zip
+import csv
 # file_type = ['fee','inventory','myaccount','order','settlebatch','settledetails','settlefee','strade','tmallsodetails','tmallso','transaction']
 
 def upzip(zipfilename):
@@ -18,6 +20,25 @@ def upzip(zipfilename):
     except Exception as e:
         print(str(e))
         return 'false'
+
+def readcsv(csvfilename):
+    try:
+        with open(csvfilename,newline='',encoding='utf-8') as f:
+            reader = csv.reader(f)
+            returnlist = []
+            for row in reader:
+                #print(row)
+                returnlist.append(row)
+            return returnlist
+    except UnicodeDecodeError as identifier:
+        with open(csvfilename,newline='',encoding='GB2312') as f:
+            reader = csv.reader(f)
+            returnlist = []
+            for row in reader:
+                #print(row)
+                returnlist.append(row)
+            return returnlist
+    
 
 def loaddata(csvfilepath):
     if os.path.isdir(csvfilepath):
