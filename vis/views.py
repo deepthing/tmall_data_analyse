@@ -17,6 +17,8 @@ from numpy.f2py.auxfuncs import isfalse
 from _ctypes import Union
 from django.views.decorators.csrf import csrf_exempt
 import json
+import vis.models as vismodels
+import datetime
 
 
 def index(request):
@@ -1312,26 +1314,51 @@ def jump_to_load(request):
 def upload(request):
     try:
         if request.method == "POST":
-            file = request.FILES.get("file",None)
-            if not file:
+            reqfiles = request.FILES.getlist("file",None)
+            if not reqfiles:
                 return HttpResponse("empty")
-            storefile = open(os.path.join(settings.BASE_DIR, settings.BASE_FILE_PATH.get('upload_path'),file.name),'wb+')
-            for chunk in file.chunks():
-                storefile.write(chunk)
-            storefile.close()
-            csvfilename = os.path.join(settings.BASE_DIR, settings.BASE_FILE_PATH.get('upload_path'),file.name)
-            print(csvfilename)
-            return HttpResponse(json.dumps(service.readcsv(csvfilename)),content_type="application/json") 
+            for file in reqfiles:
+                storefile = open(os.path.join(settings.BASE_DIR, settings.BASE_FILE_PATH.get('upload_path'),file.name),'wb+')
+                for chunk in file.chunks():
+                    storefile.write(chunk)
+                storefile.close()
+                csvfilename = os.path.join(settings.BASE_DIR, settings.BASE_FILE_PATH.get('upload_path'),file.name)
+                print(csvfilename)
+                fileupload = vismodels.FileUpload(file_name=file.name)
+                fileupload.file_path = csvfilename
+                fileupload.file_type = request.POST.get("type")
+                fileupload.upload_time = datetime.datetime.now()
+                fileupload.del_mark = "N"
+                fileupload.save()
+            return HttpResponse(json.dumps(service.readcsv(csvfilename)),content_type="application/json")
     
         else:
             return HttpResponse("wrong")
     except UnicodeDecodeError as identifier:
         return HttpResponse("decodeError")
-        
+
+
+@csrf_exempt
+def UndoUpload(request):
+    print("undoUpload")
+    fileuploadobj = vismodels.FileUpload.objects.filter(file_type=request.POST.get("type"),file_name = request.POST.get("filename",None))
+    fileuploadobj.delete()
     
+    return HttpResponse("撤回")
+
+@csrf_exempt 
+def load_data_to_db(request):
+    filenamelist = request.POST.get("filenamelist").split(",")
+    print(filenamelist)
+    print(len(filenamelist))
+    for filename in filenamelist:
+        print(filename)
+        filepath = vismodels.FileUpload.objects.filter(file_name = filename[filename.rfind("/")+1:len(filename)])
+        print(filepath[0].file_path)
+        service.load_csv_file(filepath[0].file_path,filename)
+    return HttpResponse("success")
     
-    
-    
+
     
 def set_style(name,height,bold=False):
       style = xlwt.XFStyle() # 初始化样式

@@ -10,6 +10,8 @@ import subprocess
 from . import sql_templates as sql
 from . import zip_util as zip
 import csv
+import vis.models as models
+import datetime
 # file_type = ['fee','inventory','myaccount','order','settlebatch','settledetails','settlefee','strade','tmallsodetails','tmallso','transaction']
 
 def upzip(zipfilename):
@@ -31,13 +33,22 @@ def readcsv(csvfilename):
                 returnlist.append(row)
             return returnlist
     except UnicodeDecodeError as identifier:
-        with open(csvfilename,newline='',encoding='GB2312') as f:
-            reader = csv.reader(f)
-            returnlist = []
-            for row in reader:
-                #print(row)
-                returnlist.append(row)
-            return returnlist
+        try:
+            with open(csvfilename,newline='',encoding='GB2312') as f:
+                reader = csv.reader(f)
+                returnlist = []
+                for row in reader:
+                    #print(row)
+                    returnlist.append(row)
+                return returnlist
+        except UnicodeDecodeError as identifier:
+            with open(csvfilename,newline='',encoding='GBK') as f:
+                reader = csv.reader(f)
+                returnlist = []
+                for row in reader:
+                    #print(row)
+                    returnlist.append(row)
+                return returnlist    
     
 
 def loaddata(csvfilepath):
@@ -49,8 +60,8 @@ def loaddata(csvfilepath):
                 csvfilename = (os.path.join(csvfilepath,os.path.join(root, name))).replace("./","")
                 csvfilename = csvfilename.replace(".\\","")
                 csvfilename = csvfilename.replace("\\","/")
-                #print csvfilename
-                #print name
+                print (csvfilename)
+                print (name)
                 db = MySQLdb.connect(setting.DATABASES.get('default').get('HOST'),
                     setting.DATABASES.get('default').get('USER'),
                     setting.DATABASES.get('default').get('PASSWORD'),
@@ -73,17 +84,53 @@ def loaddata(csvfilepath):
     else:
         return
 
+def load_csv_file(csvfilename,name):
+    csvfilename = csvfilename.replace(".\\","")
+    csvfilename = csvfilename.replace("\\","/")
+    print (csvfilename)
+    db = MySQLdb.connect(host = setting.DATABASES.get('default').get('HOST'),
+        user = setting.DATABASES.get('default').get('USER'),
+        passwd = setting.DATABASES.get('default').get('PASSWORD'),
+        db = setting.DATABASES.get('default').get('NAME'),
+        local_infile = 1)
+    data = db.cursor(MySQLdb.cursors.DictCursor)
+
+    load_data_to_db(db,data,csvfilename,name.lower())
+
+    db.commit()
+    data.close()
+    db.close()
+
 def load_data_to_db(db,data,filename,name):
 
     strr = ''
     if '.csv' in name:
+        dateIndex =name.rfind("_")+1
+        print(name)
+        print("当前年:"+name[dateIndex:dateIndex+4])
+        print("当前月:"+name[dateIndex+4:dateIndex+6])
         if 'settlefee' in name:
             strr = sql.sql_templates.type_settlefee
             print(name+" get date:"+name[name.rfind(".")-6:name.rfind(".")])
-            strr = strr.replace("@templates_cut",""+name[name.rfind(".")-6:name.rfind(".")])
+            model_filter = models.LoadSettlefeeInfo.objects.filter(settle_time=name[dateIndex:dateIndex+6]).delete()
+            #print(len(model_filter))
+            strr = strr.replace("@templates_cut",""+name[dateIndex:dateIndex+6])
         elif 'inventory' in name:
+            #print(name)
+            #print(name[dateIndex:dateIndex+4]+"_"+name[dateIndex+4:dateIndex+6])
+            models.LoadInventoryInfo.objects.filter(period__contains=name[dateIndex:dateIndex+4]+"-"+name[dateIndex+4:dateIndex+6]).delete()
+
             strr = sql.sql_templates.type_inventory
         elif 'myaccount' in name:
+            
+            startDate = datetime.date(int(name[dateIndex:dateIndex+4]),int(name[dateIndex+4:dateIndex+6]),1)
+            if int(name[dateIndex+4:dateIndex+6])<=11:
+                endDate = datetime.date(int(name[dateIndex:dateIndex+4]),int(name[dateIndex+4:dateIndex+6])+1,1)
+            else:
+                endDate = datetime.date(int(name[dateIndex:dateIndex+4])+1,1,1) 
+            print(startDate,endDate)
+            models.LoadMyaccountInfo.objects.filter(trans_date__range=(startDate,endDate)).delete()
+            
             strr = sql.sql_templates.type_myaccount
         elif 'order' in name:
             strr = sql.sql_templates.type_order

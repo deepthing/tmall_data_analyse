@@ -893,3 +893,15 @@ class TmpTmallMonthly(models.Model):
     class Meta:
         managed = False
         db_table = 'tmp_tmall_monthly'
+
+class FileUpload(models.Model):
+    id = models.IntegerField(primary_key=True)
+    file_type = models.CharField(max_length=30,blank=True, null=True)
+    file_name = models.CharField(max_length=255, blank=True, null=True)
+    file_path = models.CharField(max_length=255, blank=True, null=True)
+    upload_time = models.DateTimeField(blank=True, null=True)
+    del_mark = models.CharField(max_length=1,blank=True,null=True)
+    class Meta:
+        managed = False
+        db_table = 'file_upload'
+

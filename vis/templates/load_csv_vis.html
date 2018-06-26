@@ -50,7 +50,7 @@
                                         <span class="input-group-addon" style="width:120px">settlefee</span>
                                         <input type="file" name="file" id="settlefee" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('settlefee')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settlefee')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('settlefee')">撤回</button>
@@ -61,7 +61,7 @@
                                         <span class="input-group-addon" style="width:120px">inventory</span>
                                         <input type="file" name="file" id="inventory" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('inventory')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('inventory')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('inventory')">撤回</button>
@@ -72,7 +72,7 @@
                                         <span class="input-group-addon" style="width:120px">myaccount</span>
                                         <input type="file" name="file" id="myaccount" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('myaccount')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('myaccount')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('myaccount')">撤回</button>
@@ -83,7 +83,7 @@
                                         <span class="input-group-addon" style="width:120px">order</span>
                                         <input type="file" name="file" id="order" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('order')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('order')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('order')">撤回</button>
@@ -94,7 +94,7 @@
                                         <span class="input-group-addon" style="width:120px">settlebatch</span>
                                         <input type="file" name="file" id="settlebatch" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('settlebatch')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settlebatch')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('settlebatch')">撤回</button>
@@ -103,9 +103,9 @@
 
                                     <div class="input-group">
                                         <span class="input-group-addon" style="width:120px">settledetail</span>
-                                        <input type="file" name="file" id="settledetail" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <input type="file" name="file" id="settledetail" class="form-control" multiple="multiple" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('settledetail')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settledetail')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('settledetail')">撤回</button>
@@ -118,7 +118,7 @@
                                         <span class="input-group-addon" style="width:120px">fee</span>
                                         <input type="file" name="file" id="fee" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('fee')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('fee')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('fee')">撤回</button>
@@ -129,7 +129,7 @@
                                         <span class="input-group-addon" style="width:120px">strade</span>
                                         <input type="file" name="file" id="strade" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('strade')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('strade')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('strade')">撤回</button>
@@ -139,7 +139,7 @@
                                         <span class="input-group-addon" style="width:120px">tmallsodetails</span>
                                         <input type="file" name="file" id="tmallsodetails" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('tmallsodetails')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('tmallsodetails')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('tmallsodetails')">撤回</button>
@@ -150,7 +150,7 @@
                                         <span class="input-group-addon" style="width:120px">tmallso</span>
                                         <input type="file" name="file" id="tmallso" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('tmallso')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('tmallso')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('tmallso')">撤回</button>
@@ -160,21 +160,15 @@
                                         <span class="input-group-addon" style="width:120px">transaction</span>
                                         <input type="file" name="file" id="transaction" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="FileUpload('transaction')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('transaction')">上传</button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('transaction')">撤回</button>
                                         </span>
                                     </div>
-
-
                                 </div>
-
-
                             </div>
                         </div>
-
-
                     </div>
 
                 </div>
@@ -188,6 +182,12 @@
                         <table id="showcsvdetail" data-pagination=“true”></table>
 
                     </div>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <button id="load_button" onclick="load_data()"><h4>执行分析</h4></button>
+                    </div>
+
                 </div>
 
             </div>
@@ -231,17 +231,24 @@
     });
 </script>
 <script>
-    function FileUpload(id) {
+
+
+    function MutiFileUpload(id) {
         console.log('上传' + id + '文件');
         var form_data = new FormData();
-        var file_info = $('#' + id)[0].files[0];
-        form_data.append('file', file_info);
-        form_data.append('type', id);
-
-        if (file_info == undefined) {
+        var file = $('#' + id)[0].files;
+        console.log(file.length+"个文件")
+        if (file.length == 0) {
             alert('你没有选择任何文件');
             return false
         }
+        for(i=0;i<file.length;i++){
+            form_data.append("file", file[i]);
+        }
+        
+        form_data.append('type', id);
+
+
         $.ajax({
             url: 'upload/',
             type: 'POST',
@@ -249,33 +256,38 @@
             processData: false, // tell jquery not to process the data
             contentType: false, // tell jquery not to set contentType
             success: function (data) {
-                
+
                 //console.log(data)
-                if(data == "decodeError"){
+                if (data == "decodeError") {
                     alert("文件编码错误")
-                    return 
+                    return
                 }
                 console.log('ok')
                 var columns = []
                 var tabledata = []
-                for(var i=0;i<data[0].length;i++){
-                    var obj = {field:data[0][i],title:data[0][i]};
+                for (var i = 0; i < data[0].length; i++) {
+                    var obj = {
+                        field: data[0][i],
+                        title: data[0][i]
+                    };
                     columns.push(obj);
                 }
 
-                for(var j=1;j<data.length;j++){
+                for (var j = 1; j < data.length; j++) {
                     var rowdata = {}
-                    for(var i=0;i<data[0].length;i++){
+                    for (var i = 0; i < data[0].length; i++) {
                         rowdata[data[0][i]] = data[j][i];
                     }
                     tabledata.push(rowdata)
                 }
 
                 //console.log(tabledata)
-                $('#showcsvdetail').bootstrapTable('destroy') 
-                $('#showcsvdetail').bootstrapTable({"columns":columns}) 
-                
-                $('#showcsvdetail').bootstrapTable('load',tabledata)
+                $('#showcsvdetail').bootstrapTable('destroy')
+                $('#showcsvdetail').bootstrapTable({
+                    "columns": columns
+                })
+
+                $('#showcsvdetail').bootstrapTable('load', tabledata)
             }
         });
 
@@ -283,6 +295,79 @@
 
     function UndoUpload(id) {
         console.log('撤销' + id + '文件');
+        var form_data = new FormData();
+        var file_info = $('#' + id)[0].files[0];
+        if (file_info == undefined) {
+            alert('你没有选择任何文件');
+            return false
+        }
+        form_data.append('filename', file_info.name);
+        form_data.append('type', id);
+
+        $.ajax({
+            url: "UndoUpload/",
+            type: 'POST',
+            data: form_data,
+            processData: false, // tell jquery not to process the data
+            contentType: false, // tell jquery not to set contentType
+            success: function (data) {
+                console.log(data)
+                $("#" + id).val("")
+                $('#showcsvdetail').bootstrapTable('destroy')
+            }
+        });
+
+    }
+
+    
+
+    function load_data(){
+        var filenamelist = []
+        if($('#settlefee')[0].files!= undefined&&$('#settlefee')[0].files[0]!= undefined){
+            filenamelist.push($('#settlefee')[0].files[0].name)
+        }
+        if($('#fee')[0].files!= undefined&&$('#fee')[0].files[0]!= undefined){
+            filenamelist.push($('#fee')[0].files[0].name)
+        }
+        if($('#inventory')[0].files!= undefined&&$('#inventory')[0].files[0]!= undefined){
+            filenamelist.push($('#inventory')[0].files[0].name)
+        }
+        if($('#myaccount')[0].files!= undefined&&$('#myaccount')[0].files[0]!= undefined){
+            filenamelist.push($('#myaccount')[0].files[0].name)
+        }
+        if($('#order')[0].files!= undefined&&$('#order')[0].files[0]!= undefined){
+            filenamelist.push($('#order')[0].files[0].name)
+        }
+        if($('#settlebatch')[0].files!= undefined&&$('#settlebatch')[0].files[0]!= undefined){
+            filenamelist.push($('#settlebatch')[0].files[0].name)
+        }
+        if($('#settledetail')[0].files!= undefined&&$('#settledetail')[0].files[0]!= undefined){
+            filenamelist.push($('#settledetail')[0].files[0].name)
+        }
+        if($('#strade')[0].files!= undefined&&$('#strade')[0].files[0]!= undefined){
+            filenamelist.push($('#strade')[0].files[0].name)
+        }
+        if($('#tmallso')[0].files!= undefined&&$('#tmallso')[0].files[0]!= undefined){
+            filenamelist.push($('#tmallso')[0].files[0].name)
+        }
+        if($('#tmallsodetails')[0].files!= undefined&&$('#tmallsodetails')[0].files[0]!= undefined){
+            filenamelist.push($('#tmallsodetails')[0].files[0].name)
+        }
+        if($('#transaction')[0].files!= undefined&&$('#transaction')[0].files[0]!= undefined){
+            filenamelist.push($('#transaction')[0].files[0].name)
+        }
+        var form_data = new FormData();
+        form_data.append("filenamelist",filenamelist)
+        $.ajax({
+            url: "load_data_to_db/",
+            type: 'POST',
+            data: form_data,
+            processData: false, // tell jquery not to process the data
+            contentType: false, // tell jquery not to set contentType
+            success: function (data) {
+                console.log(data)
+            }
+        })
     }
 </script>
 

@@ -82,10 +82,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tmall',
-        'USER': 'bsztz',
-        'PASSWORD': 'bsztz',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': '127.0.0.1',
         'PORT': 3306,
+        'OPTIONS' : {
+            'local_infile':1,
+        },
     }
 }
 

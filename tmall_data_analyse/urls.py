@@ -33,4 +33,6 @@ urlpatterns = [
     url(r'^export_order/$',visual.order_export),
     url(r'^excel_export2/$',visual.excel_export2),
     url(r'^loadcsv',visual.loadcsv),
+    url(r'^UndoUpload/$',visual.UndoUpload),
+    url(r'^load_data_to_db/$',visual.load_data_to_db),
 ]
