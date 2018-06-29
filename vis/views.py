@@ -20,7 +20,6 @@ import json
 import vis.models as vismodels
 import datetime
 
-
 def index(request):
     return render(request,'nav.html')
 
@@ -1346,19 +1345,43 @@ def UndoUpload(request):
     
     return HttpResponse("撤回")
 
+num_process = 0
 @csrf_exempt 
 def load_data_to_db(request):
     filenamelist = request.POST.get("filenamelist").split(",")
     print(filenamelist)
     print(len(filenamelist))
+    global num_process
+    len_filelist = len(filenamelist)
+    num_process = 0
+    i = 0
     for filename in filenamelist:
         print(filename)
         filepath = vismodels.FileUpload.objects.filter(file_name = filename[filename.rfind("/")+1:len(filename)])
         print(filepath[0].file_path)
         service.load_csv_file(filepath[0].file_path,filename)
+        num_process = i*100/len_filelist
+    num_process = 100
     return HttpResponse("success")
-    
 
+@csrf_exempt
+def load_data_to_db_process(request):
+    global num_process
+    return HttpResponse(num_process)
+
+@csrf_exempt
+def analyse_data(request):
+    try:
+        service.analyse_data()
+        return HttpResponse("success")
+    except Exception as e:
+        print(str(e))
+        return HttpResponse(str(e))
+    
+@csrf_exempt
+def analyse_data_process(request):
+    print(service.analyse_data_process())
+    return HttpResponse(service.analyse_data_process())
     
 def set_style(name,height,bold=False):
       style = xlwt.XFStyle() # 初始化样式

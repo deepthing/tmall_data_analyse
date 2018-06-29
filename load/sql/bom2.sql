@@ -1,4 +1,4 @@
--- ¼ì²éÊÇ·ñÂ©
+-- æ£€æŸ¥æ˜¯å¦æ¼
 SELECT
 	t2.paper_type,
   t2.outter_order_id,
@@ -33,9 +33,9 @@ FROM
 	) t2
 WHERE
 	t1.transaction_order_id = t2.outter_order_id
-and t2.paper_type='½»Ò×³ö¿â';
+and t2.paper_type='äº¤æ˜“å‡ºåº“';
 
--- ¼ì²éÊÇ·ñÊıÁ¿²»¶Ô
+-- æ£€æŸ¥æ˜¯å¦æ•°é‡ä¸å¯¹
 		SELECT
 			b.id AS transaction_id,
 			b.goods_code AS transaction_goods_code,
@@ -54,7 +54,7 @@ and t2.paper_type='½»Ò×³ö¿â';
     where b.in_out_number+a.in_out_number<>0;
 
 
--- ¼ì²éÊÇ·ñBOM·Ö½âÓĞµ«ÊÂÎñ´¦ÀíÃ»ÓĞ
+-- æ£€æŸ¥æ˜¯å¦BOMåˆ†è§£æœ‰ä½†äº‹åŠ¡å¤„ç†æ²¡æœ‰
 SELECT
 			a.id AS tmall_id,
 			a.period AS tmall_period,
@@ -79,6 +79,6 @@ and a.order_id IN (
 					t.outter_order_id outt
 				FROM
 					load_transaction_info t
-				WHERE t.paper_type = '½»Ò×³ö¿â'
+				WHERE t.paper_type = 'äº¤æ˜“å‡ºåº“'
 			);
 

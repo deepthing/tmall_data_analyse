@@ -103,6 +103,7 @@ try:
 
 except Exception as e:
         print("error: unable fetch data",e.args)
+		raise
 
 db.close();
 print("search complete")

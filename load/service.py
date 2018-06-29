@@ -12,6 +12,10 @@ from . import zip_util as zip
 import csv
 import vis.models as models
 import datetime
+import tmall_data_analyse.settings as settings
+
+num_process = 0
+
 # file_type = ['fee','inventory','myaccount','order','settlebatch','settledetails','settlefee','strade','tmallsodetails','tmallso','transaction']
 
 def upzip(zipfilename):
@@ -116,41 +120,40 @@ def load_data_to_db(db,data,filename,name):
             #print(len(model_filter))
             strr = strr.replace("@templates_cut",""+name[dateIndex:dateIndex+6])
         elif 'inventory' in name:
-            #print(name)
-            #print(name[dateIndex:dateIndex+4]+"_"+name[dateIndex+4:dateIndex+6])
             models.LoadInventoryInfo.objects.filter(period__contains=name[dateIndex:dateIndex+4]+"-"+name[dateIndex+4:dateIndex+6]).delete()
-
             strr = sql.sql_templates.type_inventory
         elif 'myaccount' in name:
-            
-            startDate = datetime.date(int(name[dateIndex:dateIndex+4]),int(name[dateIndex+4:dateIndex+6]),1)
-            if int(name[dateIndex+4:dateIndex+6])<=11:
-                endDate = datetime.date(int(name[dateIndex:dateIndex+4]),int(name[dateIndex+4:dateIndex+6])+1,1)
-            else:
-                endDate = datetime.date(int(name[dateIndex:dateIndex+4])+1,1,1) 
-            print(startDate,endDate)
-            models.LoadMyaccountInfo.objects.filter(trans_date__range=(startDate,endDate)).delete()
-            
+            models.LoadMyaccountInfo.objects.filter(trans_date__range=(getStartAndEndDate(name))).delete()
             strr = sql.sql_templates.type_myaccount
         elif 'order' in name:
+            models.LoadOrderInfo.objects.filter(order_time__contains=name[dateIndex:dateIndex+4]+"-"+name[dateIndex+4:dateIndex+6]).delete()
             strr = sql.sql_templates.type_order
         elif 'settlebatch' in name:
+            print(getStartAndEndDate(name))
+            models.LoadSettlebatchInfo.objects.filter(settle_date__range=(getStartAndEndDate(name))).delete()
             strr = sql.sql_templates.type_settlebatch
         elif 'settledetail' in name:
+            models.LoadSettledetailsInfo.objects.filter(settlement_time__range=(getStartAndEndDate(name))).delete()
             strr = sql.sql_templates.type_settledetails
             print(name+" get date:"+name[name.rfind("_")+1:name.rfind(".")])
             strr = strr.replace("@templates_cut",""+name[name.rfind("_")+1:name.rfind(".")])
         elif ('fee' in name) and ('settlefee' not in name):
+            models.LoadFeeInfo.objects.filter(fee_date__contains=name[dateIndex:dateIndex+4]+"-"+name[dateIndex+4:dateIndex+6]).delete()
             strr = sql.sql_templates.type_fee
             print(name+" get date:"+name[4:8]+"-"+name[8:10]+"-01")
             strr = strr.replace("@templates_fee_date",name[4:8]+"-"+name[8:10]+"-01")
         elif 'strade' in name:
+            models.LoadStradeInfo.objects.filter(payment_time__range=(getStartAndEndDate(name))).delete()
             strr = sql.sql_templates.type_strade
         elif 'tmallsodetails' in name:
+            models.LoadTmallsodetailInfo.objects.filter(order_create_time__range=(getStartAndEndDate(name))).delete()
+            models.LoadTmallsodetailInfo.objects.filter(order_create_time = None).delete()
             strr = sql.sql_templates.type_tmallsodetail
         elif ('tmallso' in  name) and ('tmallsodetails' not in name):
+            models.LoadTmallsoInfo.objects.filter(create_time__contains=name[dateIndex:dateIndex+4]+"-"+name[dateIndex+4:dateIndex+6]).delete()
             strr = sql.sql_templates.type_tmallso
         elif 'transaction' in name:
+            models.LoadTransactionInfo.objects.filter(in_out_time__contains=name[dateIndex:dateIndex+4]+"-"+name[dateIndex+4:dateIndex+6]).delete()
             strr = sql.sql_templates.tpye_transaction
 
     if strr != '':
@@ -159,28 +162,93 @@ def load_data_to_db(db,data,filename,name):
         print(strr)
         data.execute(strr)
 
+def getStartAndEndDate(name):
+    dateIndex =name.find("_")+1
+    startDate = datetime.date(int(name[dateIndex:dateIndex+4]),int(name[dateIndex+4:dateIndex+6]),1)
+    if int(name[dateIndex+4:dateIndex+6])<=11:
+        endDate = datetime.date(int(name[dateIndex:dateIndex+4]),int(name[dateIndex+4:dateIndex+6])+1,1)
+    else:
+        endDate = datetime.date(int(name[dateIndex:dateIndex+4])+1,1,1) 
+    print(startDate,endDate) 
+    return startDate,endDate
+
+
 def readfile(name):
     file = open(name)
     strr = ""
     try:
         strr = file.read()
+        #print(strr)
     finally:
         file.close()
     return str(strr)
 
-def execsql(name):
-    sql = "".join(["mysql -u bsztz -pbsztz tmall> ",name])
-    print("commend",sql)
+def execsql(sqlfile):
+    db = MySQLdb.connect(host = setting.DATABASES.get('default').get('HOST'),
+    user = setting.DATABASES.get('default').get('USER'),
+    passwd = setting.DATABASES.get('default').get('PASSWORD'),
+    db = setting.DATABASES.get('default').get('NAME'),
+    local_infile = 1)
+    data = db.cursor(MySQLdb.cursors.DictCursor)
 
-    subprocess.getstatusoutput(sql)
+    data.executemany(readfile(sqlfile),"")
+
+    db.commit()
+    data.close()
+    db.close()
+
+def execfile(filename):
+    exec(open(filename).read())
 
 
-def analyse_data(num):
+
+
+def analyse_data():
+    global num_process
     try:
         print("开始执行")
-        exec(compile(open("load_and_analyse/inventory.py").read(), "load_and_analyse/inventory.py", 'exec'))
+        num_process = 0
+        print("1:初始化")
+        execsql(os.path.join(settings.BASE_DIR,"load/sql/init.sql"))
+        num_process = 5
+        execsql(os.path.join(settings.BASE_DIR,"load/sql/init2.sql"))
+        num_process = 10
+        print("1:初始化，完成")
+        
+        print("2:计算myaccount的各项费用明细")
+        execsql(os.path.join(settings.BASE_DIR,"load/sql/t_other_fee_info2.sql"))
+        num_process = 20
+        print("3:找BOM缺失并补充")
+        execsql(os.path.join(settings.BASE_DIR,"load/sql/bom.sql"))
+        num_process = 30
+        print("4:BOM金额计算")
+        execfile(os.path.join(settings.BASE_DIR,"load/bom_price.py"))
+        num_process = 35
+        execfile(os.path.join(settings.BASE_DIR,"load/bom.py"))
+        num_process = 40
+        print("5:计算货品库存数量和金额")
+        execsql(os.path.join(settings.BASE_DIR,"load/sql/t_good_num_info.sql"))
+        num_process = 50
+        execfile(os.path.join(settings.BASE_DIR,"load/inventory.py"))
+        num_process = 70
+        print("6:验证BOM分解数据和菜鸟数据是否一致，并修正BOM回到节点4")
+        execsql(os.path.join(settings.BASE_DIR,"load/sql/bom2.sql"))
+        num_process = 75
+        print("7:计算每个自然期间的提取金额和税率")
+        execsql(os.path.join(settings.BASE_DIR,"load/sql/t_settle_amount_info.sql"))
+        num_process = 80
+        execsql(os.path.join(settings.BASE_DIR,"load/sql/rate.sql"))
+        num_process = 90
+        print("8:生成每个自然期间的订单五大费用明细")
+        execsql(os.path.join(settings.BASE_DIR,"load/sql/t_fee_info.sql"))
+        num_process = 100
+        
         print('执行完毕')
     except Exception as e:
-        print(str(e))
+        raise
 
+def analyse_data_process():
+    global num_process
+    return num_process
+    
     

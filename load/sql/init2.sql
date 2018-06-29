@@ -1,4 +1,4 @@
-﻿-- 初始化tmallsodetail的时间字段，用于每个月的查找
+-- 初始化tmallsodetail的时间字段，用于每个月的查找
 
 UPDATE load_tmallsodetail_info t,load_tmallso_info t1  SET  t.order_create_time=t1.create_time WHERE t1.order_id=t.order_id;
 

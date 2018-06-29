@@ -6,7 +6,7 @@ import sys
 import imp
  
 imp.reload(sys)
-sys.setdefaultencoding('utf-8')
+#sys.setdefaultencoding('utf-8')
 
 
 
@@ -26,48 +26,48 @@ def insertDetail(goods_code,goods_id,num,price,total):
 
 def getFieldsList():
 	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
-        fields = db.cursor(MySQLdb.cursors.DictCursor)
+	fields = db.cursor(MySQLdb.cursors.DictCursor)
 	fields.execute("desc bom")
 	data = fields.fetchall();
-        lst = [];
+	lst = [];
 	result = [];
-        for row in data:
-                lst.append(row["Field"])
-        for i in range(3,len(lst)):
-                result.append(lst[i])
+	for row in data:
+		lst.append(row["Field"])
+	for i in range(3,len(lst)):
+		result.append(lst[i])
 	return result
 
 def getPriceByGoodsId(goods_id):
 	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
-        detail = db.cursor(MySQLdb.cursors.DictCursor)
-        value=[goods_id]
-        detail.execute('select price from t_bas_sku_price where sku_id =%s',value);
-        if detail.rowcount ==0:
-                 return "0"
-        else:
-                row = detail.fetchone();
-                return row["price"]
+	detail = db.cursor(MySQLdb.cursors.DictCursor)
+	value=[goods_id]
+	detail.execute('select price from t_bas_sku_price where sku_id =%s',value);
+	if detail.rowcount ==0:
+		 return "0"
+	else:
+		row = detail.fetchone();
+		return row["price"]
 
 
 def truncateDetail():
-        db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
-        detail = db.cursor(MySQLdb.cursors.DictCursor)
+	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+	detail = db.cursor(MySQLdb.cursors.DictCursor)
 	detail.execute('TRUNCATE TABLE bom_detail')
-        db.commit();
-        detail.close();
-        db.close();
+	db.commit();
+	detail.close();
+	db.close();
 
 db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
 bom = db.cursor(MySQLdb.cursors.DictCursor)
 
 try:
 	truncateDetail()	
-        bom.execute("select * from bom")
-        bom_data = bom.fetchall();
+	bom.execute("select * from bom")
+	bom_data = bom.fetchall();
 	fields = getFieldsList();
 
-        for row in bom_data:
-		goods_code = row["product_name"].decode('utf-8')
+	for row in bom_data:
+		goods_code = row["product_name"]
 		total = row["price"]
 		for i in range(0,len(fields)):
 			fieldname = fields[i]
@@ -81,7 +81,9 @@ try:
 					insertDetail(goods_code,goods_id,goods_num,price,total);
 			
 except Exception as e:
-        print("error: unable fetch data",e.args)
+	db.close()
+	print("error: unable fetch data",e.args)
+	raise
 
 db.close();
 print("search complete")

@@ -38,7 +38,7 @@ FROM
 		FROM
 			load_myaccount_info
 		WHERE
-			Myaccountfee LIKE '%²Ö´¢·Ñ%'
+			Myaccountfee LIKE '%ä»“å‚¨è´¹%'
 		GROUP BY
 			SUBSTR(trans_date FROM 1 FOR 7)
 		UNION
@@ -56,7 +56,7 @@ FROM
 			FROM
 				load_myaccount_info
 			WHERE
-				Myaccountfee LIKE '%±£ÏÕ·Ñ%'
+				Myaccountfee LIKE '%ä¿é™©è´¹%'
 			GROUP BY
 				SUBSTR(trans_date FROM 1 FOR 7)
 			UNION
@@ -74,7 +74,7 @@ FROM
 				FROM
 					load_myaccount_info
 				WHERE
-					Myaccountfee LIKE '%ÉÌ¼ÒÅâ¸¶¸øÏû·ÑÕß·ÑÓÃ%'
+					Myaccountfee LIKE '%å•†å®¶èµ”ä»˜ç»™æ¶ˆè´¹è€…è´¹ç”¨%'
 				GROUP BY
 					SUBSTR(trans_date FROM 1 FOR 7)
 				UNION
@@ -92,7 +92,7 @@ FROM
 					FROM
 						load_myaccount_info
 					WHERE
-						Myaccountfee LIKE '%²ËÄñÅâ¸¶¸øÉÌ¼Ò·ÑÓÃ£¨»õ¿îÅâ¸¶£©%'
+						Myaccountfee LIKE '%èœé¸Ÿèµ”ä»˜ç»™å•†å®¶è´¹ç”¨ï¼ˆè´§æ¬¾èµ”ä»˜ï¼‰%'
 					GROUP BY
 						SUBSTR(trans_date FROM 1 FOR 7)
 					UNION
@@ -110,7 +110,7 @@ FROM
 						FROM
 							load_myaccount_info
 						WHERE
-							Myaccountfee LIKE '%²ËÄñÅâ¸¶ÉÌ¸ø¼Ò·ÑÓÃ£¨±£Ö¤½ğÅâ¸¶£©%'
+							Myaccountfee LIKE '%èœé¸Ÿèµ”ä»˜å•†ç»™å®¶è´¹ç”¨ï¼ˆä¿è¯é‡‘èµ”ä»˜ï¼‰%'
 						GROUP BY
 							SUBSTR(trans_date FROM 1 FOR 7)
 						UNION
@@ -128,7 +128,7 @@ FROM
 							FROM
 								load_myaccount_info
 							WHERE
-								Myaccountfee LIKE '%ÍÆ¹ã²¹Öú%'
+								Myaccountfee LIKE '%æ¨å¹¿è¡¥åŠ©%'
 							GROUP BY
 								SUBSTR(trans_date FROM 1 FOR 7)
 							UNION
@@ -146,7 +146,7 @@ FROM
 								FROM
 									load_myaccount_info
 								WHERE
-									Myaccountfee LIKE '%ÆäËûÕË»§·µ»¹%'
+									Myaccountfee LIKE '%å…¶ä»–è´¦æˆ·è¿”è¿˜%'
 								GROUP BY
 									SUBSTR(trans_date FROM 1 FOR 7)
 								UNION
@@ -164,7 +164,7 @@ FROM
 									FROM
 										load_myaccount_info
 									WHERE
-										Myaccountfee LIKE '%ÌìÃ¨Äê·Ñ%'
+										Myaccountfee LIKE '%å¤©çŒ«å¹´è´¹%'
 									GROUP BY
 										SUBSTR(trans_date FROM 1 FOR 7)
 									UNION
@@ -182,7 +182,7 @@ FROM
 										FROM
 											load_myaccount_info
 										WHERE
-											Myaccountfee LIKE '%ÌìÃ¨¹ã¸æÍÆ¹ã·Ñ%'
+											Myaccountfee LIKE '%å¤©çŒ«å¹¿å‘Šæ¨å¹¿è´¹%'
 										GROUP BY
 											SUBSTR(trans_date FROM 1 FOR 7)
 	) t1

@@ -1,4 +1,4 @@
-﻿TRUNCATE TABLE t_goods_num_info;
+TRUNCATE TABLE t_goods_num_info;
 
 TRUNCATE TABLE tmp_tmall_monthly;
 

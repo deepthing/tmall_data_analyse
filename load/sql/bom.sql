@@ -1,4 +1,4 @@
--- ȱʧBOM����
+-- 缺失BOM分析
 SELECT DISTINCT
 	(product_name)
 FROM
@@ -12,7 +12,7 @@ WHERE
 	)
 order by product_name;
 
--- BOMȥ�ո��ַ�����
+-- BOM去空格字符问题
 UPDATE bom
 SET product_name= TRIM(REPLACE(product_name, '"', ''));
 
@@ -30,7 +30,7 @@ SET product_name = TRIM(
 );
 
 
--- ��ֵ������
+-- 空值的问题
 update bom set bom.XY521077050523=NULL where bom.XY521077050523 <0.1;
 update bom set bom.XY521077162825=NULL where bom.XY521077162825 <0.1;
 update bom set bom.XY521078232623=NULL where bom.XY521078232623 <0.1;

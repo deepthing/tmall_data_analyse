@@ -185,8 +185,48 @@
                 </div>
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <button id="load_button" onclick="load_data()"><h4>执行分析</h4></button>
+                        <h3>数据处理</h3>
+
                     </div>
+                    <br>
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <button id="load_button" onclick="load_data()">
+                                    <h4>执行导入</h4>
+                                </button>
+                                <hr>
+                                <div id="prog_out_load" class="progress progress-striped active">
+                                    <div id="prog_in_load" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                                        style="width: 0%;">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-8">
+                                <button id="anayle_button" onclick="anayle_data()">
+                                    <h4>执行分析</h4>
+                                </button>
+                                <hr>
+                                <div id="prog_out" class="progress progress-striped active">
+                                    <div id="prog_in" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                                        style="width: 0%;">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <br>
+
+
+
+
+                    </div>
+
 
                 </div>
 
@@ -231,21 +271,19 @@
     });
 </script>
 <script>
-
-
     function MutiFileUpload(id) {
         console.log('上传' + id + '文件');
         var form_data = new FormData();
         var file = $('#' + id)[0].files;
-        console.log(file.length+"个文件")
+        console.log(file.length + "个文件")
         if (file.length == 0) {
             alert('你没有选择任何文件');
             return false
         }
-        for(i=0;i<file.length;i++){
+        for (i = 0; i < file.length; i++) {
             form_data.append("file", file[i]);
         }
-        
+
         form_data.append('type', id);
 
 
@@ -319,45 +357,60 @@
 
     }
 
-    
 
-    function load_data(){
+
+    function load_data() {
+        $('#prog_out_load').attr("class", "progress progress-striped active");
+        $('#prog_in_load').width('0%');
         var filenamelist = []
-        if($('#settlefee')[0].files!= undefined&&$('#settlefee')[0].files[0]!= undefined){
+        if ($('#settlefee')[0].files != undefined && $('#settlefee')[0].files[0] != undefined) {
             filenamelist.push($('#settlefee')[0].files[0].name)
         }
-        if($('#fee')[0].files!= undefined&&$('#fee')[0].files[0]!= undefined){
+        if ($('#fee')[0].files != undefined && $('#fee')[0].files[0] != undefined) {
             filenamelist.push($('#fee')[0].files[0].name)
         }
-        if($('#inventory')[0].files!= undefined&&$('#inventory')[0].files[0]!= undefined){
+        if ($('#inventory')[0].files != undefined && $('#inventory')[0].files[0] != undefined) {
             filenamelist.push($('#inventory')[0].files[0].name)
         }
-        if($('#myaccount')[0].files!= undefined&&$('#myaccount')[0].files[0]!= undefined){
+        if ($('#myaccount')[0].files != undefined && $('#myaccount')[0].files[0] != undefined) {
             filenamelist.push($('#myaccount')[0].files[0].name)
         }
-        if($('#order')[0].files!= undefined&&$('#order')[0].files[0]!= undefined){
+        if ($('#order')[0].files != undefined && $('#order')[0].files[0] != undefined) {
             filenamelist.push($('#order')[0].files[0].name)
         }
-        if($('#settlebatch')[0].files!= undefined&&$('#settlebatch')[0].files[0]!= undefined){
+        if ($('#settlebatch')[0].files != undefined && $('#settlebatch')[0].files[0] != undefined) {
             filenamelist.push($('#settlebatch')[0].files[0].name)
         }
-        if($('#settledetail')[0].files!= undefined&&$('#settledetail')[0].files[0]!= undefined){
+        if ($('#settledetail')[0].files != undefined && $('#settledetail')[0].files[0] != undefined) {
             filenamelist.push($('#settledetail')[0].files[0].name)
         }
-        if($('#strade')[0].files!= undefined&&$('#strade')[0].files[0]!= undefined){
+        if ($('#strade')[0].files != undefined && $('#strade')[0].files[0] != undefined) {
             filenamelist.push($('#strade')[0].files[0].name)
         }
-        if($('#tmallso')[0].files!= undefined&&$('#tmallso')[0].files[0]!= undefined){
+        if ($('#tmallso')[0].files != undefined && $('#tmallso')[0].files[0] != undefined) {
             filenamelist.push($('#tmallso')[0].files[0].name)
         }
-        if($('#tmallsodetails')[0].files!= undefined&&$('#tmallsodetails')[0].files[0]!= undefined){
+        if ($('#tmallsodetails')[0].files != undefined && $('#tmallsodetails')[0].files[0] != undefined) {
             filenamelist.push($('#tmallsodetails')[0].files[0].name)
         }
-        if($('#transaction')[0].files!= undefined&&$('#transaction')[0].files[0]!= undefined){
+        if ($('#transaction')[0].files != undefined && $('#transaction')[0].files[0] != undefined) {
             filenamelist.push($('#transaction')[0].files[0].name)
         }
         var form_data = new FormData();
-        form_data.append("filenamelist",filenamelist)
+        if (filenamelist.length == 0) {
+            alert("请选择一个或多个文件导入")
+            return
+        }
+        form_data.append("filenamelist", filenamelist)
+        var sitv = setInterval(function () {
+            var prog_url = "load_data_to_db_process/";
+
+            $.getJSON(prog_url, function (res) {
+                console.log(res);
+                $('#prog_in_load').width(res + '%'); // 改变进度条进度，注意这里是内层的div， res是后台返回的进度
+            })
+        }, 1000);
+
         $.ajax({
             url: "load_data_to_db/",
             type: 'POST',
@@ -365,9 +418,53 @@
             processData: false, // tell jquery not to process the data
             contentType: false, // tell jquery not to set contentType
             success: function (data) {
-                console.log(data)
+                console.log(data);
+                if (data == "success") {
+                    clearInterval(sitv); // 此时请求成功返回结果了，结束对后台进度的查询
+                    $('#prog_out_load').attr("class", "progress progress-bar-success");
+                    //alert("导入成功！")
+                } else {
+                    clearInterval(sitv);
+                    alert("导入失败！")
+                }
+            },
+            error: function () {
+                alert("导入失败！")
             }
         })
+    }
+
+    function anayle_data() {
+        $('#prog_out').attr("class", "progress progress-striped active");
+        $('#prog_in').width('0%');
+        var sitv = setInterval(function () {
+            var prog_url = "analyse_data_process/";
+
+            $.getJSON(prog_url, function (res) {
+                console.log(res);
+                $('#prog_in').width(res + '%'); // 改变进度条进度，注意这里是内层的div， res是后台返回的进度
+            })
+        }, 1000);
+
+        $.ajax({
+            url: "analyse_data/",
+            type: 'POST',
+            processData: false, // tell jquery not to process the data
+            contentType: false, // tell jquery not to set contentType
+            success: function (data) {
+                console.log(data);
+                if (data == "success") {
+                    clearInterval(sitv); // 此时请求成功返回结果了，结束对后台进度的查询
+                    $('#prog_out').attr("class", "progress progress-bar-success");
+                } else {
+                    clearInterval(sitv);
+                }
+            },
+            error: function () {
+                clearInterval(sitv); // 此时请求成功返回结果了，结束对后台进度的查询
+                alert("导入失败！");
+            }
+        });
     }
 </script>
 

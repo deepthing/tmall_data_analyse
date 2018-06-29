@@ -1,4 +1,4 @@
--- Ë°ÂÊ¼ÆËã
+-- ç¨ç‡è®¡ç®—
 SELECT
 period,
 	SUM(alipay_settle),

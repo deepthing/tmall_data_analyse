@@ -35,4 +35,7 @@ urlpatterns = [
     url(r'^loadcsv',visual.loadcsv),
     url(r'^UndoUpload/$',visual.UndoUpload),
     url(r'^load_data_to_db/$',visual.load_data_to_db),
+    url(r'analyse_data/',visual.analyse_data),
+    url(r'analyse_data_process/',visual.analyse_data_process),
+    url(r'load_data_to_db_process/',visual.load_data_to_db_process),
 ]

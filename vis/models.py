@@ -421,6 +421,7 @@ class LoadTmallsodetailInfo(models.Model):
     memo = models.CharField(max_length=20)
     order_status = models.CharField(max_length=20)
     shop_code = models.CharField(max_length=20)
+    order_create_time = models.CharField(max_length=20)
 
     class Meta:
         managed = False
