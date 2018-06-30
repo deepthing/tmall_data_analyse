@@ -1,4 +1,5 @@
 {
     "python.linting.pylintEnabled": false,
-    "python.pythonPath": "/Users/dengliang/anaconda3/envs/python27/bin/python"
+    "python.pythonPath": "/Users/dengliang/anaconda3/bin/python3",
+    "python.formatting.provider": "black"
 }
