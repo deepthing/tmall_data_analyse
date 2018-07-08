@@ -13,20 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import include,url
 from django.contrib import admin
 from vis import views as visual
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', visual.order_vis),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^order/$',visual.order_vis),
     url(r'^fee/$',visual.fee_vis),
     url(r'^inv/$',visual.inv_vis),
     url(r'^load/$',visual.jump_to_load),
     url(r'^upload/$',visual.upload),
     url(r'^testd3/$',visual.testd3),
-    url(r'^uplge/$',visual.uplge),
     url(r'^basics/$',visual.basics_vis),
     url(r'^export_vis/$',visual.export_vis),
     url(r'^excel_export/$',visual.excel_export),
@@ -38,4 +38,7 @@ urlpatterns = [
     url(r'analyse_data/',visual.analyse_data),
     url(r'analyse_data_process/',visual.analyse_data_process),
     url(r'load_data_to_db_process/',visual.load_data_to_db_process),
+    url(r'^test1_view/$',visual.test1_view),
 ]
+
+

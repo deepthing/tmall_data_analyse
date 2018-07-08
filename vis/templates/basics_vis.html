@@ -1,138 +1,180 @@
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="zh-CN">
 {% include 'nav.html' %}
-<br/>
-<div class="container-fluid">
-    <div class="col-md-10">
 
-        <div class="panel panel-success" id="basics_tax">
-            <div class="panel-heading">
-                <h3>税率</h3>
-            </div>
-            {% comment %} <div class="panel-body">
-                <h4>这里显示图表</h4>
+<body>
+    <div id="wrapper">
+        <div class="overlay"></div>
 
-            </div> {% endcomment %}
-            <table data-toggle="table" data-pagination=true>
-                <thead>
-                    <tr>
-                        <th data-align='center' data-valign='middle'>月份</th>
-                        <th data-align='center' data-valign='middle'>税率</th>
-                    </tr>
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        果瑞士
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-fw fa-file-o"></i> {% blocktrans %}税率{% endblocktrans %}</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-fw fa-file-o"></i> 货品</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-fw fa-file-o"></i> 权重</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
 
-                </thead>
-                <tbody>
-                    {% for tax_rate in tax %}
-                    <tr>
-                        <td>{{tax_rate.time}}</td>
-                        <td>{{tax_rate.tax}}</td>
-                    </tr>
-                    {% endfor %}
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <div class="container">
+                <div class="col-md-12">
 
-                </tbody>
-            </table>
-        </div>
+                    <div class="panel panel-success" id="basics_tax">
+                        <div class="panel-heading">
+                            <h3>税率</h3>
+                        </div>
+                        {% comment %}
+                        <div class="panel-body">
+                            <h4>这里显示图表</h4>
+
+                        </div> {% endcomment %}
+                        <table data-toggle="table" data-pagination=true>
+                            <thead>
+                                <tr>
+                                    <th data-align='center' data-valign='middle'>月份</th>
+                                    <th data-align='center' data-valign='middle'>税率</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                {% for tax_rate in tax %}
+                                <tr>
+                                    <td>{{tax_rate.time}}</td>
+                                    <td>{{tax_rate.tax}}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
 
 
-        <div class="panel panel-success" id="basics_goods">
-                <div class="panel-heading">
-                    <h3>货品</h3>
+                    <div class="panel panel-success" id="basics_goods">
+                        <div class="panel-heading">
+                            <h3>货品</h3>
+                        </div>
+                        {% comment %}
+                        <div class="panel-body">
+                            <h4>这里显示图表</h4>
+
+                        </div> {% endcomment %}
+                        <table data-toggle="table" data-pagination=true>
+                            <thead>
+                                <tr>
+                                    <th data-align='center' data-valign='middle'>货品</th>
+                                    <th data-align='center' data-valign='middle'>货品说明</th>
+                                    <th data-align='center' data-valign='middle'>代码</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                {% for goods_list in goods %}
+
+                                <tr>
+                                    <td>{{goods_list.goods_id}}</td>
+                                    <td>{{goods_list.goods_name}}</td>
+                                    <td>{{goods_list.gpc}}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                    <div class="panel panel-success" id="basics_sku">
+                        <div class="panel-heading">
+                            <h3>权重</h3>
+                        </div>
+                        {% comment %}
+                        <div class="panel-body">
+                            <h4>这里显示图表</h4>
+
+                        </div> {% endcomment %}
+                        <table data-toggle="table" data-pagination=true>
+                            <thead>
+                                <tr>
+                                    <th data-align='center' data-valign='middle'>序号</th>
+                                    <th data-align='center' data-valign='middle'>货品代码</th>
+                                    <th data-align='center' data-valign='middle'>名称</th>
+                                    <th data-align='center' data-valign='middle'>权重值</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                {% for sku_list in sku %}
+                                <tr>
+                                    <td>{{sku_list.seq_no}}</td>
+                                    <td>{{sku_list.sku_id}}</td>
+                                    <td>{{sku_list.sku_name}}</td>
+                                    <td>{{sku_list.price}}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                {% comment %} <div class="panel-body">
-                    <h4>这里显示图表</h4>
-    
-                </div> {% endcomment %}
-                <table data-toggle="table" data-pagination=true>
-                    <thead>
-                        <tr>
-                            <th data-align='center' data-valign='middle'>货品</th>
-                            <th data-align='center' data-valign='middle'>货品说明</th>
-                            <th data-align='center' data-valign='middle'>代码</th>
-                        </tr>
-    
-                    </thead>
-                    <tbody>
-                        {% for goods_list in goods %}
 
-                        <tr>
-                            <td>{{goods_list.goods_id}}</td>
-                            <td>{{goods_list.goods_name}}</td>
-                            <td>{{goods_list.gpc}}</td>
-                        </tr>
-                        {% endfor %}
-    
-                    </tbody>
-                </table>
-        </div>
-
-
-
-        <div class="panel panel-success" id="basics_sku">
-            <div class="panel-heading">
-                <h3>权重</h3>
             </div>
-            {% comment %} <div class="panel-body">
-                <h4>这里显示图表</h4>
-
-            </div> {% endcomment %}
-            <table data-toggle="table" data-pagination=true>
-                <thead>
-                    <tr>
-                        <th data-align='center' data-valign='middle'>序号</th>
-                        <th data-align='center' data-valign='middle'>货品代码</th>
-                        <th data-align='center' data-valign='middle'>名称</th>
-                        <th data-align='center' data-valign='middle'>权重值</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    {% for sku_list in sku %}
-                    <tr>
-                        <td>{{sku_list.seq_no}}</td>
-                        <td>{{sku_list.sku_id}}</td>
-                        <td>{{sku_list.sku_name}}</td>
-                        <td>{{sku_list.price}}</td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
         </div>
-    </div>
-    <div class="col-md-2">
-        <div data-spy="affix">
-            <nav class="nav nav-pills nav-stacked  ">
-                <li role="presentation" id="li_basics_tax" class="active"><a href="#basics_tax">税率</a></li>
-                <li role="presentation" id="li_basics_goods" ><a href="#basics_goods">货品</a></li>
-                <li role="presentation" id="li_basics_sku" ><a href="#basics_sku">权重</a></li>
-            </nav>
-        </div>
+        <!-- /#page-content-wrapper -->
 
     </div>
-</div>
+    <!-- /#wrapper -->
+</body>
+
 <script>
-        $(document).ready(function() {
-            $("#li_basics_tax").click(function(e) {
-                $('li').each(function() {
-                    $(this).removeClass('active');
-                })
-                $('#li_basics_tax').addClass('active');
-    
-            })
-            $("#li_basics_goods").click(function(e) {
-                $('li').each(function() {
-                    $(this).removeClass('active');
-                })
-                $('#li_basics_goods').addClass('active');
-            })
-            $("#li_basics_sku").click(function(e) {
-                $('li').each(function() {
-                    $(this).removeClass('active');
-                })
-                $('#li_basics_sku').addClass('active');
-            })
-    
-    
-        })
-    </script>
+    $(document).ready(function () {
+        var trigger = $('.hamburger'),
+            overlay = $('.overlay'),
+            isClosed = false;
+
+        trigger.click(function () {
+            hamburger_cross();
+        });
+
+        function hamburger_cross() {
+
+            if (isClosed == true) {
+                overlay.hide();
+                trigger.removeClass('is-open');
+                trigger.addClass('is-closed');
+                isClosed = false;
+            } else {
+                overlay.show();
+                trigger.removeClass('is-closed');
+                trigger.addClass('is-open');
+                isClosed = true;
+            }
+        }
+
+        $('[data-toggle="offcanvas"]').click(function () {
+            $('#wrapper').toggleClass('toggled');
+        });
+    });
+</script>
+
 </html>

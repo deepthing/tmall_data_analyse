@@ -1,45 +1,70 @@
+{% load i18n %}
+
 <head>
     <meta charset="utf-8">
     <title>果瑞氏数据可视化</title>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {%load static%}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {%load static%}
     <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap.css'%}>
     <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap-table.css'%}>
     <link rel="stylesheet" type="text/css" href={% static 'css/style.css'%}>
     <script src={% static 'js/jquery.min.js'%}></script>
     <script src={% static 'js/bootstrap.js'%}></script>
     <script src={% static 'js/bootstrap-table.js'%}></script>
-    
+
 </head>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                </button>
+            </button>
             <a class="navbar-brand" href="#">果瑞氏</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li id="order_analyse"><a href="/order/">订单分析</a></li>
-                <li id="fee_analyse"><a href="/fee/">金额分析</a></li>
-                <li id="inv_analyse"><a href="/inv">货品分析</a></li>
-                <li id="inv_analyse"><a href="/basics">基础数据</a></li>
+                <li id="order_analyse">
+                    <a href="/order/">订单分析</a>
+                </li>
+                <li id="fee_analyse">
+                    <a href="/fee/">金额分析</a>
+                </li>
+                <li id="inv_analyse">
+                    <a href="/inv">货品分析</a>
+                </li>
+                <li id="inv_analyse">
+                    <a href="/basics">基础数据</a>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-				<li id="intnational"><a href="/export_vis/">数据导出</a></li>
-                <li id="intnational"><a href="/loadcsv">数据加载</a></li>
-                <li id="intnational"><a href="#" onclick="uplge()">中英文切换</a></li>
+                <li id="intnational">
+                    <a href="/export_vis/">数据导出</a>
+                </li>
+                <li id="intnational">
+                    <a href="/loadcsv">数据加载</a>
+                </li>
+                <li id="intnational">
+                    <a>
+                        <form name="testform" id="testform" method='post'>{% csrf_token %}
+                            <select id="language" name="language" onchange="selectdb(this)">
+                                <option value="1">{% trans "Languages" %}</option>
+                                {% for lang in LANGUAGES %}
+                                <option value="{{ lang.0 }}"> {{ lang.1 }}</option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -47,24 +72,23 @@
     <!-- /.container-fluid -->
 </nav>
 <script>
-    $(document).ready(function() {
-        $("#order_analyse").click(function(e) {
+    $(document).ready(function () {
+        $("#order_analyse").click(function (e) {
             $("#fee_analyse").removeClass('active');
             $("#order_analyse").addClass('active');
 
         })
-        $("#fee_analyse").click(function(e) {
+        $("#fee_analyse").click(function (e) {
             $("#order_analyse").removeClass('active');
             $("#fee_analyse").addClass('active');
         })
     })
-    function uplge(){
-        $.ajax({
-            url:'/uplge/',
-            type:'get',
-            success:function(callback){
-                location.reload() 
-            }
-        })
+
+    function selectdb(obj) {
+        str = "/i18n/setlang/";
+        myform = document.getElementById('testform');
+        myform.method = "POST";
+        myform.action = str;
+        myform.submit();
     }
 </script>

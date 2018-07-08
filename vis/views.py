@@ -1,23 +1,28 @@
 # -*- coding: utf-8 -*-
 
-from django.utils.translation import ugettext
-from django.shortcuts import render
-import os
-from django.http import HttpResponse
-import tmall_data_analyse.settings as settings
-import load.service as service
-import MySQLdb
-import io
-from django.template import loader
-import tmall_data_analyse.settings as setting
-import time
-from .models import TGoodsNumInfo
-from numpy.f2py.auxfuncs import isfalse
-from _ctypes import Union
-from django.views.decorators.csrf import csrf_exempt
-import json
-import vis.models as vismodels
 import datetime
+import io
+import json
+import os
+import time
+
+import MySQLdb
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.template import loader
+from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.csrf import csrf_exempt
+from numpy.f2py.auxfuncs import isfalse
+from django.shortcuts import render_to_response
+from django.template import RequestContext 
+
+import load.service as service
+import tmall_data_analyse.settings as setting
+import vis.models as vismodels
+from _ctypes import Union
+
+from .models import TGoodsNumInfo
+
 
 
 def index(request):
@@ -36,7 +41,7 @@ def uplge(request):
 
 
 def loadcsv(request):
-    return render(request, "load_csv_vis.html")
+    return render(request, 'load_csv_vis.html', locals())
 
 
 def testd3(request):
@@ -59,10 +64,8 @@ def export_vis(request):
     data.execute(strr_order)
     all_years = data.fetchall()
     content = {"all_years": all_years}
-    if request.session.get("lge") == "en":
-        return render(request, "export1.html", content)
-    else:
-        return render(request, "export.html", content)
+    
+    return render(request, "export.html", content)
 
 
 def order_export(request):
@@ -1393,10 +1396,9 @@ def basics_vis(request):
     sku_list = data.fetchall()
 
     content = {"tax": tax_list, "goods": goods_list, "sku": sku_list}
-    if request.session.get("lge") == "en":
-        return render(request, "basics_vis1.html", content)
-    else:
-        return render(request, "basics_vis.html", content)
+    
+    return render(request, "basics_vis.html", content)
+        #return render(request, "basics_vis.html", content)
 
 
 def jump_to_load(request):
@@ -5322,3 +5324,14 @@ def excel_export2(request):
     response.write(sio.getvalue())
     return response
 
+def test1_view(request):
+      # 获得系统本地时间，返回的格式是 UTC 中的 struct_time 数据
+    t = time.localtime()
+ # 第 6 个元素是 tm_wday , 范围为 [0,6], 星期一 is 0
+    n = t[6]
+ # 星期一到星期日字符串，每个字符串用 _() 标识出来。
+    weekdays = [_('Monday'), _('Tuesday'), _('Wednesday'), _('Thursday'),
+            _('Friday'), _('Saturday'), _('Sunday')]
+# 返回一个 HttpResponse
+
+    return HttpResponse(weekdays[n])
