@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-07 19:24+0800\n"
+"POT-Creation-Date: 2018-07-08 18:24+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,571 +17,687 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: vis/templates/basics_vis.html:20 vis/templates/basics_vis1.html:11
-#: vis/templates/basics_vis1.html:22 vis/templates/basics_vis1.html:109
+#: vis/templates/basics_vis.html:13 vis/templates/export.html:51
+#: vis/templates/fee_vis.html:13 vis/templates/inv_vis.html:13
+#: vis/templates/load_csv_vis.html:13 vis/templates/order_vis.html:13
+#, fuzzy
+#| msgid "果瑞氏"
+msgid "果瑞士"
+msgstr "GracelandFruit"
+
+#: vis/templates/basics_vis.html:18 vis/templates/basics_vis.html:44
+#: vis/templates/basics_vis.html:51
 msgid "税率"
 msgstr "TAX RATE"
 
-#: vis/templates/basics_vis1.html:21 vis/templates/fee_vis1.html:60
-#: vis/templates/fee_vis1.html:104 vis/templates/fee_vis1.html:148
-#: vis/templates/fee_vis1.html:195 vis/templates/fee_vis1.html:239
-#: vis/templates/fee_vis1.html:277 vis/templates/inv_vis1.html:52
-#: vis/templates/inv_vis1.html:99 vis/templates/order_vis1.html:63
-#: vis/templates/order_vis1.html:103 vis/templates/order_vis1.html:142
-#: vis/templates/order_vis1.html:181 vis/templates/order_vis1.html:216
-#: vis/templates/order_vis1.html:259
-msgid "月份"
-msgstr "MOUTH"
-
-#: vis/templates/basics_vis1.html:41 vis/templates/basics_vis1.html:110
+#: vis/templates/basics_vis.html:22 vis/templates/basics_vis.html:70
+#: vis/templates/basics_vis.html:76 vis/templates/inv_vis.html:50
+#: vis/templates/inv_vis.html:100
 msgid "货品"
 msgstr "Goods"
 
-#: vis/templates/basics_vis1.html:51 vis/templates/basics_vis1.html:86
-msgid "货品代码"
-msgstr "SKU"
-
-#: vis/templates/basics_vis1.html:52 vis/templates/inv_vis1.html:55
-#: vis/templates/inv_vis1.html:102
-msgid "货品说明"
-msgstr "PRODUCTS"
-
-#: vis/templates/basics_vis1.html:75 vis/templates/basics_vis1.html:111
+#: vis/templates/basics_vis.html:26 vis/templates/basics_vis.html:100
 msgid "权重"
 msgstr "Weight"
 
-#: vis/templates/basics_vis1.html:85
+#: vis/templates/basics_vis.html:50 vis/templates/fee_vis.html:60
+#: vis/templates/fee_vis.html:100 vis/templates/fee_vis.html:140
+#: vis/templates/fee_vis.html:183 vis/templates/fee_vis.html:223
+#: vis/templates/fee_vis.html:257 vis/templates/inv_vis.html:48
+#: vis/templates/inv_vis.html:97 vis/templates/order_vis.html:133
+#: vis/templates/order_vis.html:168 vis/templates/order_vis.html:199
+#: vis/templates/order_vis.html:238
+msgid "月份"
+msgstr "MOUTH"
+
+#: vis/templates/basics_vis.html:77 vis/templates/inv_vis.html:51
+#: vis/templates/inv_vis.html:101
+msgid "货品说明"
+msgstr "PRODUCTS"
+
+#: vis/templates/basics_vis.html:78 vis/templates/inv_vis.html:49
+#: vis/templates/inv_vis.html:99
+msgid "代码"
+msgstr "GPC"
+
+#: vis/templates/basics_vis.html:105
 msgid "序号"
 msgstr "NO."
 
-#: vis/templates/basics_vis1.html:87
+#: vis/templates/basics_vis.html:106
+msgid "货品代码"
+msgstr "SKU"
+
+#: vis/templates/basics_vis.html:107
 msgid "名称"
 msgstr "NAME"
 
-#: vis/templates/basics_vis1.html:88
+#: vis/templates/basics_vis.html:108
 msgid "权重值"
 msgstr "VALUE"
 
-#: vis/templates/export.html:48
+#: vis/templates/export.html:56 vis/templates/export.html:77
+#: vis/templates/nav.html:51
 msgid "数据导出"
 msgstr "MagicExport"
 
-#: vis/templates/export.html:57 vis/templates/nav1.html:31
+#: vis/templates/export.html:84
+msgid "报表类型"
+msgstr ""
+
+#: vis/templates/export.html:86 vis/templates/nav.html:36
 msgid "订单分析"
 msgstr "Order Analysis"
 
-#: vis/templates/fee_vis1.html:18 vis/templates/fee_vis1.html:50
-#: vis/templates/fee_vis1.html:94
+#: vis/templates/export.html:87 vis/templates/nav.html:39
+msgid "金额分析"
+msgstr "Sum Analysis"
+
+#: vis/templates/export.html:88 vis/templates/nav.html:42
+msgid "货品分析"
+msgstr "Commodity Analysis"
+
+#: vis/templates/export.html:92
+msgid "年份"
+msgstr ""
+
+#: vis/templates/fee_vis.html:18 vis/templates/fee_vis.html:54
+#: vis/templates/fee_vis.html:94
 msgid "订单提取时间"
 msgstr "Based on Order settled time"
 
-#: vis/templates/fee_vis1.html:21 vis/templates/fee_vis1.html:138
+#: vis/templates/fee_vis.html:22 vis/templates/fee_vis.html:134
 msgid "订单生成时间"
 msgstr "Based on order placed time"
 
-#: vis/templates/fee_vis1.html:24 vis/templates/fee_vis1.html:185
+#: vis/templates/fee_vis.html:26 vis/templates/fee_vis.html:177
 msgid "订单发货时间"
 msgstr "Based on order shipped time"
 
-#: vis/templates/fee_vis1.html:27 vis/templates/fee_vis1.html:229
+#: vis/templates/fee_vis.html:30 vis/templates/fee_vis.html:217
 msgid "我的账户支出"
 msgstr "Balance in Alipay's MyAccount "
 
-#: vis/templates/fee_vis1.html:30 vis/templates/fee_vis1.html:267
+#: vis/templates/fee_vis.html:34 vis/templates/fee_vis.html:251
 msgid "我的费用分析"
 msgstr "MyAccount Analysis"
 
-#: vis/templates/fee_vis1.html:61
+#: vis/templates/fee_vis.html:61
 msgid "支付宝订单提取金额"
 msgstr "Settlement Amount (Alipay)"
 
-#: vis/templates/fee_vis1.html:62
+#: vis/templates/fee_vis.html:62
 msgid "支付宝订单收到金额"
 msgstr "Payment amount (alipay)"
 
-#: vis/templates/fee_vis1.html:63
+#: vis/templates/fee_vis.html:63
 msgid "支付宝订单费用扣除"
 msgstr "Fees deducted (alipay)"
 
-#: vis/templates/fee_vis1.html:64 vis/templates/fee_vis1.html:154
-#: vis/templates/fee_vis1.html:197
+#: vis/templates/fee_vis.html:64 vis/templates/fee_vis.html:146
+#: vis/templates/fee_vis.html:185
 msgid "菜鸟-税费"
 msgstr "Cross boarder Tax"
 
-#: vis/templates/fee_vis1.html:65 vis/templates/fee_vis1.html:155
-#: vis/templates/fee_vis1.html:198
+#: vis/templates/fee_vis.html:65 vis/templates/fee_vis.html:147
+#: vis/templates/fee_vis.html:186
 msgid "菜鸟-服务费"
 msgstr "Logistic Service Fee"
 
-#: vis/templates/fee_vis1.html:66 vis/templates/fee_vis1.html:156
-#: vis/templates/fee_vis1.html:199
+#: vis/templates/fee_vis.html:66 vis/templates/fee_vis.html:148
+#: vis/templates/fee_vis.html:187
 msgid "阿里费用"
 msgstr "Alipay Comm"
 
-#: vis/templates/fee_vis1.html:67 vis/templates/fee_vis1.html:157
-#: vis/templates/fee_vis1.html:200
+#: vis/templates/fee_vis.html:67 vis/templates/fee_vis.html:149
+#: vis/templates/fee_vis.html:188
 msgid "天猫费用"
 msgstr "Tmall Comm"
 
-#: vis/templates/fee_vis1.html:68 vis/templates/fee_vis1.html:158
-#: vis/templates/fee_vis1.html:201
+#: vis/templates/fee_vis.html:68 vis/templates/fee_vis.html:150
+#: vis/templates/fee_vis.html:189
 msgid "聚划算费用"
 msgstr "Great Deal Comm"
 
-#: vis/templates/fee_vis1.html:105
+#: vis/templates/fee_vis.html:101
 #, fuzzy
 #| msgid "支付宝订单提取金额"
 msgid "支付宝订单提取金额(USD)"
 msgstr "Settlement Amount (Alipay)"
 
-#: vis/templates/fee_vis1.html:106
+#: vis/templates/fee_vis.html:102
 #, fuzzy
 #| msgid "支付宝订单收到金额"
 msgid "支付宝订单收到金额(USD)"
 msgstr "Payment amount (alipay)"
 
-#: vis/templates/fee_vis1.html:107
+#: vis/templates/fee_vis.html:103
 #, fuzzy
 #| msgid "支付宝订单费用扣除"
 msgid "支付宝订单费用扣除(USD)"
 msgstr "Fees deducted (alipay)"
 
-#: vis/templates/fee_vis1.html:108
+#: vis/templates/fee_vis.html:104
 #, fuzzy
 #| msgid "菜鸟-税费"
 msgid "菜鸟-税费(USD)"
 msgstr "Cross boarder Tax"
 
-#: vis/templates/fee_vis1.html:109
+#: vis/templates/fee_vis.html:105
 #, fuzzy
 #| msgid "菜鸟-服务费"
 msgid "菜鸟-服务费(USD)"
 msgstr "Logistic Service Fee"
 
-#: vis/templates/fee_vis1.html:110
+#: vis/templates/fee_vis.html:106
 #, fuzzy
 #| msgid "阿里费用"
 msgid "阿里费用(USD)"
 msgstr "Alipay Comm"
 
-#: vis/templates/fee_vis1.html:111
+#: vis/templates/fee_vis.html:107
 #, fuzzy
 #| msgid "天猫费用"
 msgid "天猫费用(USD)"
 msgstr "Tmall Comm"
 
-#: vis/templates/fee_vis1.html:112
+#: vis/templates/fee_vis.html:108
 #, fuzzy
 #| msgid "聚划算费用"
 msgid "聚划算费用(USD)"
 msgstr "Great Deal Comm"
 
-#: vis/templates/fee_vis1.html:149
+#: vis/templates/fee_vis.html:141
 msgid "买家拍下支付金额"
 msgstr "Total Orders"
 
-#: vis/templates/fee_vis1.html:150
+#: vis/templates/fee_vis.html:142
 msgid "买家拍下退款金额"
 msgstr "Refunds amount"
 
-#: vis/templates/fee_vis1.html:151
+#: vis/templates/fee_vis.html:143
 msgid "买家实际支付金额"
 msgstr "Payment Amount"
 
-#: vis/templates/fee_vis1.html:152
+#: vis/templates/fee_vis.html:144
 msgid "支付宝费用扣除"
 msgstr "Fees deducted by Alipay"
 
-#: vis/templates/fee_vis1.html:196 vis/templates/inv_vis1.html:62
+#: vis/templates/fee_vis.html:145
+msgid "支付宝提取金额"
+msgstr "Alipay Settlement"
+
+#: vis/templates/fee_vis.html:184 vis/templates/inv_vis.html:64
 msgid "期间交易出库金额"
 msgstr "Sales revenue"
 
-#: vis/templates/fee_vis1.html:202
+#: vis/templates/fee_vis.html:190
 msgid "期间退款金额"
 msgstr "CUSTOMER REFUNDS"
 
-#: vis/templates/fee_vis1.html:240
+#: vis/templates/fee_vis.html:224
 msgid "充值"
 msgstr "Deposit"
 
-#: vis/templates/fee_vis1.html:241
+#: vis/templates/fee_vis.html:225
 msgid "退还"
 msgstr "Refunds from Tmall"
 
-#: vis/templates/fee_vis1.html:242
+#: vis/templates/fee_vis.html:226
 msgid "支付"
 msgstr "Total Payouts"
 
-#: vis/templates/fee_vis1.html:243
+#: vis/templates/fee_vis.html:227
 msgid "订单支付"
 msgstr "Payouts for Orders"
 
-#: vis/templates/fee_vis1.html:244
+#: vis/templates/fee_vis.html:228
 msgid "非订单支付"
 msgstr "Non order related payouts"
 
-#: vis/templates/fee_vis1.html:278
+#: vis/templates/fee_vis.html:258
 msgid "仓储费"
 msgstr "TMALL WAREHOUSE FEES"
 
-#: vis/templates/fee_vis1.html:279
+#: vis/templates/fee_vis.html:259
 msgid "保险费"
 msgstr "INSURANCE  FEES"
 
-#: vis/templates/fee_vis1.html:280
+#: vis/templates/fee_vis.html:260
 msgid "销毁费"
 msgstr "DESTROY FEES"
 
-#: vis/templates/fee_vis1.html:281
+#: vis/templates/fee_vis.html:261
 msgid "商家赔付给消费者费用"
 msgstr "To Consumer"
 
-#: vis/templates/fee_vis1.html:282
-msgid "菜鸟赔付给商家费用(货款赔付）"
+#: vis/templates/fee_vis.html:262
+#, fuzzy
+#| msgid "菜鸟赔付给商家费用(货款赔付）"
+msgid "菜鸟赔付给商家费用(货款赔付)"
 msgstr "Refund for Goods"
 
-#: vis/templates/fee_vis1.html:283
+#: vis/templates/fee_vis.html:263
 msgid "菜鸟赔付商给家费用(保证金赔付)"
 msgstr "Refund for Bond"
 
-#: vis/templates/fee_vis1.html:284
+#: vis/templates/fee_vis.html:264
 msgid "推广补助"
 msgstr "Refund for Extension subsidy"
 
-#: vis/templates/fee_vis1.html:285
+#: vis/templates/fee_vis.html:265
 msgid "其他账户返还"
 msgstr "OTHER"
 
-#: vis/templates/fee_vis1.html:286
+#: vis/templates/fee_vis.html:266
 msgid "天猫广告推广费"
 msgstr "BANNER/KEYWORDS ADVERTISING"
 
-#: vis/templates/fee_vis1.html:287
+#: vis/templates/fee_vis.html:267
 msgid "返现金额和CRM"
 msgstr "IN STORE MARKETING PROMOTIONS"
 
-#: vis/templates/inv_vis1.html:18 vis/templates/inv_vis1.html:42
-#: vis/templates/inv_vis1.html:141
+#: vis/templates/inv_vis.html:18 vis/templates/inv_vis.html:43
 msgid "货品金额分析"
 msgstr "Sum Analysis"
 
-#: vis/templates/inv_vis1.html:21 vis/templates/inv_vis1.html:89
-#: vis/templates/inv_vis1.html:142
+#: vis/templates/inv_vis.html:22 vis/templates/inv_vis.html:91
 msgid "货品库存分析"
 msgstr "Inventory Analysis"
 
-#: vis/templates/inv_vis1.html:56
+#: vis/templates/inv_vis.html:52
 msgid "订单销售数量"
 msgstr "SALES QUANTITY  BASED"
 
-#: vis/templates/inv_vis1.html:56 vis/templates/inv_vis1.html:59
-msgid "（拍下）"
-msgstr "ON ORDERS PLACED"
+#: vis/templates/inv_vis.html:53 vis/templates/inv_vis.html:59
+msgid "(拍下)"
+msgstr ""
 
-#: vis/templates/inv_vis1.html:57
+#: vis/templates/inv_vis.html:54
 msgid "订单出库数量"
 msgstr "QUANTITY SHIPPED BASED"
 
-#: vis/templates/inv_vis1.html:57 vis/templates/inv_vis1.html:60
-msgid "（仓库）"
-msgstr "ON ORDERS PLACED"
+#: vis/templates/inv_vis.html:55 vis/templates/inv_vis.html:61
+msgid "(仓库)"
+msgstr ""
 
-#: vis/templates/inv_vis1.html:58
+#: vis/templates/inv_vis.html:56
 msgid "交易成功订单销售数量"
 msgstr "SUCCESSFUL TRADE QUANTITY  BASED"
 
-#: vis/templates/inv_vis1.html:58 vis/templates/inv_vis1.html:61
-msgid "（最终成交）"
+#: vis/templates/inv_vis.html:57 vis/templates/inv_vis.html:63
+#, fuzzy
+#| msgid "（最终成交）"
+msgid "(最终成交)"
 msgstr "ON ORDERS PLACED"
 
-#: vis/templates/inv_vis1.html:59
+#: vis/templates/inv_vis.html:58
 msgid "订单销售金额"
 msgstr "SALES REVENUE BASED"
 
-#: vis/templates/inv_vis1.html:60
+#: vis/templates/inv_vis.html:60
 msgid "订单出库金额"
 msgstr "REVENUE SHIPPED BASED"
 
-#: vis/templates/inv_vis1.html:61
+#: vis/templates/inv_vis.html:62
 msgid "交易成功订单销售金额"
 msgstr "SUCCESSFUL TRADE  REVENUE BASED"
 
-#: vis/templates/inv_vis1.html:103
+#: vis/templates/inv_vis.html:102
 msgid "期初数量"
 msgstr " QUANTITY BEGINNING"
 
-#: vis/templates/inv_vis1.html:104
+#: vis/templates/inv_vis.html:103
 msgid "期间采购入库"
 msgstr "QUANTITY RECEIVED"
 
-#: vis/templates/inv_vis1.html:105
+#: vis/templates/inv_vis.html:104
 msgid "期间其他入库"
 msgstr "OTHER QUANTITY RECEIVED"
 
-#: vis/templates/inv_vis1.html:106
+#: vis/templates/inv_vis.html:105
 msgid "期间交易出库"
 msgstr "QUANTITY SHIPPED"
 
-#: vis/templates/inv_vis1.html:107
+#: vis/templates/inv_vis.html:106
 msgid "期间其他出库"
 msgstr "OTHER QUANTITY SHIPPED"
 
-#: vis/templates/inv_vis1.html:108
+#: vis/templates/inv_vis.html:107
 msgid "期末数量"
 msgstr "QUANTITY ENDING"
 
-#: vis/templates/inv_vis1.html:109
+#: vis/templates/inv_vis.html:108
 msgid "期末-期初"
 msgstr "ENDING - BEGINNING"
 
-#: vis/templates/inv_vis1.html:110
+#: vis/templates/inv_vis.html:109
 msgid "期间出入库流水总数量"
 msgstr "QUANTITY SOLD"
 
-#: vis/templates/load_csv_vis.html:20
+#: vis/templates/load_csv_vis.html:18 vis/templates/load_csv_vis.html:42
 msgid "上传数据"
 msgstr "upload data"
 
-#: vis/templates/nav1.html:4
+#: vis/templates/load_csv_vis.html:22 vis/templates/load_csv_vis.html:179
+msgid "预览数据"
+msgstr "perview data"
+
+#: vis/templates/load_csv_vis.html:52 vis/templates/load_csv_vis.html:63
+#: vis/templates/load_csv_vis.html:74 vis/templates/load_csv_vis.html:85
+#: vis/templates/load_csv_vis.html:96 vis/templates/load_csv_vis.html:107
+#: vis/templates/load_csv_vis.html:120 vis/templates/load_csv_vis.html:131
+#: vis/templates/load_csv_vis.html:141 vis/templates/load_csv_vis.html:152
+#: vis/templates/load_csv_vis.html:162
+#, fuzzy
+#| msgid "上传数据"
+msgid "上传"
+msgstr "upload data"
+
+#: vis/templates/load_csv_vis.html:55 vis/templates/load_csv_vis.html:66
+#: vis/templates/load_csv_vis.html:77 vis/templates/load_csv_vis.html:88
+#: vis/templates/load_csv_vis.html:99 vis/templates/load_csv_vis.html:110
+#: vis/templates/load_csv_vis.html:123 vis/templates/load_csv_vis.html:134
+#: vis/templates/load_csv_vis.html:144 vis/templates/load_csv_vis.html:155
+#: vis/templates/load_csv_vis.html:165
+msgid "撤回"
+msgstr ""
+
+#: vis/templates/load_csv_vis.html:187
+msgid "数据处理"
+msgstr ""
+
+#: vis/templates/load_csv_vis.html:196
+msgid "执行导入"
+msgstr ""
+
+#: vis/templates/load_csv_vis.html:209
+msgid "执行分析"
+msgstr ""
+
+#: vis/templates/nav.html:5
 msgid "果瑞氏数据可视化"
 msgstr "Data visualization of GracelandFruit"
 
-#: vis/templates/nav1.html:25
+#: vis/templates/nav.html:29
 msgid "果瑞氏"
 msgstr "GracelandFruit"
 
-#: vis/templates/nav1.html:32
-msgid "金额分析"
-msgstr "Sum Analysis"
-
-#: vis/templates/nav1.html:33
-msgid "货品分析"
-msgstr "Commodity Analysis"
-
-#: vis/templates/nav1.html:34
+#: vis/templates/nav.html:45
 msgid "基础数据"
 msgstr "Basic data"
 
-#: vis/templates/nav1.html:39
+#: vis/templates/nav.html:54
 msgid "数据加载"
 msgstr "Data loading"
 
-#: vis/templates/nav1.html:40
-msgid "中英文切换"
-msgstr "Chinese-English Switch"
+#: vis/templates/nav.html:60
+msgid "Languages"
+msgstr ""
 
-#: vis/templates/order_vis1.html:18 vis/templates/order_vis1.html:52
+#: vis/templates/order_vis.html:18 vis/templates/order_vis.html:56
 msgid "状态分析(数量)"
 msgstr "Order Status (by Volume)"
 
-#: vis/templates/order_vis1.html:21 vis/templates/order_vis1.html:93
+#: vis/templates/order_vis.html:22 vis/templates/order_vis.html:93
+#, fuzzy
+#| msgid "状态分析(金额)"
 msgid "状态分析(金额)"
 msgstr "Order Status (by USD)"
 
-#: vis/templates/order_vis1.html:24 vis/templates/order_vis1.html:132
+#: vis/templates/order_vis.html:26 vis/templates/order_vis.html:127
 msgid "账号分析(数量)"
 msgstr "Buyers Analysis (by Vol)"
 
-#: vis/templates/order_vis1.html:27 vis/templates/order_vis1.html:171
+#: vis/templates/order_vis.html:30 vis/templates/order_vis.html:162
 msgid "账号分析(金额)"
 msgstr "Buyers Analysis (by USD)"
 
-#: vis/templates/order_vis1.html:30 vis/templates/order_vis1.html:206
+#: vis/templates/order_vis.html:34 vis/templates/order_vis.html:193
 msgid "区域分析(数量)"
 msgstr "Region Analysis (by Vol)"
 
-#: vis/templates/order_vis1.html:33 vis/templates/order_vis1.html:249
+#: vis/templates/order_vis.html:38 vis/templates/order_vis.html:232
 msgid "区域分析(金额)"
 msgstr "Region Analysis (By USD)"
 
-#: vis/templates/order_vis1.html:64
+#: vis/templates/order_vis.html:63 vis/templates/order_vis.html:98
+msgid "订单月份"
+msgstr ""
+
+#: vis/templates/order_vis.html:64
 msgid "订单总数量"
 msgstr "Total Orders"
 
-#: vis/templates/order_vis1.html:65
+#: vis/templates/order_vis.html:65
 msgid "交易成功订单数量"
 msgstr "Successful Orders"
 
-#: vis/templates/order_vis1.html:66
+#: vis/templates/order_vis.html:66
 msgid "交易关闭订单数量"
 msgstr "Closed Orders"
 
-#: vis/templates/order_vis1.html:67
+#: vis/templates/order_vis.html:67
 msgid "其他状态订单数量"
 msgstr "Open Orders"
 
-#: vis/templates/order_vis1.html:68
+#: vis/templates/order_vis.html:68
 msgid "关闭(买家未付款)订单数量"
 msgstr "Closed Orders due to no payment"
 
-#: vis/templates/order_vis1.html:69
+#: vis/templates/order_vis.html:69
 msgid "关闭(退款)订单数量"
 msgstr "Closed orders due to refunds"
 
-#: vis/templates/order_vis1.html:104
+#: vis/templates/order_vis.html:99
 msgid "订单总金额"
 msgstr "Total Orders"
 
-#: vis/templates/order_vis1.html:105
+#: vis/templates/order_vis.html:100
 msgid "交易成功订单金额"
 msgstr "Successful Orders"
 
-#: vis/templates/order_vis1.html:106
+#: vis/templates/order_vis.html:101
 msgid "交易关闭订单金额"
 msgstr "Closed Orders"
 
-#: vis/templates/order_vis1.html:107
+#: vis/templates/order_vis.html:102
 msgid "其他状态订单金额"
 msgstr "Open Orders"
 
-#: vis/templates/order_vis1.html:108
+#: vis/templates/order_vis.html:103
 msgid "关闭(买家未付款)订单金额"
 msgstr "Closed Orders due to no payment"
 
-#: vis/templates/order_vis1.html:109
+#: vis/templates/order_vis.html:104
 msgid "关闭(退款)订单金额"
 msgstr "Closed orders due to refunds"
 
-#: vis/templates/order_vis1.html:143
+#: vis/templates/order_vis.html:112 vis/templates/order_vis.html:113
+#: vis/templates/order_vis.html:114 vis/templates/order_vis.html:115
+#: vis/templates/order_vis.html:116 vis/templates/order_vis.html:117
+#: vis/templates/order_vis.html:180 vis/templates/order_vis.html:181
+#: vis/templates/order_vis.html:182 vis/templates/order_vis.html:183
+#: vis/templates/order_vis.html:254 vis/templates/order_vis.html:255
+#: vis/templates/order_vis.html:256 vis/templates/order_vis.html:257
+#: vis/templates/order_vis.html:258 vis/templates/order_vis.html:259
+#: vis/templates/order_vis.html:260 vis/templates/order_vis.html:261
+msgid "￥"
+msgstr ""
+
+#: vis/templates/order_vis.html:134
 msgid "账号总数"
 msgstr "Total Buyers"
 
-#: vis/templates/order_vis1.html:144
+#: vis/templates/order_vis.html:135
 msgid "新账号数"
 msgstr "New Buyers"
 
-#: vis/templates/order_vis1.html:145
+#: vis/templates/order_vis.html:136
 msgid "老账号数"
 msgstr "Repeat Buyers"
 
-#: vis/templates/order_vis1.html:146
+#: vis/templates/order_vis.html:137
 msgid "无账号订单数"
 msgstr "Orders from non-alipay accounts"
 
-#: vis/templates/order_vis1.html:147
+#: vis/templates/order_vis.html:138
 msgid "新账号订单数"
 msgstr "# of orders from New buyers"
 
-#: vis/templates/order_vis1.html:148
+#: vis/templates/order_vis.html:139
 msgid "老账号订单数"
 msgstr "# of orders from Repeat Buyers"
 
-#: vis/templates/order_vis1.html:182
+#: vis/templates/order_vis.html:169
 msgid "账号总订单金额"
 msgstr "order amount from Total Buyers "
 
-#: vis/templates/order_vis1.html:183
+#: vis/templates/order_vis.html:170
 msgid "无账号订单金额"
 msgstr "order amount from non alipay ID buyers"
 
-#: vis/templates/order_vis1.html:184
+#: vis/templates/order_vis.html:171
 msgid "新账号订单金额"
 msgstr "order amount from new buyers"
 
-#: vis/templates/order_vis1.html:185
+#: vis/templates/order_vis.html:172
 msgid "老账号订单金额"
 msgstr "Order amount from repeat buyers"
 
-#: vis/templates/order_vis1.html:217
+#: vis/templates/order_vis.html:200
 msgid "华东订单数量"
 msgstr "East Region"
 
-#: vis/templates/order_vis1.html:218
+#: vis/templates/order_vis.html:201
 msgid "华中订单数量"
 msgstr "Mid Region"
 
-#: vis/templates/order_vis1.html:219
+#: vis/templates/order_vis.html:202
 msgid "华南订单数量"
 msgstr "South Region"
 
-#: vis/templates/order_vis1.html:220
+#: vis/templates/order_vis.html:203
 msgid "西南订单数量"
 msgstr "Southwest Region"
 
-#: vis/templates/order_vis1.html:221
+#: vis/templates/order_vis.html:204
 msgid "东北订单数量"
 msgstr "Northeast Region"
 
-#: vis/templates/order_vis1.html:222
+#: vis/templates/order_vis.html:205
 msgid "华北订单数量"
 msgstr "North Region"
 
-#: vis/templates/order_vis1.html:223
+#: vis/templates/order_vis.html:206
 msgid "西北订单数量"
 msgstr "Northwest Region"
 
-#: vis/templates/order_vis1.html:224
+#: vis/templates/order_vis.html:207
 msgid "其他区域订单"
 msgstr "Others"
 
-#: vis/templates/order_vis1.html:260
+#: vis/templates/order_vis.html:239
 msgid "华东订单金额"
 msgstr "East Region"
 
-#: vis/templates/order_vis1.html:261
+#: vis/templates/order_vis.html:240
 msgid "华中订单金额"
 msgstr "Mid Region"
 
-#: vis/templates/order_vis1.html:262
+#: vis/templates/order_vis.html:241
 msgid "华南订单金额"
 msgstr "South Region"
 
-#: vis/templates/order_vis1.html:263
+#: vis/templates/order_vis.html:242
 msgid "西南订单金额"
 msgstr "Southwest Region"
 
-#: vis/templates/order_vis1.html:264
+#: vis/templates/order_vis.html:243
 msgid "东北订单金额"
 msgstr "Northeast Region"
 
-#: vis/templates/order_vis1.html:265
+#: vis/templates/order_vis.html:244
 msgid "华北订单金额"
 msgstr "North Region"
 
-#: vis/templates/order_vis1.html:266
+#: vis/templates/order_vis.html:245
 msgid "西北订单金额"
 msgstr "Northwest Region"
 
-#: vis/templates/order_vis1.html:267
+#: vis/templates/order_vis.html:246
 msgid "其他区域金额"
 msgstr "Others"
 
-#: vis/views.py:5328
+#: vis/views.py:5321
 msgid "Monday"
 msgstr ""
 
-#: vis/views.py:5328
+#: vis/views.py:5321
 msgid "Tuesday"
 msgstr ""
 
-#: vis/views.py:5328
+#: vis/views.py:5321
 msgid "Wednesday"
 msgstr ""
 
-#: vis/views.py:5328
+#: vis/views.py:5321
 msgid "Thursday"
 msgstr ""
 
-#: vis/views.py:5329
+#: vis/views.py:5322
 msgid "Friday"
 msgstr ""
 
-#: vis/views.py:5329
+#: vis/views.py:5322
 msgid "Saturday"
 msgstr ""
 
-#: vis/views.py:5329
+#: vis/views.py:5322
 msgid "Sunday"
 msgstr ""
 
-#~ msgid "支付宝提取金额"
-#~ msgstr "Alipay Settlement"
+#, fuzzy
+#~| msgid "状态分析(数量)"
+#~ msgid "状态分析（数量）"
+#~ msgstr "Order Status (by Volume)"
+
+#, fuzzy
+#~| msgid "状态分析(金额)"
+#~ msgid "状态分析（金额）"
+#~ msgstr "Order Status (by USD)"
+
+#, fuzzy
+#~| msgid "账号分析(数量)"
+#~ msgid "账号分析（数量）"
+#~ msgstr "Buyers Analysis (by Vol)"
+
+#, fuzzy
+#~| msgid "账号分析(金额)"
+#~ msgid "账号分析（金额）"
+#~ msgstr "Buyers Analysis (by USD)"
+
+#, fuzzy
+#~| msgid "区域分析(数量)"
+#~ msgid "区域分析（数量）"
+#~ msgstr "Region Analysis (by Vol)"
+
+#, fuzzy
+#~| msgid "区域分析(金额)"
+#~ msgid "区域分析（金额）"
+#~ msgstr "Region Analysis (By USD)"
+
+#~ msgid "（拍下）"
+#~ msgstr "ON ORDERS PLACED"
+
+#~ msgid "（仓库）"
+#~ msgstr "ON ORDERS PLACED"
+
+#~ msgid "中英文切换"
+#~ msgstr "Chinese-English Switch"
 
 #~ msgid "账户费用分析"
 #~ msgstr "MyAccount Analysis"
-
-#~ msgid "代码"
-#~ msgstr "GPC"
 
 #~ msgid "Graceland Fruit 蔓越莓切片果干 226.8克"
 #~ msgstr "Graceland Fruit Cran 8oz"

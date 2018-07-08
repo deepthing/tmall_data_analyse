@@ -1,6 +1,5 @@
 {% load i18n %}
-<!DOCTYPE html>
-{% include 'nav.html' %}
+<!DOCTYPE html> {% include 'nav.html' %}
 
 <body>
     <div id="wrapper">
@@ -11,7 +10,7 @@
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                        果瑞士
+                        {%trans "果瑞士"%}
                     </a>
                 </li>
                 <li>
@@ -20,11 +19,11 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-fw fa-file-o"></i> 货品</a>
+                        <i class="fa fa-fw fa-file-o"></i> {%trans "货品"%}</a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-fw fa-file-o"></i> 权重</a>
+                        <i class="fa fa-fw fa-file-o"></i> {%trans "权重"%}</a>
                 </li>
             </ul>
         </nav>
@@ -42,18 +41,14 @@
 
                     <div class="panel panel-success" id="basics_tax">
                         <div class="panel-heading">
-                            <h3>税率</h3>
+                            <h3>{% trans "税率"%}</h3>
                         </div>
-                        {% comment %}
-                        <div class="panel-body">
-                            <h4>这里显示图表</h4>
 
-                        </div> {% endcomment %}
                         <table data-toggle="table" data-pagination=true>
                             <thead>
                                 <tr>
-                                    <th data-align='center' data-valign='middle'>月份</th>
-                                    <th data-align='center' data-valign='middle'>税率</th>
+                                    <th data-align='center' data-valign='middle'>{%trans "月份"%}</th>
+                                    <th data-align='center' data-valign='middle'>{%trans "税率"%}</th>
                                 </tr>
 
                             </thead>
@@ -72,19 +67,15 @@
 
                     <div class="panel panel-success" id="basics_goods">
                         <div class="panel-heading">
-                            <h3>货品</h3>
+                            <h3>{%trans "货品"%}</h3>
                         </div>
-                        {% comment %}
-                        <div class="panel-body">
-                            <h4>这里显示图表</h4>
 
-                        </div> {% endcomment %}
                         <table data-toggle="table" data-pagination=true>
                             <thead>
                                 <tr>
-                                    <th data-align='center' data-valign='middle'>货品</th>
-                                    <th data-align='center' data-valign='middle'>货品说明</th>
-                                    <th data-align='center' data-valign='middle'>代码</th>
+                                    <th data-align='center' data-valign='middle'>{%trans "货品"%}</th>
+                                    <th data-align='center' data-valign='middle'>{%trans "货品说明"%}</th>
+                                    <th data-align='center' data-valign='middle'>{%trans "代码"%}</th>
                                 </tr>
 
                             </thead>
@@ -106,20 +97,15 @@
 
                     <div class="panel panel-success" id="basics_sku">
                         <div class="panel-heading">
-                            <h3>权重</h3>
+                            <h3>{%trans "权重"%}</h3>
                         </div>
-                        {% comment %}
-                        <div class="panel-body">
-                            <h4>这里显示图表</h4>
-
-                        </div> {% endcomment %}
                         <table data-toggle="table" data-pagination=true>
                             <thead>
                                 <tr>
-                                    <th data-align='center' data-valign='middle'>序号</th>
-                                    <th data-align='center' data-valign='middle'>货品代码</th>
-                                    <th data-align='center' data-valign='middle'>名称</th>
-                                    <th data-align='center' data-valign='middle'>权重值</th>
+                                    <th data-align='center' data-valign='middle'>{%trans "序号"%}</th>
+                                    <th data-align='center' data-valign='middle'>{%trans "货品代码"%}</th>
+                                    <th data-align='center' data-valign='middle'>{%trans "名称"%}</th>
+                                    <th data-align='center' data-valign='middle'>{%trans "权重值"%}</th>
                                 </tr>
 
                             </thead>

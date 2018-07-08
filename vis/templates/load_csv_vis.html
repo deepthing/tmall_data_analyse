@@ -1,6 +1,5 @@
 {% load i18n %}
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">
-{% include 'nav.html' %}
+<!DOCTYPE html> {% include 'nav.html' %}
 
 <body>
     <div id="wrapper">
@@ -11,7 +10,7 @@
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                        果瑞士
+                        {%trans "果瑞士" %}
                     </a>
                 </li>
                 <li>
@@ -20,7 +19,7 @@
                 </li>
                 <li>
                     <a href="#order_amount">
-                        <i class="fa fa-fw fa-file-o"></i> 预览数据</a>
+                        <i class="fa fa-fw fa-file-o"></i> {%trans "预览数据" %}</a>
                 </li>
             </ul>
         </nav>
@@ -50,10 +49,10 @@
                                         <span class="input-group-addon" style="width:120px">settlefee</span>
                                         <input type="file" name="file" id="settlefee" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settlefee')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settlefee')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('settlefee')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('settlefee')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
 
@@ -61,10 +60,10 @@
                                         <span class="input-group-addon" style="width:120px">inventory</span>
                                         <input type="file" name="file" id="inventory" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('inventory')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('inventory')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('inventory')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('inventory')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
 
@@ -72,10 +71,10 @@
                                         <span class="input-group-addon" style="width:120px">myaccount</span>
                                         <input type="file" name="file" id="myaccount" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('myaccount')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('myaccount')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('myaccount')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('myaccount')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
 
@@ -83,10 +82,10 @@
                                         <span class="input-group-addon" style="width:120px">order</span>
                                         <input type="file" name="file" id="order" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('order')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('order')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('order')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('order')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
 
@@ -94,10 +93,10 @@
                                         <span class="input-group-addon" style="width:120px">settlebatch</span>
                                         <input type="file" name="file" id="settlebatch" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settlebatch')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settlebatch')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('settlebatch')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('settlebatch')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
 
@@ -105,10 +104,10 @@
                                         <span class="input-group-addon" style="width:120px">settledetail</span>
                                         <input type="file" name="file" id="settledetail" class="form-control" multiple="multiple" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settledetail')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settledetail')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('settledetail')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('settledetail')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
                                 </div>
@@ -118,10 +117,10 @@
                                         <span class="input-group-addon" style="width:120px">fee</span>
                                         <input type="file" name="file" id="fee" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('fee')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('fee')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('fee')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('fee')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
 
@@ -129,20 +128,20 @@
                                         <span class="input-group-addon" style="width:120px">strade</span>
                                         <input type="file" name="file" id="strade" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('strade')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('strade')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('strade')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('strade')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon" style="width:120px">tmallsodetails</span>
                                         <input type="file" name="file" id="tmallsodetails" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('tmallsodetails')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('tmallsodetails')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('tmallsodetails')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('tmallsodetails')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
 
@@ -150,20 +149,20 @@
                                         <span class="input-group-addon" style="width:120px">tmallso</span>
                                         <input type="file" name="file" id="tmallso" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('tmallso')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('tmallso')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('tmallso')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('tmallso')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon" style="width:120px">transaction</span>
                                         <input type="file" name="file" id="transaction" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('transaction')">上传</button>
+                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('transaction')">{%trans "上传"%}</button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('transaction')">撤回</button>
+                                            <button class="btn btn-default" type="button" onclick="UndoUpload('transaction')">{%trans "撤回"%}</button>
                                         </span>
                                     </div>
                                 </div>
@@ -177,7 +176,7 @@
                 <div>
                     <div class="panel panel-success" id="order_count">
                         <div class="panel-heading">
-                            <h3>预览数据</h3>
+                            <h3>{%trans "预览数据"%}</h3>
                         </div>
                         <table id="showcsvdetail" data-pagination=“true”></table>
 
@@ -185,7 +184,7 @@
                 </div>
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3>数据处理</h3>
+                        <h3>{%trans "数据处理"%}</h3>
 
                     </div>
                     <br>
@@ -194,7 +193,7 @@
 
                             <div class="col-md-3">
                                 <button id="load_button" onclick="load_data()">
-                                    <h4>执行导入</h4>
+                                    <h4>{%trans "执行导入"%}</h4>
                                 </button>
                                 <hr>
                                 <div id="prog_out_load" class="progress progress-striped active">
@@ -207,7 +206,7 @@
 
                             <div class="col-md-8">
                                 <button id="anayle_button" onclick="anayle_data()">
-                                    <h4>执行分析</h4>
+                                    <h4>{%trans "执行分析"%}</h4>
                                 </button>
                                 <hr>
                                 <div id="prog_out" class="progress progress-striped active">

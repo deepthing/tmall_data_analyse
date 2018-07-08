@@ -23,24 +23,11 @@ from _ctypes import Union
 
 from .models import TGoodsNumInfo
 
-
-
 def index(request):
     return render(request, "nav.html")
 
-
-def uplge(request):
-    if request.session.get("lge") == "":
-        request.session["lge"] = "en"
-    else:
-        if request.session.get("lge") == "en":
-            request.session["lge"] = "cn"
-        else:
-            request.session["lge"] = "en"
-    return HttpResponse(request.session.get("lge"))
-
-
 def loadcsv(request):
+    print(request.LANGUAGE_CODE)
     return render(request, 'load_csv_vis.html', locals())
 
 
@@ -79,7 +66,6 @@ def order_export(request):
         charset="utf8",
     )
     data = db.cursor(MySQLdb.cursors.DictCursor)
-    t_year = request.GET.get("sel")
 
     if request.session.get("lge") == "en":
         strr = """
@@ -1354,8 +1340,10 @@ def inv_vis(request):
     inv_count = data.fetchall()
     content = {"inv_count": inv_count}
     if request.session.get("lge") == "en":
+        print('en')
         return render(request, "inv_vis1.html", content)
     else:
+        print('ch')
         return render(request, "inv_vis.html", content)
 
 
