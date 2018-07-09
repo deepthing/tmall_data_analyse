@@ -18,6 +18,7 @@ from django.template import RequestContext
 
 import load.service as service
 import tmall_data_analyse.settings as setting
+
 import vis.models as vismodels
 from _ctypes import Union
 
@@ -1391,7 +1392,7 @@ def basics_vis(request):
 
 def jump_to_load(request):
     try:
-        service.loaddata(settings.BASE_FILE_PATH.get("upload_path"))
+        service.loaddata(setting.BASE_FILE_PATH.get("upload_path"))
         return HttpResponse("success")
     except Exception as identifier:
         return HttpResponse("false")
@@ -1407,8 +1408,8 @@ def upload(request):
             for file in reqfiles:
                 storefile = open(
                     os.path.join(
-                        settings.BASE_DIR,
-                        settings.BASE_FILE_PATH.get("upload_path"),
+                        setting.BASE_DIR,
+                        setting.BASE_FILE_PATH.get("upload_path"),
                         file.name,
                     ),
                     "wb+",
@@ -1417,8 +1418,8 @@ def upload(request):
                     storefile.write(chunk)
                 storefile.close()
                 csvfilename = os.path.join(
-                    settings.BASE_DIR,
-                    settings.BASE_FILE_PATH.get("upload_path"),
+                    setting.BASE_DIR,
+                    setting.BASE_FILE_PATH.get("upload_path"),
                     file.name,
                 )
                 print(csvfilename)
