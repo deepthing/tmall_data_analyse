@@ -1384,7 +1384,28 @@ def basics_vis(request):
     data.execute(strr_sku)
     sku_list = data.fetchall()
 
-    content = {"tax": tax_list, "goods": goods_list, "sku": sku_list}
+    strr_bom ="""
+        select * from bom;
+    """
+    data.execute(strr_bom)
+    
+    bom_list = list(data.fetchall())
+
+    
+    for bom_index in bom_list:
+        strr_temp = ""
+        i = 0
+        print(bom_index.keys())
+        for item in bom_index.keys():
+            print(item)
+            i = i+1
+            if (i>=4 and bom_index[item]!=None and int(bom_index[item])>0):
+                strr_temp = strr_temp+item+","
+                print(strr_temp)
+
+        bom_index['goods']=strr_temp
+
+    content = {"tax": tax_list, "goods": goods_list, "sku": sku_list,"bom_list":bom_list}
     
     return render(request, "basics_vis.html", content)
         #return render(request, "basics_vis.html", content)

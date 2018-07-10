@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n %} {%load static%}
 <!DOCTYPE html> {% include 'nav.html' %}
 
 <body>
@@ -122,6 +122,32 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div class="panel panel-success" id="basics_bom">
+                        <div class="panel-heading">
+                            <h3>bom {%trans "修改"%}</h3>
+                        </div>
+                        <table data-toggle="table" data-pagination=true>
+                            <thead>
+                                <th data-align='center' data-valign='middle'>序号</th>
+                                <th data-align='center' data-valign='middle'>名称</th>
+                                <th data-align='center' data-valign='middle'>单价</th>
+                                <th data-align='center' data-valign='middle' data-editable="true">物料清单</th>
+                            </thead>
+                            <tbody>
+
+                                {%for bom in bom_list %}
+                                <tr>
+                                    <td>{{bom.Num}}</td>
+                                    <td>{{bom.product_name}}</td>
+                                    <td>{{bom.price}}</td>
+                                    <td>{{bom.goods}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
 
             </div>

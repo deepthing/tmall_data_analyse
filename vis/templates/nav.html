@@ -9,10 +9,13 @@
     <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap.css'%}>
     <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap-table.css'%}>
     <link rel="stylesheet" type="text/css" href={% static 'css/style.css'%}>
+    <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap-editable.css' %}>
+
     <script src={% static 'js/jquery.min.js'%}></script>
     <script src={% static 'js/bootstrap.js'%}></script>
     <script src={% static 'js/bootstrap-table.js'%}></script>
-
+    <script src={% static 'js/bootstrap-table-editable.js'%}></script>
+    <script src={% static 'js/bootstrap-editable.min.js'%}></script>
 </head>
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -55,7 +58,7 @@
                 </li>
                 <li id="intnational">
                     <a>
-                        <form name="testform" id="testform" method='post'>{% csrf_token %}
+                        <form name="testform" id="testform" method='post '>{% csrf_token %}
                             <select id="language" name="language" onchange="selectdb(this)">
                                 <option value="1">{% trans "Languages" %}</option>
                                 {% for lang in LANGUAGES %}
@@ -74,19 +77,19 @@
 <script>
     $(document).ready(function () {
         $("#order_analyse").click(function (e) {
-            $("#fee_analyse").removeClass('active');
-            $("#order_analyse").addClass('active');
+            $("#fee_analyse").removeClass('active ');
+            $("#order_analyse").addClass('active ');
 
         })
         $("#fee_analyse").click(function (e) {
-            $("#order_analyse").removeClass('active');
-            $("#fee_analyse").addClass('active');
+            $("#order_analyse").removeClass('active ');
+            $("#fee_analyse").addClass('active ');
         })
     })
 
     function selectdb(obj) {
         str = "/i18n/setlang/";
-        myform = document.getElementById('testform');
+        myform = document.getElementById('testform ');
         myform.method = "POST";
         myform.action = str;
         myform.submit();
