@@ -127,25 +127,7 @@
                         <div class="panel-heading">
                             <h3>bom {%trans "修改"%}</h3>
                         </div>
-                        <table data-toggle="table" data-pagination=true>
-                            <thead>
-                                <th data-align='center' data-valign='middle'>序号</th>
-                                <th data-align='center' data-valign='middle'>名称</th>
-                                <th data-align='center' data-valign='middle'>单价</th>
-                                <th data-align='center' data-valign='middle' data-editable="true">物料清单</th>
-                            </thead>
-                            <tbody>
-
-                                {%for bom in bom_list %}
-                                <tr>
-                                    <td>{{bom.Num}}</td>
-                                    <td>{{bom.product_name}}</td>
-                                    <td>{{bom.price}}</td>
-                                    <td>{{bom.goods}}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                        <table id="bom"></table>
                     </div>
 
                 </div>
@@ -186,7 +168,130 @@
         $('[data-toggle="offcanvas"]').click(function () {
             $('#wrapper').toggleClass('toggled');
         });
+        get_bom();
     });
+</script>
+<script>
+    var get_bom = function getbom() {
+        $('#bom').bootstrapTable({
+            toolbar: "#toolbar",
+            showRefresh: true,
+            pagination: true,
+            clickToSelect: true,
+            queryParams: function (param) {
+                return {};
+            },
+            url: "/get_bom",
+            columns: [{
+                    field: 'Num',
+                    title: "序号"
+                },
+                {
+                    field: 'product_name',
+                    title: "名称",
+                },
+                {
+                    field: 'price',
+                    title: "单价",
+                },
+                {
+                    field: 'goods',
+                    title: "物料清单",
+                    editable: {
+                        type: 'checklist',
+                        title: '物料清单',
+                        separator: ",",
+                        source: [{
+                                value: '708390000203',
+                                text: '708390000203'
+                            }, {
+                                value: '708390000210',
+                                text: '708390000210'
+                            },
+                            {
+                                value: '708390000227',
+                                text: '708390000227'
+                            }, {
+                                value: '7290108800098',
+                                text: '7290108800098'
+                            }, {
+                                value: 'XY521067771349',
+                                text: 'XY521067771349'
+                            }, {
+                                value: 'XY521068155265',
+                                text: 'XY521068155265'
+                            }, {
+                                value: 'XY521073901132',
+                                text: 'XY521073901132'
+                            }, {
+                                value: 'XY521074093868',
+                                text: 'XY521074093868'
+                            }, {
+                                value: 'XY521074249153',
+                                text: 'XY521074249153'
+                            }, {
+                                value: 'XY521074725008',
+                                text: 'XY521074725008'
+                            }, {
+                                value: 'XY521077050523',
+                                text: 'XY521077050523'
+                            }, {
+                                value: 'XY521077162825',
+                                text: 'XY521077162825'
+                            }, {
+                                value: 'XY521077912497',
+                                text: 'XY521077912497'
+                            }, {
+                                value: 'XY521078064529',
+                                text: 'XY521078064529'
+                            }, {
+                                value: 'XY521078232623',
+                                text: 'XY521078232623'
+                            }, {
+                                value: 'XY521078390258',
+                                text: 'XY521078390258'
+                            }, {
+                                value: '8802534778019',
+                                text: '8802534778019'
+                            }, {
+                                value: '8802534778002',
+                                text: '8802534778002'
+                            }, {
+                                value: '9999',
+                                text: '9999'
+                            }, {
+                                value: 'X708390000326',
+                                text: 'X708390000326'
+                            }
+                        ],
+
+                    }
+                }
+            ],
+            onEditableSave: function (field, row, oldValue, $el) {
+                console.log(row);
+                $.ajax({
+                    type: "post",
+                    url: "/update_bom_edit/",
+                    data: row,
+                    dataType: 'JSON',
+                    Charset:"utf8",
+                    success: function (data) {
+                        console.log(data)
+                        if (data ==
+                            "success") {
+                            alert('提交数据成功');
+                        }
+                    },
+                    error: function () {
+                        alert('编辑失败');
+                    },
+                    complete: function () {}
+                });
+            }
+
+        })
+    }
 </script>
 
 </html>

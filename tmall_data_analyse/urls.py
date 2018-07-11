@@ -39,6 +39,8 @@ urlpatterns = [
     url(r'analyse_data_process/',visual.analyse_data_process),
     url(r'load_data_to_db_process/',visual.load_data_to_db_process),
     url(r'^test1_view/$',visual.test1_view),
+    url(r'^get_bom/$',visual.get_bom_data),
+    url(r'^update_bom_edit/$',visual.update_bom_edit),
 ]
 
 

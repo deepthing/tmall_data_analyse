@@ -1384,28 +1384,9 @@ def basics_vis(request):
     data.execute(strr_sku)
     sku_list = data.fetchall()
 
-    strr_bom ="""
-        select * from bom;
-    """
-    data.execute(strr_bom)
     
-    bom_list = list(data.fetchall())
 
-    
-    for bom_index in bom_list:
-        strr_temp = ""
-        i = 0
-        print(bom_index.keys())
-        for item in bom_index.keys():
-            print(item)
-            i = i+1
-            if (i>=4 and bom_index[item]!=None and int(bom_index[item])>0):
-                strr_temp = strr_temp+item+","
-                print(strr_temp)
-
-        bom_index['goods']=strr_temp
-
-    content = {"tax": tax_list, "goods": goods_list, "sku": sku_list,"bom_list":bom_list}
+    content = {"tax": tax_list, "goods": goods_list, "sku": sku_list}
     
     return render(request, "basics_vis.html", content)
         #return render(request, "basics_vis.html", content)
@@ -1418,6 +1399,76 @@ def jump_to_load(request):
     except Exception as identifier:
         return HttpResponse("false")
 
+@csrf_exempt
+def get_bom_data(request):
+    db = MySQLdb.connect(
+    setting.DATABASES.get("default").get("HOST"),
+    setting.DATABASES.get("default").get("USER"),
+    setting.DATABASES.get("default").get("PASSWORD"),
+    setting.DATABASES.get("default").get("NAME"),
+    setting.DATABASES.get("default").get("PORT"),
+    charset="utf8",
+    )
+    data = db.cursor(MySQLdb.cursors.DictCursor)
+    strr_bom ="""
+        select * from bom;
+    """
+    data.execute(strr_bom)
+    
+    bom_list = list(data.fetchall())
+    bom_list_res = []
+    
+    for bom_index in bom_list:
+        bom_row = {}
+        
+        strr_temp = ""
+        i = 0
+        for item in bom_index.keys():
+            print(item)
+            i = i+1
+            if (i>=4 and bom_index[item]!=None and int(bom_index[item])>0):
+                strr_temp = strr_temp+item+","
+        
+        bom_index['goods']=strr_temp
+
+        bom_row['goods'] = bom_index['goods']
+        bom_row['Num'] = bom_index['Num']
+        bom_row['product_name'] = bom_index["product_name"]
+        bom_row['price']=str(bom_index['price'])
+        bom_list_res.append(bom_row)
+    return HttpResponse(json.dumps(bom_list_res),content_type="application/json",)
+
+@csrf_exempt
+def update_bom_edit(request):
+    if request.method == 'POST':
+        Num = request.POST.__getitem__('Num')
+        product_name = request.POST.__getitem__('product_name')
+        price = request.POST.__getitem__('price')
+        goods = request.POST.getlist('goods[]')
+        print(request.POST)
+        print(goods)
+        db = MySQLdb.connect(
+        setting.DATABASES.get("default").get("HOST"),
+        setting.DATABASES.get("default").get("USER"),
+        setting.DATABASES.get("default").get("PASSWORD"),
+        setting.DATABASES.get("default").get("NAME"),
+        setting.DATABASES.get("default").get("PORT"),
+        charset="utf8",
+        )
+        data = db.cursor(MySQLdb.cursors.DictCursor)
+        init_strr = "UPDATE bom SET X708390000326 = '0' , XY521067771349 = '0' , XY521068155265 = '0' , XY521073901132 = '0' , XY521074093868 = '0' , XY521074249153 = '0' , XY521074725008 = '0' , XY521077050523 = '0' , XY521077162825 = '0' , XY521077912497 = '0' , XY521078064529 = '0' , XY521078232623 = '0' , XY521078390258 = '0' WHERE Num = %s" %(Num)
+        print(init_strr)
+        data.execute(init_strr)
+        for good in goods:
+            update_strr = "update bom set %s = '1' where Num = %s" %(good,Num)   
+            print(update_strr)
+            
+            data.execute(update_strr)
+            
+        db.commit()
+        return HttpResponse("success")
+    else:
+        return HttpResponse("false")
 
 @csrf_exempt
 def upload(request):
