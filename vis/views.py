@@ -12,7 +12,6 @@ from django.shortcuts import render
 from django.template import loader
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
-from numpy.f2py.auxfuncs import isfalse
 from django.shortcuts import render_to_response
 from django.template import RequestContext 
 
