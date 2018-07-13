@@ -1308,7 +1308,7 @@ def inv_vis(request):
         left join tax_rate as t3 on
         t1.period=t3.time
         WHERE t1.goods_id is NOT null and LENGTH(t1.goods_id)>0
-        group by period,goods_id,goods_name
+        group by period,goods_id,goods_name,gpc
         ORDER BY period
         desc
     """
@@ -1334,7 +1334,7 @@ def inv_vis(request):
         left join goods as t2
         on t1.goods_id=t2.goods_id
         WHERE t1.goods_id is NOT null and LENGTH(t1.goods_id)>0
-        group by period,goods_id,goods_name
+        group by period,goods_id,goods_name,gpc
         ORDER BY period
         desc
     """
