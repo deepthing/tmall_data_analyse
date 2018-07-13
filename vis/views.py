@@ -13,7 +13,7 @@ from django.template import loader
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response
-from django.template import RequestContext 
+from django.template import RequestContext
 
 import load.service as service
 import tmall_data_analyse.settings as setting
@@ -23,12 +23,14 @@ from _ctypes import Union
 
 from .models import TGoodsNumInfo
 
+
 def index(request):
     return render(request, "nav.html")
 
+
 def loadcsv(request):
     print(request.LANGUAGE_CODE)
-    return render(request, 'load_csv_vis.html', locals())
+    return render(request, "load_csv_vis.html", locals())
 
 
 def testd3(request):
@@ -51,7 +53,7 @@ def export_vis(request):
     data.execute(strr_order)
     all_years = data.fetchall()
     content = {"all_years": all_years}
-    
+
     return render(request, "export.html", content)
 
 
@@ -1340,10 +1342,10 @@ def inv_vis(request):
     inv_count = data.fetchall()
     content = {"inv_count": inv_count}
     if request.session.get("lge") == "en":
-        print('en')
+        print("en")
         return render(request, "inv_vis1.html", content)
     else:
-        print('ch')
+        print("ch")
         return render(request, "inv_vis.html", content)
 
 
@@ -1383,12 +1385,10 @@ def basics_vis(request):
     data.execute(strr_sku)
     sku_list = data.fetchall()
 
-    
-
     content = {"tax": tax_list, "goods": goods_list, "sku": sku_list}
-    
+
     return render(request, "basics_vis.html", content)
-        #return render(request, "basics_vis.html", content)
+    # return render(request, "basics_vis.html", content)
 
 
 def jump_to_load(request):
@@ -1398,76 +1398,82 @@ def jump_to_load(request):
     except Exception as identifier:
         return HttpResponse("false")
 
+
 @csrf_exempt
 def get_bom_data(request):
     db = MySQLdb.connect(
-    setting.DATABASES.get("default").get("HOST"),
-    setting.DATABASES.get("default").get("USER"),
-    setting.DATABASES.get("default").get("PASSWORD"),
-    setting.DATABASES.get("default").get("NAME"),
-    setting.DATABASES.get("default").get("PORT"),
-    charset="utf8",
-    )
-    data = db.cursor(MySQLdb.cursors.DictCursor)
-    strr_bom ="""
-        select * from bom;
-    """
-    data.execute(strr_bom)
-    
-    bom_list = list(data.fetchall())
-    bom_list_res = []
-    
-    for bom_index in bom_list:
-        bom_row = {}
-        
-        strr_temp = ""
-        i = 0
-        for item in bom_index.keys():
-            print(item)
-            i = i+1
-            if (i>=4 and bom_index[item]!=None and int(bom_index[item])>0):
-                strr_temp = strr_temp+item+","
-        
-        bom_index['goods']=strr_temp
-
-        bom_row['goods'] = bom_index['goods']
-        bom_row['Num'] = bom_index['Num']
-        bom_row['product_name'] = bom_index["product_name"]
-        bom_row['price']=str(bom_index['price'])
-        bom_list_res.append(bom_row)
-    return HttpResponse(json.dumps(bom_list_res),content_type="application/json",)
-
-@csrf_exempt
-def update_bom_edit(request):
-    if request.method == 'POST':
-        Num = request.POST.__getitem__('Num')
-        product_name = request.POST.__getitem__('product_name')
-        price = request.POST.__getitem__('price')
-        goods = request.POST.getlist('goods[]')
-        print(request.POST)
-        print(goods)
-        db = MySQLdb.connect(
         setting.DATABASES.get("default").get("HOST"),
         setting.DATABASES.get("default").get("USER"),
         setting.DATABASES.get("default").get("PASSWORD"),
         setting.DATABASES.get("default").get("NAME"),
         setting.DATABASES.get("default").get("PORT"),
         charset="utf8",
+    )
+    data = db.cursor(MySQLdb.cursors.DictCursor)
+    strr_bom = """
+        select * from bom;
+    """
+    data.execute(strr_bom)
+
+    bom_list = list(data.fetchall())
+    bom_list_res = []
+
+    for bom_index in bom_list:
+        bom_row = {}
+
+        strr_temp = ""
+        i = 0
+        for item in bom_index.keys():
+            print(item)
+            i = i + 1
+            if i >= 4 and bom_index[item] != None and int(bom_index[item]) > 0:
+                strr_temp = strr_temp + item + ","
+
+        bom_index["goods"] = strr_temp
+
+        bom_row["goods"] = bom_index["goods"]
+        bom_row["Num"] = bom_index["Num"]
+        bom_row["product_name"] = bom_index["product_name"]
+        bom_row["price"] = str(bom_index["price"])
+        bom_list_res.append(bom_row)
+    return HttpResponse(json.dumps(bom_list_res), content_type="application/json")
+
+
+@csrf_exempt
+def update_bom_edit(request):
+    if request.method == "POST":
+        Num = request.POST.__getitem__("Num")
+        product_name = request.POST.__getitem__("product_name")
+        price = request.POST.__getitem__("price")
+        goods = request.POST.getlist("goods[]")
+        print(request.POST)
+        print(goods)
+        db = MySQLdb.connect(
+            setting.DATABASES.get("default").get("HOST"),
+            setting.DATABASES.get("default").get("USER"),
+            setting.DATABASES.get("default").get("PASSWORD"),
+            setting.DATABASES.get("default").get("NAME"),
+            setting.DATABASES.get("default").get("PORT"),
+            charset="utf8",
         )
         data = db.cursor(MySQLdb.cursors.DictCursor)
-        init_strr = "UPDATE bom SET X708390000326 = '0' , XY521067771349 = '0' , XY521068155265 = '0' , XY521073901132 = '0' , XY521074093868 = '0' , XY521074249153 = '0' , XY521074725008 = '0' , XY521077050523 = '0' , XY521077162825 = '0' , XY521077912497 = '0' , XY521078064529 = '0' , XY521078232623 = '0' , XY521078390258 = '0' WHERE Num = %s" %(Num)
+        init_strr = (
+            "UPDATE bom SET X708390000326 = '0' , XY521067771349 = '0' , XY521068155265 = '0' , XY521073901132 = '0' , XY521074093868 = '0' , XY521074249153 = '0' , XY521074725008 = '0' , XY521077050523 = '0' , XY521077162825 = '0' , XY521077912497 = '0' , XY521078064529 = '0' , XY521078232623 = '0' , XY521078390258 = '0' WHERE Num = %s"
+            % (Num)
+        )
         print(init_strr)
         data.execute(init_strr)
         for good in goods:
-            update_strr = "update bom set %s = '1' where Num = %s" %(good,Num)   
+            update_strr = "update bom set %s = '1' where Num = %s" % (good, Num)
             print(update_strr)
-            
+
             data.execute(update_strr)
-            
+
         db.commit()
         return HttpResponse("success")
     else:
         return HttpResponse("false")
+
 
 @csrf_exempt
 def upload(request):
@@ -5384,14 +5390,22 @@ def excel_export2(request):
     response.write(sio.getvalue())
     return response
 
+
 def test1_view(request):
-      # 获得系统本地时间，返回的格式是 UTC 中的 struct_time 数据
+    # 获得系统本地时间，返回的格式是 UTC 中的 struct_time 数据
     t = time.localtime()
- # 第 6 个元素是 tm_wday , 范围为 [0,6], 星期一 is 0
+    # 第 6 个元素是 tm_wday , 范围为 [0,6], 星期一 is 0
     n = t[6]
- # 星期一到星期日字符串，每个字符串用 _() 标识出来。
-    weekdays = [_('Monday'), _('Tuesday'), _('Wednesday'), _('Thursday'),
-            _('Friday'), _('Saturday'), _('Sunday')]
-# 返回一个 HttpResponse
+    # 星期一到星期日字符串，每个字符串用 _() 标识出来。
+    weekdays = [
+        _("Monday"),
+        _("Tuesday"),
+        _("Wednesday"),
+        _("Thursday"),
+        _("Friday"),
+        _("Saturday"),
+        _("Sunday"),
+    ]
+    # 返回一个 HttpResponse
 
     return HttpResponse(weekdays[n])
