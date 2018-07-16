@@ -456,15 +456,18 @@ def update_bom_edit(request):
         )
         data = db.cursor(MySQLdb.cursors.DictCursor)
 
+        delete_strr = "DELETE from bom_detail WHERE product_name = '%s'" % (product_name)
+        data.execute(delete_strr)
         goods_list = goods.split(',')
         for good in goods_list:
             print(good[0:good.find('(')])
             print(int(good[good.find('(')+1:good.find(')')]))
-            update_strr = "UPDATE bom_detail set goods_id = '%s', goods_count = %d WHERE product_name = '%s'" % (
-                good[0:good.find('(')], int(good[good.find('(')+1:good.find(')')]), product_name)
-            print(update_strr)
+            insert_strr = "INSERT into bom_detail (product_name,goods_id,goods_count) VALUES ('%s','%s',%d) " % (
+                product_name, good[0:good.find('(')], int(good[good.find('(')+1:good.find(')')]))
 
-            data.execute(update_strr)
+            print(insert_strr)
+
+            data.execute(insert_strr)
 
         db.commit()
         print("update success")
