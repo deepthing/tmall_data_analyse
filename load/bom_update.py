@@ -1,13 +1,9 @@
 #!/usr/bin/python
 #coding:UTF-8
 import MySQLdb
-import numpy as np
 import sys 
 from decimal import *
-import imp
 
-imp.reload(sys)
-sys.setdefaultencoding('utf-8')
 
 def getBomCodes():
     db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8')

@@ -19,8 +19,10 @@ from vis import views as visual
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', visual.order_vis),
+    url(r'^$', visual.index),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^login/$', visual.login),
+    url(r'^accounts/login/$',visual.goto_login),
     url(r'^order/$',visual.order_vis),
     url(r'^fee/$',visual.fee_vis),
     url(r'^inv/$',visual.inv_vis),
@@ -41,6 +43,7 @@ urlpatterns = [
     url(r'^test1_view/$',visual.test1_view),
     url(r'^get_bom/$',visual.get_bom_data),
     url(r'^update_bom_edit/$',visual.update_bom_edit),
+    url(r'^add_bom/$', visual.add_bom),
 ]
 
 

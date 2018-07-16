@@ -56,40 +56,39 @@ def getPriceList():
     return result, fields
 
 
-if __name__ == "__main__":
-    db = MySQLdb.connect("127.0.0.1", "bsztz", "bsztz", "tmall", charset="utf8")
-    bom = db.cursor(MySQLdb.cursors.DictCursor)
+db = MySQLdb.connect("127.0.0.1", "bsztz", "bsztz", "tmall", charset="utf8")
+bom = db.cursor(MySQLdb.cursors.DictCursor)
 
-    try:
-        bom.execute("select * from bom")
-        bom_data = bom.fetchall()
-        priceList, fields = getPriceList()
-        print(priceList, fields)
-        bomGoodsNum = []
-        bomProductLst = []
-        for row in bom_data:
-            row_goods_num = []
-            bomProductLst.append(row["product_name"])
-        for i in range(0, len(fields)):
-            goods_num = row[fields[i]]
+try:
+    bom.execute("select * from bom")
+    bom_data = bom.fetchall()
+    priceList, fields = getPriceList()
+    print(priceList, fields)
+    bomGoodsNum = []
+    bomProductLst = []
+    for row in bom_data:
+        row_goods_num = []
+        bomProductLst.append(row["product_name"])
+    for i in range(0, len(fields)):
+        goods_num = row[fields[i]]
 
-            if goods_num != "" and goods_num is not None:
-                row_goods_num.append(int(goods_num))
-            else:
-                row_goods_num.append(0)
-        print(row_goods_num)
+        if goods_num != "" and goods_num is not None:
+            row_goods_num.append(int(goods_num))
+        else:
+            row_goods_num.append(0)
+    print(row_goods_num)
 
-        bomGoodsNum.append(row_goods_num)
+    bomGoodsNum.append(row_goods_num)
 
-        bomPrice = np.dot(bomGoodsNum, priceList)
+    bomPrice = np.dot(bomGoodsNum, priceList)
 
-        print(priceList, bomPrice)
-        for i in range(len(bomProductLst)):
-            updateBomTotalPrice(bomProductLst[i], bomPrice[i])
+    print(priceList, bomPrice)
+    for i in range(len(bomProductLst)):
+        updateBomTotalPrice(bomProductLst[i], bomPrice[i])
 
-    except Exception as e:
-        print("error: unable fetch data", e.args)
-        raise
+except Exception as e:
+    print("error: unable fetch data", e.args)
+    raise
 
-    db.close()
-    print("search complete")
+db.close()
+print("search complete")

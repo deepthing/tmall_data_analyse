@@ -1,7 +1,6 @@
 #!/usr/bin/python
 #coding:UTF-8
 import MySQLdb
-import numpy as np
 import sys 
 from decimal import *
 import imp

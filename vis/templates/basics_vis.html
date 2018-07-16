@@ -37,100 +37,98 @@
                 <span class="hamb-bottom"></span>
             </button>
             <div class="container">
-                <div class="col-md-12">
 
-                    <div class="panel panel-success" id="basics_tax">
-                        <div class="panel-heading">
-                            <h3>{% trans "税率"%}</h3>
-                        </div>
-
-                        <table data-toggle="table" data-pagination=true>
-                            <thead>
-                                <tr>
-                                    <th data-align='center' data-valign='middle'>{%trans "月份"%}</th>
-                                    <th data-align='center' data-valign='middle'>{%trans "税率"%}</th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                {% for tax_rate in tax %}
-                                <tr>
-                                    <td>{{tax_rate.time}}</td>
-                                    <td>{{tax_rate.tax}}</td>
-                                </tr>
-                                {% endfor %}
-
-                            </tbody>
-                        </table>
+                <div class="panel panel-success" id="basics_tax">
+                    <div class="panel-heading">
+                        <h3>{% trans "税率"%}</h3>
                     </div>
 
+                    <table data-toggle="table" data-pagination=true>
+                        <thead>
+                            <tr>
+                                <th data-align='center' data-valign='middle'>{%trans "月份"%}</th>
+                                <th data-align='center' data-valign='middle'>{%trans "税率"%}</th>
+                            </tr>
 
-                    <div class="panel panel-success" id="basics_goods">
-                        <div class="panel-heading">
-                            <h3>{%trans "货品"%}</h3>
-                        </div>
+                        </thead>
+                        <tbody>
+                            {% for tax_rate in tax %}
+                            <tr>
+                                <td>{{tax_rate.time}}</td>
+                                <td>{{tax_rate.tax}}</td>
+                            </tr>
+                            {% endfor %}
 
-                        <table data-toggle="table" data-pagination=true>
-                            <thead>
-                                <tr>
-                                    <th data-align='center' data-valign='middle'>{%trans "货品"%}</th>
-                                    <th data-align='center' data-valign='middle'>{%trans "货品说明"%}</th>
-                                    <th data-align='center' data-valign='middle'>{%trans "代码"%}</th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                {% for goods_list in goods %}
-
-                                <tr>
-                                    <td>{{goods_list.goods_id}}</td>
-                                    <td>{{goods_list.goods_name}}</td>
-                                    <td>{{goods_list.gpc}}</td>
-                                </tr>
-                                {% endfor %}
-
-                            </tbody>
-                        </table>
-                    </div>
-
-
-
-                    <div class="panel panel-success" id="basics_sku">
-                        <div class="panel-heading">
-                            <h3>{%trans "权重"%}</h3>
-                        </div>
-                        <table data-toggle="table" data-pagination=true>
-                            <thead>
-                                <tr>
-                                    <th data-align='center' data-valign='middle'>{%trans "序号"%}</th>
-                                    <th data-align='center' data-valign='middle'>{%trans "货品代码"%}</th>
-                                    <th data-align='center' data-valign='middle'>{%trans "名称"%}</th>
-                                    <th data-align='center' data-valign='middle'>{%trans "权重值"%}</th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                {% for sku_list in sku %}
-                                <tr>
-                                    <td>{{sku_list.seq_no}}</td>
-                                    <td>{{sku_list.sku_id}}</td>
-                                    <td>{{sku_list.sku_name}}</td>
-                                    <td>{{sku_list.price}}</td>
-                                </tr>
-                                {% endfor %}
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="panel panel-success" id="basics_bom">
-                        <div class="panel-heading">
-                            <h3>bom {%trans "修改"%}</h3>
-                        </div>
-                        <table id="bom"></table>
-                    </div>
-
+                        </tbody>
+                    </table>
                 </div>
+
+
+                <div class="panel panel-success" id="basics_goods">
+                    <div class="panel-heading">
+                        <h3>{%trans "货品"%}</h3>
+                    </div>
+
+                    <table data-toggle="table" data-pagination=true>
+                        <thead>
+                            <tr>
+                                <th data-align='center' data-valign='middle'>{%trans "货品"%}</th>
+                                <th data-align='center' data-valign='middle'>{%trans "货品说明"%}</th>
+                                <th data-align='center' data-valign='middle'>{%trans "代码"%}</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            {% for goods_list in goods %}
+
+                            <tr>
+                                <td>{{goods_list.goods_id}}</td>
+                                <td>{{goods_list.goods_name}}</td>
+                                <td>{{goods_list.gpc}}</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                <div class="panel panel-success" id="basics_sku">
+                    <div class="panel-heading">
+                        <h3>{%trans "权重"%}</h3>
+                    </div>
+                    <table data-toggle="table" data-pagination=true>
+                        <thead>
+                            <tr>
+                                <th data-align='center' data-valign='middle'>{%trans "序号"%}</th>
+                                <th data-align='center' data-valign='middle'>{%trans "货品代码"%}</th>
+                                <th data-align='center' data-valign='middle'>{%trans "名称"%}</th>
+                                <th data-align='center' data-valign='middle'>{%trans "权重值"%}</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            {% for sku_list in sku %}
+                            <tr>
+                                <td>{{sku_list.seq_no}}</td>
+                                <td>{{sku_list.sku_id}}</td>
+                                <td>{{sku_list.sku_name}}</td>
+                                <td>{{sku_list.price}}</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="panel panel-success" id="basics_bom">
+                    <div class="panel-heading">
+                        <h3>bom {%trans "修改"%}</h3>
+                    </div>
+                    <table id="bom" style="table-layout: fixed;"></table>
+                </div>
+
 
             </div>
         </div>
@@ -169,6 +167,7 @@
             $('#wrapper').toggleClass('toggled');
         });
         get_bom();
+
     });
 </script>
 <script>
@@ -184,86 +183,28 @@
             url: "/get_bom",
             columns: [{
                     field: 'Num',
-                    title: "序号"
+                    title: "序号",
+                    width: '10%'
                 },
                 {
                     field: 'product_name',
                     title: "名称",
+                    width: '60%'
                 },
                 {
                     field: 'price',
                     title: "单价",
+                    width: '10%'
                 },
                 {
                     field: 'goods',
                     title: "物料清单",
+                    width: '20%',
                     editable: {
-                        type: 'checklist',
+                        type: 'text',
                         title: '物料清单',
                         separator: ",",
-                        source: [{
-                                value: '708390000203',
-                                text: '708390000203'
-                            }, {
-                                value: '708390000210',
-                                text: '708390000210'
-                            },
-                            {
-                                value: '708390000227',
-                                text: '708390000227'
-                            }, {
-                                value: '7290108800098',
-                                text: '7290108800098'
-                            }, {
-                                value: 'XY521067771349',
-                                text: 'XY521067771349'
-                            }, {
-                                value: 'XY521068155265',
-                                text: 'XY521068155265'
-                            }, {
-                                value: 'XY521073901132',
-                                text: 'XY521073901132'
-                            }, {
-                                value: 'XY521074093868',
-                                text: 'XY521074093868'
-                            }, {
-                                value: 'XY521074249153',
-                                text: 'XY521074249153'
-                            }, {
-                                value: 'XY521074725008',
-                                text: 'XY521074725008'
-                            }, {
-                                value: 'XY521077050523',
-                                text: 'XY521077050523'
-                            }, {
-                                value: 'XY521077162825',
-                                text: 'XY521077162825'
-                            }, {
-                                value: 'XY521077912497',
-                                text: 'XY521077912497'
-                            }, {
-                                value: 'XY521078064529',
-                                text: 'XY521078064529'
-                            }, {
-                                value: 'XY521078232623',
-                                text: 'XY521078232623'
-                            }, {
-                                value: 'XY521078390258',
-                                text: 'XY521078390258'
-                            }, {
-                                value: '8802534778019',
-                                text: '8802534778019'
-                            }, {
-                                value: '8802534778002',
-                                text: '8802534778002'
-                            }, {
-                                value: '9999',
-                                text: '9999'
-                            }, {
-                                value: 'X708390000326',
-                                text: 'X708390000326'
-                            }
-                        ],
+
 
                     }
                 }
@@ -275,16 +216,12 @@
                     url: "/update_bom_edit/",
                     data: row,
                     dataType: 'JSON',
-                    Charset:"utf8",
+                    Charset: "utf8",
                     success: function (data) {
                         console.log(data)
-                        if (data ==
-                            "success") {
-                            alert('提交数据成功');
-                        }
                     },
-                    error: function () {
-                        alert('编辑失败');
+                    error: function (data) {
+                        console.log(data)
                     },
                     complete: function () {}
                 });

@@ -75,7 +75,7 @@ try:
 			if None != row[fieldname]:
 				goods_id = fieldname
 				goods_num = row[fieldname]
-				if goods_num !="" and goods_num is not None:
+				if goods_num !="" and goods_num is not None :
 					price = getPriceByGoodsId(goods_id)
 					print(fieldname, goods_code,"num:", goods_num,goods_id,price,total)
 					insertDetail(goods_code,goods_id,goods_num,price,total);

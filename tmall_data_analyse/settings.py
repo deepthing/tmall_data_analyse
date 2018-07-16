@@ -71,8 +71,9 @@ DATABASES = {
         "NAME": "tmall",
         "USER": "root",
         "PASSWORD": "root",
-        "HOST": "mysql", #如果是docker容器中使用，这个为docker-compose中数据库service名称
+        "HOST": "127.0.0.1", #如果是docker容器中使用，这个为docker-compose中数据库service名称
         "PORT": 3306,
+        "CHARSET":"utf8",
         "OPTIONS": {"local_infile": 1},
     }
 }
