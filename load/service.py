@@ -224,8 +224,8 @@ def analyse_data():
         print("4:BOM金额计算")
         execfile(os.path.join(settings.BASE_DIR,"load/bom_price.py"))
         num_process = 35
-        execfile(os.path.join(settings.BASE_DIR,"load/bom.py"))
-        num_process = 40
+        #execfile(os.path.join(settings.BASE_DIR,"load/bom.py"))
+        
         print("5:计算货品库存数量和金额")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/t_good_num_info.sql"))
         num_process = 50

@@ -478,13 +478,13 @@ def update_bom_edit(request):
 
 
 def add_bom():
-    tamll_detail = mydb.mysql_db.exec_sql_select("""
+    tamll_detail = mydb.exec_sql_select("""
     SELECT DISTINCT
 	(product_name)
     FROM
 	load_tmallsodetail_info
     """)
-    bom_list = mydb.mysql_db.exec_sql_select("""
+    bom_list = mydb.exec_sql_select("""
     SELECT
         (product_name)
     FROM
@@ -501,7 +501,7 @@ def add_bom():
     for oneres in res:
         sqlstr = "insert into bom (product_name) values ('%s')" %oneres['product_name']
         sqllist.append(sqlstr)
-    mydb.mysql_db.exec_sql_list(sqllist)
+    mydb.exec_sql_list(sqllist)
 
 @csrf_exempt
 def upload(request):

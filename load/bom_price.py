@@ -1,12 +1,13 @@
 #!/usr/bin/python
 # coding:UTF-8
+import os
+import sys
+sys.path.append("..")
+sys.path.append("../..")
 import MySQLdb
-import numpy as np
 import sys
 from decimal import *
-import imp
 
-imp.reload(sys)
 # sys.setdefaultencoding('utf-8')
 
 
@@ -56,39 +57,59 @@ def getPriceList():
     return result, fields
 
 
+def getPriceDict():
+    db = MySQLdb.connect("127.0.0.1", "bsztz", "bsztz",
+                             "tmall", charset="utf8")
+    data = db.cursor(MySQLdb.cursors.DictCursor)
+    data.execute("select * from t_bas_sku_price")
+    price_list = data.fetchall()
+    data.close()
+    db.close
+    res ={}
+    for one_price in price_list:
+        res[one_price['sku_id']] = one_price['price']
+    return res
+
 db = MySQLdb.connect("127.0.0.1", "bsztz", "bsztz", "tmall", charset="utf8")
-bom = db.cursor(MySQLdb.cursors.DictCursor)
+data = db.cursor(MySQLdb.cursors.DictCursor)
 
+#计算bom清单总价格
 try:
-    bom.execute("select * from bom")
-    bom_data = bom.fetchall()
-    priceList, fields = getPriceList()
-    print(priceList, fields)
-    bomGoodsNum = []
-    bomProductLst = []
-    for row in bom_data:
-        row_goods_num = []
-        bomProductLst.append(row["product_name"])
-    for i in range(0, len(fields)):
-        goods_num = row[fields[i]]
-
-        if goods_num != "" and goods_num is not None:
-            row_goods_num.append(int(goods_num))
+    data.execute(
+        "SELECT * FROM bom a LEFT JOIN bom_detail b ON a.product_name =b.product_name  where goods_count>0 ORDER BY Num desc")
+    bom_data = data.fetchall()
+    price_dict = getPriceDict()
+    #print(price_dict)
+    last_bom_product_name = ""
+    price_temp = 0.00
+    index = 0
+    for one_bom_data in bom_data:
+        if index == 0:
+            last_bom_product_name = one_bom_data['product_name']
+            print(one_bom_data)
+            print(one_bom_data['goods_id'])
+            price_temp = price_dict[one_bom_data['goods_id']]*one_bom_data['goods_count']
         else:
-            row_goods_num.append(0)
-    print(row_goods_num)
-
-    bomGoodsNum.append(row_goods_num)
-
-    bomPrice = np.dot(bomGoodsNum, priceList)
-
-    print(priceList, bomPrice)
-    for i in range(len(bomProductLst)):
-        updateBomTotalPrice(bomProductLst[i], bomPrice[i])
-
+            if one_bom_data['product_name']==last_bom_product_name:
+                price_temp = price_temp + price_dict[one_bom_data['goods_id']] * one_bom_data['goods_count']
+            else:
+                update_strr = "update bom set price=%s where product_name='%s'" %(price_temp,last_bom_product_name)
+                print(update_strr)
+                data.execute(update_strr)
+                price_temp = price_dict[one_bom_data['goods_id']] * one_bom_data['goods_count']
+                
+            last_bom_product_name = one_bom_data['product_name']
+        index = index+1
+    #处理最后一条数据
+    last_update_strr = "update bom set price=%s where product_name='%s'" %(price_temp,last_bom_product_name)
+    data.execute(last_update_strr)
+    data.close
+    db.close()
+    print("bom_price finish")
 except Exception as e:
     print("error: unable fetch data", e.args)
+    data.close
+    db.close()
     raise
 
-db.close()
 print("search complete")
