@@ -71,9 +71,9 @@ DATABASES = {
         "NAME": "tmall",
         "USER": "root",
         "PASSWORD": "root",
-        "HOST": "127.0.0.1", #如果是docker容器中使用，这个为docker-compose中数据库service名称
+        "HOST": "mysql",  # 如果是docker容器中使用，这个为docker-compose中数据库service名称
         "PORT": 3306,
-        "CHARSET":"utf8",
+        "CHARSET": "utf8",
         "OPTIONS": {"local_infile": 1},
     }
 }
@@ -105,8 +105,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-ugettext = lambda s: s
-LANGUAGES = (("zh-hans", ("中文简体")),("en", ("English")),)
+
+def ugettext(s): return s
+
+
+LANGUAGES = (("zh-hans", ("中文简体")), ("en", ("English")),)
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
 SESSION_SAVE_EVERY_REQUEST = True
@@ -130,7 +133,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
+
             ],
         },
     },
@@ -143,4 +146,3 @@ BASE_FILE_PATH = {
     "upzip_path": "upload/upzip/",
     "backup_path": "upload/backup/",
 }
-
