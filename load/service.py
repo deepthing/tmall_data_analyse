@@ -241,6 +241,7 @@ def analyse_data():
         num_process = 90
         print("8:生成每个自然期间的订单五大费用明细")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/t_fee_info.sql"))
+        execfile(os.path.join(settings.BASE_DIR, "load/fee_sum.py"))
         num_process = 100
         
         print('执行完毕')

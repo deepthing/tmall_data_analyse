@@ -215,4 +215,5 @@ FROM
 GROUP BY
 	t.order_id,
 	fee_date,
-	Payment_date;
+	Payment_date
+order by fee_date

@@ -22,23 +22,58 @@
 
     <div class="page-container">
         <h1>登录</h1>
-        <form action="login/" method="post">
-            <input type="text" name="username" class="username" placeholder="用户名">
-            <input type="password" name="password" class="password" placeholder="密码">
-            <button type="submit">提交</button>
-            <div class="error">
-                <span>+</span>
+        <div>
+            <div>
+                <input type="text" id="username" placeholder="用户名">
             </div>
-        </form>
+            <div>
+                <input type="password" id="password" placeholder="密码">
+            </div>
+            <div>
+                <button id="loginButton">提交</button>
+            </div>
+            <div class="error">
+                <span>333333333</span>
+            </div>
+        </div>
 
     </div>
+
+
 
     <!-- Javascript -->
     <script src={% static 'js/jquery.min.js'%}></script>
     <script src={% static 'js/supersized.3.2.7.min.js'%}></script>
     <script src={% static 'js/supersized-init.js'%}></script>
     <script src={% static 'js/scripts.js'%}></script>
+    <script>
+        $("#loginButton").click(function () {
+            var username = $('#username').val()
+            var password = $('#password').val()
+            $.ajax({
+                type: "POST",
+                url: "login/",
+                data: {
+                    'username': username,
+                    'password': password
+                },
+                success: function (data) {
+                    console.log(data)
+                    if (data.status == true) {
+                        window.location.href = "order/"
+                    } else {
+                        alert(data.msg)
+                        
+                    }
 
+                },
+                error: function () {
+                    alert(data.msg)
+                }
+            })
+
+        });
+    </script>
 </body>
 
 </html>

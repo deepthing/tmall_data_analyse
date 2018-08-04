@@ -69,18 +69,18 @@
 
                             </thead>
                             <tbody>
-                                {% for index_dictMergedRow in dictMergedRow %}
+                                {% for index_delivery_fee_res in delivery_fee_res %}
                                 <tr>
-                                    <td>{{index_dictMergedRow.period}}</td>
-                                    <td>¥{{index_dictMergedRow.Alipay_Settlement}}</td>
-                                    <td>¥{{index_dictMergedRow.Alipay_Amount}}</td>
-                                    <td>¥{{index_dictMergedRow.Alipay_Settlement_Fee}}</td>
-                                    <td>¥{{index_dictMergedRow.logisitic_tax}}</td>
-                                    <td>¥{{index_dictMergedRow.logisitic_service}}</td>
-                                    <td>¥{{index_dictMergedRow.alipay_service}}</td>
-                                    <td>¥{{index_dictMergedRow.tmall}}</td>
-                                    <td>¥{{index_dictMergedRow.juhuasuan}}</td>
-                                    <td>¥{{index_dictMergedRow.juhuasuan}}</td>
+                                    <td>{{index_delivery_fee_res.month_str}}</td>
+                                    <td>{%trans "¥"%}{{index_delivery_fee_res.sales_revenue}}</td>
+                                    <td>{%trans "¥"%}{{index_delivery_fee_res.cross_border}}</td>
+                                    <td>{%trans "¥"%}{{index_delivery_fee_res.logistic_service}}</td>
+                                    <td>{%trans "¥"%}{{index_delivery_fee_res.alipay}}</td>
+                                    <td>{%trans "¥"%}{{index_delivery_fee_res.tmall}}</td>
+                                    <td>{%trans "¥"%}{{index_delivery_fee_res.great_deal}}</td>
+                                    <td>{%trans "¥"%}{{index_delivery_fee_res.tmall_blogger}}</td>
+                                    <td>{%trans "¥"%}{{index_delivery_fee_res.coustom_refunds}}</td>
+                                    <td>{%trans "¥"%}{{index_delivery_fee_res.alipay_settlement}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -93,30 +93,30 @@
                             <h3>{%trans "仓储相关费用"%}</h3>
                         </div>
 
-                        <table data-toggle="table" data-pagination=true>
+                        <table data-toggle="table" data-pagination=true id="stroage_table">
                             <thead>
                                 <tr>
                                     <th data-align='center'>{%trans "月份"%}</th>
                                     <th data-align='center'>{%trans "菜鸟仓储费"%}</th>
-                                    <th data-align='center'>{%trans "达缘仓储费用"%}</th>
-                                    <th data-align='center'>{%trans "达缘打包人工费"%}</th>
-                                    <th data-align='center'>{%trans "达缘包材费"%}</th>
+                                    <th data-align='center' data-editable="true">{%trans "达缘仓储费用"%}</th>
+                                    <th data-align='center' data-editable="true">{%trans "达缘打包人工费"%}</th>
+                                    <th data-align='center' data-editable="true">{%trans "达缘包材费"%}</th>
                                     <th data-align='center'>{%trans "保险费"%} </th>
-                                    <th data-align='center'>{%trans "菜鸟仓库库内操作费用（宁波仓贴标和海关）"%}</th>
-                                    <th data-align='center'>{%trans "销毁人工费"%}</th>
+                                    <th data-align='center' data-editable="true">{%trans "菜鸟仓库库内操作费用（宁波仓贴标和海关）"%}</th>
+                                    <th data-align='center' data-editable="true">{%trans "销毁人工费"%}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for index_fee_order_rows in fee_order_rows %}
+                                {% for storage_fee_res_index in storage_fee_res %}
                                 <tr>
-                                    <td>{{index_fee_order_rows.period}}</td>
-                                    <td>¥{{index_fee_order_rows.tmall_order}}</td>
-                                    <td>¥{{index_fee_order_rows.tmall_order_refund}}</td>
-                                    <td>¥{{index_fee_order_rows.tmall_order_actual_pay}}</td>
-                                    <td>¥{{index_fee_order_rows.alipay_Fee}}</td>
-                                    <td>¥{{index_fee_order_rows.alipay_settlement}}</td>
-                                    <td>¥{{index_fee_order_rows.logisitic_tax}}</td>
-                                    <td>¥{{index_fee_order_rows.logisitic_service}}</td>
+                                    <td>{{storage_fee_res_index.trans_date}}</td>
+                                    <td>{%trans "¥"%}{{storage_fee_res_index.a}}</td>
+                                    <td>{%trans "¥"%}{{storage_fee_res_index.b}}</td>
+                                    <td>{%trans "¥"%}{{storage_fee_res_index.c}}</td>
+                                    <td>{%trans "¥"%}{{storage_fee_res_index.d}}</td>
+                                    <td>{%trans "¥"%}{{storage_fee_res_index.e}}</td>
+                                    <td>{%trans "¥"%}{{storage_fee_res_index.f}}</td>
+                                    <td>{%trans "¥"%}{{storage_fee_res_index.g}}</td>
 
                                 </tr>
                                 {% endfor %}
@@ -136,6 +136,7 @@
                                 <tr>
                                     <th data-align='center'>{%trans "月份"%}</th>
                                     <th data-align='center'>{%trans "商家赔付给消费者费用"%}</th>
+                                    <th data-align='center'>{%trans "菜鸟赔付给商家费用（货款赔付）"%}</th>
                                     <th data-align='center'>{%trans "菜鸟赔付商给家费用（保证金赔付）"%}</th>
                                     <th data-align='center'>{%trans "推广补助"%}</th>
                                     <th data-align='center'>{%trans "其他账户返还"%}</th>
@@ -145,15 +146,16 @@
 
                             </thead>
                             <tbody>
-                                {% for index_fee_detail_monthly in fee_detail_monthly %}
+                                {% for other_fee_res_index in other_fee_res %}
                                 <tr>
-                                    <td>{{index_fee_detail_monthly.date_time}}</td>
-                                    <td>￥{{index_fee_detail_monthly.actual_paid}}</td>
-                                    <td>￥{{index_fee_detail_monthly.logisitic_tax}}</td>
-                                    <td>￥{{index_fee_detail_monthly.ls}}</td>
-                                    <td>￥{{index_fee_detail_monthly.alipay_service}}</td>
-                                    <td>￥{{index_fee_detail_monthly.tmall}}</td>
-                                    <td>￥{{index_fee_detail_monthly.juhuasuan}}</td>
+                                    <td>{{other_fee_res_index.trans_date}}</td>
+                                    <td>{%trans "¥"%}{{other_fee_res_index.a}}</td>
+                                    <td>{%trans "¥"%}{{other_fee_res_index.b}}</td>
+                                    <td>{%trans "¥"%}{{other_fee_res_index.c}}</td>
+                                    <td>{%trans "¥"%}{{other_fee_res_index.d}}</td>
+                                    <td>{%trans "¥"%}{{other_fee_res_index.e}}</td>
+                                    <td>{%trans "¥"%}{{other_fee_res_index.f}}</td>
+                                    <td>{%trans "¥"%}{{other_fee_res_index.g}}</td>
                                 </tr>
                                 {% endfor %}
 
@@ -168,23 +170,23 @@
                             <h3>{%trans "其他费用"%}</h3>
                         </div>
 
-                        <table data-toggle="table" data-pagination=true>
+                        <table data-toggle="table" data-pagination=true id="other_fee_table">
                             <thead>
                                 <tr>
                                     <th data-align='center'>{%trans "月份"%}</th>
-                                    <th data-align='center'>{%trans "提前支付给运营公司的市场费用"%}</th>
-                                    <th data-align='center'>{%trans "返现金额和CRM"%}</th>
-                                    <th data-align='center'>{%trans "天猫店铺软件费用"%}</th>
+                                    <th data-align='center' data-editable="true">{%trans "提前支付给运营公司的市场费用"%}</th>
+                                    <th data-align='center' data-editable="true">{%trans "返现金额和CRM"%}</th>
+                                    <th data-align='center' data-editable="true">{%trans "天猫店铺软件费用"%}</th>
                                 </tr>
 
                             </thead>
                             <tbody>
                                 {% for index_fee_payment in fee_payment %}
                                 <tr>
-                                    <td>{{index_fee_payment.period}}</td>
-                                    <td>¥{{index_fee_payment.Recharge}}</td>
-                                    <td>¥{{index_fee_payment.Refund}}</td>
-                                    <td>¥{{index_fee_payment.Payments}}</td>
+                                    <td>{{index_fee_payment.date_str}}</td>
+                                    <td>{%trans "¥"%}{{index_fee_payment.marketing_fee}}</td>
+                                    <td>{%trans "¥"%}{{index_fee_payment.crm}}</td>
+                                    <td>{%trans "¥"%}{{index_fee_payment.tmall_software}}</td>
                                 </tr>
                                 {% endfor %}
 
@@ -232,7 +234,50 @@
         $('[data-toggle="offcanvas"]').click(function () {
             $('#wrapper').toggleClass('toggled');
         });
+
     });
+</script>
+<script>
+    console.log("stroage_table");
+    $('#stroage_table').bootstrapTable({
+        onEditableSave: function (field, row, oldValue, $el) {
+            console.log(row)
+            $.ajax({
+                type: "post",
+                url: "/update_stroage_table/",
+                data: row,
+                dataType: 'JSON',
+                Charset: "utf8",
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log(data)
+                },
+
+            })
+        }
+    });
+    console.log("stroage_table");
+    $('#other_fee_table').bootstrapTable({
+        onEditableSave: function (field,
+            row, oldValue, $el) {
+            console.log(row)
+            $.ajax({
+                type: "post",
+                url: "/update_fee_table/",
+                data: row,
+                dataType: 'JSON',
+                Charset: "utf8",
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log(data)
+                },
+            })
+        }
+    })
 </script>
 
 </html>

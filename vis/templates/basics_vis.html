@@ -136,6 +136,50 @@
 
     </div>
     <!-- /#wrapper -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">bom修改</h4>
+                </div>
+                <div class="modal-body">
+                    <table data-toggle="table" data-click-to-select="true" id="bom_edit">
+                        <thead>
+                            <tr>
+                                <th data-field="state" data-checkbox="true"></th>
+                                <th data-field="id" data-align='center' data-valign='middle'>{%trans "序号"%}</th>
+                                <th data-field="goods_id" data-align='center' data-valign='middle'>{%trans "货品代码"%}</th>
+                                <th data-field="goods_amount" data-align='center' data-valign='middle' data-editable="true">{%trans "货品数量"%}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sku_list in sku %}
+                            <tr>
+                                <td></td>
+                                <td>{{sku_list.seq_no}}</td>
+                                <td>{{sku_list.sku_id}}</td>
+                                <td></td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateBomButton">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 </body>
 
 <script>
@@ -171,6 +215,7 @@
     });
 </script>
 <script>
+    var current_click_row;
     var get_bom = function getbom() {
         $('#bom').bootstrapTable({
             toolbar: "#toolbar",
@@ -200,35 +245,49 @@
                     field: 'goods',
                     title: "物料清单",
                     width: '20%',
-                    editable: {
-                        type: 'text',
-                        title: '物料清单',
-                        separator: ",",
-
-
-                    }
                 }
             ],
-            onEditableSave: function (field, row, oldValue, $el) {
+            onClickRow: function (row, $element, field) {
                 console.log(row);
-                $.ajax({
-                    type: "post",
-                    url: "/update_bom_edit/",
-                    data: row,
-                    dataType: 'JSON',
-                    Charset: "utf8",
-                    success: function (data) {
-                        console.log(data)
-                    },
-                    error: function (data) {
-                        console.log(data)
-                    },
-                    complete: function () {}
-                });
+                $('#myModal').modal('show')
+                current_click_row = row;
+
             }
 
         })
-    }
+    };
+
+    $('#updateBomButton').click(function () {
+        $('#myModal').modal('hide');
+        var bom_edit_selection = $('#bom_edit').bootstrapTable('getAllSelections');
+        console.log(bom_edit_selection);
+        var bom_amount_strr = "";
+        console.log(bom_edit_selection.length);
+        var i = 0;
+        for (; i < bom_edit_selection.length - 1; i++) {
+
+            bom_amount_strr = bom_amount_strr + bom_edit_selection[i].goods_id +
+                "(" + bom_edit_selection[i].goods_amount + "),";
+        };
+        bom_amount_strr = bom_amount_strr + bom_edit_selection[i].goods_id + "(" + bom_edit_selection[i].goods_amount +")";
+        console.log(bom_amount_strr);
+
+        current_click_row.goods = bom_amount_strr;
+        console.log(current_click_row);
+        $.ajax({
+            type: "post",
+            url: "/update_bom_edit/",
+            data: current_click_row,
+            dataType: 'JSON',
+            Charset: "utf8",
+            success: function (data) {
+                console.log(data)
+            },
+            error: function (data) {
+                console.log(data)
+            },
+        });
+    })
 </script>
 
 </html>
