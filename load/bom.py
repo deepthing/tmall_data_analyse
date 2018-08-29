@@ -3,6 +3,9 @@
 import MySQLdb
 from decimal import *
 import sys
+sys.path.append("..")
+sys.path.append("../..")
+import tmall_data_analyse.settings as settings
 import imp
  
 imp.reload(sys)
@@ -11,8 +14,14 @@ imp.reload(sys)
 
 
 def insertDetail(goods_code,goods_id,num,price,total):
-	
-	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+	db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+						user=settings.DATABASES.get(
+							'default').get('USER'),
+						passwd=settings.DATABASES.get(
+							'default').get('PASSWORD'),
+						db=settings.DATABASES.get('default').get('NAME'),
+						charset="utf8",
+						local_infile=1)
 	detail = db.cursor(MySQLdb.cursors.DictCursor)
 	rate = 100
 	if float(total) > 0 :
@@ -25,7 +34,14 @@ def insertDetail(goods_code,goods_id,num,price,total):
 
 
 def getFieldsList():
-	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+	db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+						user=settings.DATABASES.get(
+							'default').get('USER'),
+						passwd=settings.DATABASES.get(
+							'default').get('PASSWORD'),
+						db=settings.DATABASES.get('default').get('NAME'),
+						charset="utf8",
+						local_infile=1)
 	fields = db.cursor(MySQLdb.cursors.DictCursor)
 	fields.execute("desc bom")
 	data = fields.fetchall();
@@ -38,7 +54,14 @@ def getFieldsList():
 	return result
 
 def getPriceByGoodsId(goods_id):
-	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+	db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+						user=settings.DATABASES.get(
+							'default').get('USER'),
+						passwd=settings.DATABASES.get(
+							'default').get('PASSWORD'),
+						db=settings.DATABASES.get('default').get('NAME'),
+						charset="utf8",
+						local_infile=1)
 	detail = db.cursor(MySQLdb.cursors.DictCursor)
 	value=[goods_id]
 	detail.execute('select price from t_bas_sku_price where sku_id =%s',value);
@@ -50,14 +73,28 @@ def getPriceByGoodsId(goods_id):
 
 
 def truncateDetail():
-	db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+	db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+						user=settings.DATABASES.get(
+							'default').get('USER'),
+						passwd=settings.DATABASES.get(
+							'default').get('PASSWORD'),
+						db=settings.DATABASES.get('default').get('NAME'),
+						charset="utf8",
+						local_infile=1)
 	detail = db.cursor(MySQLdb.cursors.DictCursor)
 	detail.execute('TRUNCATE TABLE bom_detail')
 	db.commit();
 	detail.close();
 	db.close();
 
-db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+						user=settings.DATABASES.get(
+							'default').get('USER'),
+						passwd=settings.DATABASES.get(
+							'default').get('PASSWORD'),
+						db=settings.DATABASES.get('default').get('NAME'),
+						charset="utf8",
+						local_infile=1)
 bom = db.cursor(MySQLdb.cursors.DictCursor)
 
 try:

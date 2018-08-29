@@ -4,12 +4,22 @@ import MySQLdb
 import decimal
 import sys
 import imp
+sys.path.append("..")
+sys.path.append("../..")
+import tmall_data_analyse.settings as settings
  
 imp.reload(sys)
 #sys.setdefaultencoding('utf-8')
 
 
-db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8')
+db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+                        user=settings.DATABASES.get(
+                            'default').get('USER'),
+                        passwd=settings.DATABASES.get(
+                            'default').get('PASSWORD'),
+                        db=settings.DATABASES.get('default').get('NAME'),
+                        charset="utf8",
+                        local_infile=1)
 con = db.cursor()
 con.execute("SELECT SUBSTR(in_out_time FROM 1 FOR 7) from load_transaction_info GROUP BY SUBSTR(in_out_time FROM 1 FOR 7)")
 monthlist = con.fetchall()

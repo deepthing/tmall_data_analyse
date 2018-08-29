@@ -5,7 +5,7 @@ import sys
 sys.path.append("..")
 sys.path.append("../..")
 import MySQLdb
-import sys
+import tmall_data_analyse.settings as settings
 from decimal import *
 
 # sys.setdefaultencoding('utf-8')
@@ -13,7 +13,14 @@ from decimal import *
 
 def updateBomTotalPrice(goods_code, price):
     print(goods_code, price)
-    db = MySQLdb.connect("127.0.0.1", "bsztz", "bsztz", "tmall", charset="utf8")
+    db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+                            user=settings.DATABASES.get(
+                                'default').get('USER'),
+                            passwd=settings.DATABASES.get(
+                                'default').get('PASSWORD'),
+                            db=settings.DATABASES.get('default').get('NAME'),
+                            charset="utf8",
+                            local_infile=1)
     detail = db.cursor(MySQLdb.cursors.DictCursor)
 
     value = [str(price), goods_code]
@@ -24,7 +31,14 @@ def updateBomTotalPrice(goods_code, price):
 
 
 def getPriceBySku(goods_id):
-    db = MySQLdb.connect("127.0.0.1", "bsztz", "bsztz", "tmall", charset="utf8")
+    db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+                            user=settings.DATABASES.get(
+                                'default').get('USER'),
+                            passwd=settings.DATABASES.get(
+                                'default').get('PASSWORD'),
+                            db=settings.DATABASES.get('default').get('NAME'),
+                            charset="utf8",
+                            local_infile=1)
     detail = db.cursor(MySQLdb.cursors.DictCursor)
     value = [goods_id]
     detail.execute("select price from t_bas_sku_price where sku_id =%s", value)
@@ -36,7 +50,14 @@ def getPriceBySku(goods_id):
 
 
 def getPriceList():
-    db = MySQLdb.connect("127.0.0.1", "bsztz", "bsztz", "tmall", charset="utf8")
+    db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+                            user=settings.DATABASES.get(
+                                'default').get('USER'),
+                            passwd=settings.DATABASES.get(
+                                'default').get('PASSWORD'),
+                            db=settings.DATABASES.get('default').get('NAME'),
+                            charset="utf8",
+                            local_infile=1)
     pricelist = db.cursor(MySQLdb.cursors.DictCursor)
     pricelist.execute("desc bom")
 
@@ -58,8 +79,14 @@ def getPriceList():
 
 
 def getPriceDict():
-    db = MySQLdb.connect("127.0.0.1", "bsztz", "bsztz",
-                             "tmall", charset="utf8")
+    db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+                            user=settings.DATABASES.get(
+                                'default').get('USER'),
+                            passwd=settings.DATABASES.get(
+                                'default').get('PASSWORD'),
+                            db=settings.DATABASES.get('default').get('NAME'),
+                            charset="utf8",
+                            local_infile=1)
     data = db.cursor(MySQLdb.cursors.DictCursor)
     data.execute("select * from t_bas_sku_price")
     price_list = data.fetchall()
@@ -70,7 +97,14 @@ def getPriceDict():
         res[one_price['sku_id']] = one_price['price']
     return res
 
-db = MySQLdb.connect("127.0.0.1", "bsztz", "bsztz", "tmall", charset="utf8")
+db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+                        user=settings.DATABASES.get(
+                            'default').get('USER'),
+                        passwd=settings.DATABASES.get(
+                            'default').get('PASSWORD'),
+                        db=settings.DATABASES.get('default').get('NAME'),
+                        charset="utf8",
+                        local_infile=1)
 data = db.cursor(MySQLdb.cursors.DictCursor)
 
 #计算bom清单总价格

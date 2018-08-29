@@ -3,10 +3,19 @@
 import MySQLdb
 import sys 
 from decimal import *
-
+sys.path.append("..")
+sys.path.append("../..")
+import tmall_data_analyse.settings as settings
 
 def getBomCodes():
-    db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8')
+    db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+                            user=settings.DATABASES.get(
+                                'default').get('USER'),
+                            passwd=settings.DATABASES.get(
+                                'default').get('PASSWORD'),
+                            db=settings.DATABASES.get('default').get('NAME'),
+                            charset="utf8",
+                            local_infile=1)
     data = db.cursor()
     data.execute('''SELECT column_name FROM information_schema.columns WHERE TABLE_SCHEMA = 'tmall' AND table_name = 'BOM';''')
     bomCodes = data.fetchall()
@@ -15,7 +24,14 @@ def getBomCodes():
     return codes
 
 def getlackBoms():
-    db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8')
+    db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+                            user=settings.DATABASES.get(
+                                'default').get('USER'),
+                            passwd=settings.DATABASES.get(
+                                'default').get('PASSWORD'),
+                            db=settings.DATABASES.get('default').get('NAME'),
+                            charset="utf8",
+                            local_infile=1)
     data = db.cursor(MySQLdb.cursors.DictCursor)
     data.execute('''SELECT * FROM temp_product_info''')
     lackBoms = data.fetchall()
@@ -26,7 +42,14 @@ def getlackBoms():
     
 codes = getBomCodes()
 lackBoms = getlackBoms()
-db = MySQLdb.connect("127.0.0.1","bsztz","bsztz","tmall",charset='utf8');
+db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+                        user=settings.DATABASES.get(
+                            'default').get('USER'),
+                        passwd=settings.DATABASES.get(
+                            'default').get('PASSWORD'),
+                        db=settings.DATABASES.get('default').get('NAME'),
+                        charset="utf8",
+                        local_infile=1)
 data = db.cursor(MySQLdb.cursors.DictCursor)
 for row in lackBoms:
     strr = "insert into BOM (product_name,"+str(row['cargo_code'].upper())+") values('"+row['product_name']+"',"+str(row['num']) +");"

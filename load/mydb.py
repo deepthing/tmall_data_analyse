@@ -1,4 +1,7 @@
 import MySQLdb
+import sys
+sys.path.append("..")
+sys.path.append("../..")
 import tmall_data_analyse.settings as settings
 
 

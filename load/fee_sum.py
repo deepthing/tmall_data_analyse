@@ -1,7 +1,18 @@
 import MySQLdb
+import sys
+sys.path.append("..")
+sys.path.append("../..")
+import tmall_data_analyse.settings as settings
 
 def insert_fee_monthly_detail_info():
-    db = MySQLdb.connect("127.0.0.1", "bsztz", "bsztz","tmall", charset='utf8')
+    db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
+                            user=settings.DATABASES.get(
+                                'default').get('USER'),
+                            passwd=settings.DATABASES.get(
+                                'default').get('PASSWORD'),
+                            db=settings.DATABASES.get('default').get('NAME'),
+                            charset="utf8",
+                            local_infile=1)
     detail = db.cursor(MySQLdb.cursors.DictCursor)
     delivery_fee_strr = """
     INSERT INTO t_fee_monthly_detail_info(

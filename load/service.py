@@ -3,7 +3,7 @@ import os
 import sys
 sys.path.append("..")
 sys.path.append("../..")
-import tmall_data_analyse.settings as setting
+import tmall_data_analyse.settings as settings
 import MySQLdb
 import subprocess
 
@@ -12,7 +12,6 @@ from . import zip_util as zip
 import csv
 import vis.models as models
 import datetime
-import tmall_data_analyse.settings as settings
 
 num_process = 0
 
@@ -20,8 +19,8 @@ num_process = 0
 
 def upzip(zipfilename):
     try:
-        zip.extract(setting.BASE_FILE_PATH.get('upzip_path')+zipfilename,setting.BASE_FILE_PATH.get('upload_path'))
-        os.rename(setting.BASE_FILE_PATH.get('upzip_path')+zipfilename,setting.BASE_FILE_PATH.get('backup_path')+zipfilename)
+        zip.extract(settings.BASE_FILE_PATH.get('upzip_path')+zipfilename,setting.BASE_FILE_PATH.get('upload_path'))
+        os.rename(settings.BASE_FILE_PATH.get('upzip_path')+zipfilename,setting.BASE_FILE_PATH.get('backup_path')+zipfilename)
         return 'success'
     except Exception as e:
         print(str(e))
@@ -66,10 +65,10 @@ def loaddata(csvfilepath):
                 csvfilename = csvfilename.replace("\\","/")
                 print (csvfilename)
                 print (name)
-                db = MySQLdb.connect(setting.DATABASES.get('default').get('HOST'),
-                    setting.DATABASES.get('default').get('USER'),
-                    setting.DATABASES.get('default').get('PASSWORD'),
-                    setting.DATABASES.get('default').get('NAME'),
+                db = MySQLdb.connect(settings.DATABASES.get('default').get('HOST'),
+                    settings.DATABASES.get('default').get('USER'),
+                    settings.DATABASES.get('default').get('PASSWORD'),
+                    settings.DATABASES.get('default').get('NAME'),
                     charset='utf8')
                 data = db.cursor(MySQLdb.cursors.DictCursor)
 
@@ -92,10 +91,10 @@ def load_csv_file(csvfilename,name):
     csvfilename = csvfilename.replace(".\\","")
     csvfilename = csvfilename.replace("\\","/")
     print (csvfilename)
-    db = MySQLdb.connect(host = setting.DATABASES.get('default').get('HOST'),
-        user = setting.DATABASES.get('default').get('USER'),
-        passwd = setting.DATABASES.get('default').get('PASSWORD'),
-        db = setting.DATABASES.get('default').get('NAME'),
+    db = MySQLdb.connect(host = settings.DATABASES.get('default').get('HOST'),
+        user = settings.DATABASES.get('default').get('USER'),
+        passwd = settings.DATABASES.get('default').get('PASSWORD'),
+        db = settings.DATABASES.get('default').get('NAME'),
         local_infile = 1)
     data = db.cursor(MySQLdb.cursors.DictCursor)
 
@@ -184,10 +183,10 @@ def readfile(name):
     return str(strr)
 
 def execsql(sqlfile):
-    db = MySQLdb.connect(host = setting.DATABASES.get('default').get('HOST'),
-    user = setting.DATABASES.get('default').get('USER'),
-    passwd = setting.DATABASES.get('default').get('PASSWORD'),
-    db = setting.DATABASES.get('default').get('NAME'),
+    db = MySQLdb.connect(host = settings.DATABASES.get('default').get('HOST'),
+    user = settings.DATABASES.get('default').get('USER'),
+    passwd = settings.DATABASES.get('default').get('PASSWORD'),
+    db = settings.DATABASES.get('default').get('NAME'),
     local_infile = 1)
     data = db.cursor(MySQLdb.cursors.DictCursor)
 
