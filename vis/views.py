@@ -459,15 +459,18 @@ def update_bom_edit(request):
         delete_strr = "DELETE from bom_detail WHERE product_name = '%s'" % (product_name)
         data.execute(delete_strr)
         goods_list = goods.split(',')
+        print(goods_list)
         for good in goods_list:
-            print(good[0:good.find('(')])
-            print(int(good[good.find('(')+1:good.find(')')]))
-            insert_strr = "INSERT into bom_detail (product_name,goods_id,goods_count) VALUES ('%s','%s',%d) " % (
-                product_name, good[0:good.find('(')], int(good[good.find('(')+1:good.find(')')]))
+            if(len(good) > 0):
 
-            print(insert_strr)
+                print(good[0:good.find('(')])
+                print(int(good[good.find('(')+1:good.find(')')]))
+                insert_strr = "INSERT into bom_detail (product_name,goods_id,goods_count) VALUES ('%s','%s',%d) " % (
+                    product_name, good[0:good.find('(')], int(good[good.find('(')+1:good.find(')')]))
 
-            data.execute(insert_strr)
+                print(insert_strr)
+
+                data.execute(insert_strr)
 
         db.commit()
         print("update success")

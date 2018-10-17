@@ -207,37 +207,47 @@ def analyse_data():
     try:
         print("开始执行")
         num_process = 0
-        print("1:初始化")
+        print("0:初始化")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/init.sql"))
         num_process = 5
         execsql(os.path.join(settings.BASE_DIR,"load/sql/init2.sql"))
         num_process = 10
-        print("1:初始化，完成")
+        print("0:初始化，完成")
         
-        print("2:计算myaccount的各项费用明细")
+        print("1:计算myaccount的各项费用明细")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/t_other_fee_info2.sql"))
         num_process = 20
-        print("3:找BOM缺失并补充")
+        print("2:找BOM缺失并补充")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/bom.sql"))
         num_process = 30
-        print("4:BOM金额计算")
+        print("3:BOM金额计算")
         execfile(os.path.join(settings.BASE_DIR,"load/bom_price.py"))
         num_process = 35
         #execfile(os.path.join(settings.BASE_DIR,"load/bom.py"))
-        
+        print("4:计算订单相关")
+        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_order_analyse.sql"))
+        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_buyer_info.sql"))
+        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_order_area.sql"))
+        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_group_strade_info.sql"))
+        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_order_amount.sql"))
+        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_fee_info.sql"))
+        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_monthly_order_amount.sql"))
+        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_fee_monthly_info.sql"))
+        print("4:计算订单相关,完成")
+        num_process = 50
         print("5:计算货品库存数量和金额")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/t_good_num_info.sql"))
-        num_process = 50
+        num_process = 60
         execfile(os.path.join(settings.BASE_DIR,"load/inventory.py"))
-        num_process = 70
+        num_process = 80
         print("6:验证BOM分解数据和菜鸟数据是否一致，并修正BOM回到节点4")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/bom2.sql"))
-        num_process = 75
+        num_process = 85
         print("7:计算每个自然期间的提取金额和税率")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/t_settle_amount_info.sql"))
-        num_process = 80
-        execsql(os.path.join(settings.BASE_DIR,"load/sql/rate.sql"))
         num_process = 90
+        execsql(os.path.join(settings.BASE_DIR,"load/sql/rate.sql"))
+        num_process = 95
         print("8:生成每个自然期间的订单五大费用明细")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/t_fee_info.sql"))
         execfile(os.path.join(settings.BASE_DIR, "load/fee_sum.py"))

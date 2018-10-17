@@ -1,4 +1,5 @@
--- sheet1订单分析 -- 状态分析SELECT SUM(order_num) 总数量,
+-- sheet1订单分析 -- 状态分析
+SELECT SUM(order_num) 总数量,
          SUM(saled_num) 成功数量,
          SUM(closed_num) 关闭数量,
          SUM(waiting_num) 其他数量,

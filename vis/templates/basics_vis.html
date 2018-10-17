@@ -249,9 +249,28 @@
             ],
             onClickRow: function (row, $element, field) {
                 console.log(row);
-                $('#myModal').modal('show')
+                
                 current_click_row = row;
 
+                var bom_edit_selection = $('#bom_edit').bootstrapTable('getData');
+                for(var j=0;j< bom_edit_selection.length;j++){
+                    $('#bom_edit').bootstrapTable('updateCell',{index:j,field:"state",value:false})
+
+                    $('#bom_edit').bootstrapTable('updateCell',{index:j,field:"goods_amount",value:""})
+                }
+                var click_row_data=[] ;
+                if(current_click_row.goods != null){
+                click_row_data= current_click_row.goods.split(",");
+                }
+                for(var i=0;i < click_row_data.length;i++){
+                    for(var j=0;j< bom_edit_selection.length;j++){
+                        if(bom_edit_selection[j].goods_id == click_row_data[i].substr(0,click_row_data[i].indexOf('('))){
+                            
+                            $('#bom_edit').bootstrapTable('updateCell',{index:j,field:"goods_amount",value:click_row_data[i].substring(click_row_data[i].indexOf("(")+1,click_row_data[i].indexOf(")"))})
+                        }
+                    }
+                }
+                $('#myModal').modal('show')
             }
 
         })
@@ -264,13 +283,14 @@
         var bom_amount_strr = "";
         console.log(bom_edit_selection.length);
         var i = 0;
-        for (; i < bom_edit_selection.length - 1; i++) {
+        for (; i < bom_edit_selection.length ; i++) {
 
             bom_amount_strr = bom_amount_strr + bom_edit_selection[i].goods_id +
                 "(" + bom_edit_selection[i].goods_amount + "),";
         };
-        
-        bom_amount_strr = bom_amount_strr + bom_edit_selection[i].goods_id + "(" + bom_edit_selection[i].goods_amount +")";
+        if(i==0){
+            return
+        }
         console.log(bom_amount_strr);
 
         current_click_row.goods = bom_amount_strr;
