@@ -226,13 +226,9 @@ def analyse_data():
         #execfile(os.path.join(settings.BASE_DIR,"load/bom.py"))
         print("4:计算订单相关")
         execsql(os.path.join(settings.BASE_DIR, "load/sql/t_order_analyse.sql"))
-        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_buyer_info.sql"))
         execsql(os.path.join(settings.BASE_DIR, "load/sql/t_order_area.sql"))
         execsql(os.path.join(settings.BASE_DIR, "load/sql/t_group_strade_info.sql"))
         execsql(os.path.join(settings.BASE_DIR, "load/sql/t_order_amount.sql"))
-        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_fee_info.sql"))
-        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_monthly_order_amount.sql"))
-        execsql(os.path.join(settings.BASE_DIR, "load/sql/t_fee_monthly_info.sql"))
         print("4:计算订单相关,完成")
         num_process = 50
         print("5:计算货品库存数量和金额")
