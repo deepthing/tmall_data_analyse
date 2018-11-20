@@ -645,7 +645,6 @@ def login(request):
 
 def fee_vis(request):
 
-
     storage_fee_strr = """
     SELECT 
     t_other_fee_info.trans_date,
@@ -718,28 +717,6 @@ def update_fee_table(request):
         return HttpResponse("success")
 
 
-def order_export(request):
-    
-    db = MySQLdb.connect(
-        setting.DATABASES.get("default").get("HOST"),
-        setting.DATABASES.get("default").get("USER"),
-        setting.DATABASES.get("default").get("PASSWORD"),
-        setting.DATABASES.get("default").get("NAME"),
-        setting.DATABASES.get("default").get("PORT"),
-        charset="utf8",
-    )
-    t_year = request.GET.get('sel')
-    data = db.cursor(MySQLdb.cursors.DictCursor)
-
-    ############################
-    sio = io.StringIO()
-    sio.seek(0)
-    response = HttpResponse(sio.getvalue(), content_type="application/vnd.ms-excel")
-    response["Content-Disposition"] = "attachment; filename=order.xls"
-    response.write(sio.getvalue())
-    return response
-
-
 def set_style(name, height, bold=False):
     style = xlwt.XFStyle()  # 初始化样式
 
@@ -757,7 +734,8 @@ def set_style(name, height, bold=False):
 
 # 导出excel表格
 def excel_export(request):
-    years = request.GET.get("sel")
+    type = request.GET.get("type")
+
     db = MySQLdb.connect(
         setting.DATABASES.get("default").get("HOST"),
         setting.DATABASES.get("default").get("USER"),
@@ -767,6 +745,14 @@ def excel_export(request):
         charset="utf8",
     )
     data = db.cursor(MySQLdb.cursors.DictCursor)
+    if type=='1':
+        pass
+    if type == '2':
+        pass
+    if type == '3':
+        pass
+
+
     
     ############################
     sio = io.StringIO()
@@ -777,23 +763,3 @@ def excel_export(request):
     return response
 
 
-def excel_export2(request):
-    years = request.GET.get("sel")
-    all_list = []
-    db = MySQLdb.connect(
-        setting.DATABASES.get("default").get("HOST"),
-        setting.DATABASES.get("default").get("USER"),
-        setting.DATABASES.get("default").get("PASSWORD"),
-        setting.DATABASES.get("default").get("NAME"),
-        setting.DATABASES.get("default").get("PORT"),
-        charset="utf8",
-    )
-    data = db.cursor(MySQLdb.cursors.DictCursor)
-    
-    ############################
-    sio = io.StringIO()
-    sio.seek(0)
-    response = HttpResponse(sio.getvalue(), content_type="application/vnd.ms-excel")
-    response["Content-Disposition"] = "attachment; filename=sum.xls"
-    response.write(sio.getvalue())
-    return response

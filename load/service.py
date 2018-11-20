@@ -233,6 +233,7 @@ def analyse_data():
         num_process = 50
         print("5:计算货品库存数量和金额")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/t_good_num_info.sql"))
+
         num_process = 60
         execfile(os.path.join(settings.BASE_DIR,"load/inventory.py"))
         num_process = 80
@@ -246,7 +247,10 @@ def analyse_data():
         num_process = 95
         print("8:生成每个自然期间的订单五大费用明细")
         execsql(os.path.join(settings.BASE_DIR,"load/sql/t_fee_info.sql"))
+        print("load/sql/t_fee_info.sql complete")
         execfile(os.path.join(settings.BASE_DIR, "load/fee_sum.py"))
+        print("load/fee_sum.py complete")
+
         num_process = 100
         
         print('执行完毕')

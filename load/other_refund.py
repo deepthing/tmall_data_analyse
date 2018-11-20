@@ -3,15 +3,10 @@
 import MySQLdb
 import sys 
 import decimal
-import imp
-import sys
 sys.path.append("..")
 sys.path.append("../..")
 import tmall_data_analyse.settings as setting
 
-
-imp.reload(sys)
-sys.setdefaultencoding('utf-8')
 
 db = MySQLdb.connect(host=settings.DATABASES.get('default').get('HOST'),
                         user=settings.DATABASES.get(

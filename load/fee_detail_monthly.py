@@ -45,11 +45,13 @@ for month in monthlist:
     con.execute("SELECT sum(b.refund) FROM tmp_load_transaction_info_monthly a LEFT JOIN tmp_load_tmallso_info_monthly b on a.outter_order_id = b.order_id")
     refund = con.fetchall()
     
-    con.execute("SELECT sum(b.logisitic_tax),sum(b.logisitic_service),sum(b.alipay_service),sum(b.tmall),sum(b.juhuasuan) FROM tmp_load_transaction_info_monthly a LEFT JOIN tmp_fee_info_monthly b on a.outter_order_id = b.order_id")
+    con.execute("SELECT sum(ifnull(b.logisitic_tax,0)),sum(ifnull(b.logisitic_service,0)),sum(ifnull(b.alipay_service,0)),sum(ifnull(b.tmall,0)),sum(ifnull(b.juhuasuan,0)) FROM tmp_load_transaction_info_monthly a LEFT JOIN tmp_fee_info_monthly b on a.outter_order_id = b.order_id")
     amount = con.fetchall()
 
     reslist = list(month+actual_paid[0]+amount[0]+refund[0])
     print(reslist)
+    print("---------------------------------------",type(reslist),'len  --->',len(reslist))
+
     exestr = "insert into t_fee_detail_monthly_info (fee_time,out_stock,cainiao_tax,cainiao_service,alipay,tmall,juhuasuan,refund) values(\'%s\',%s,%s,%s,%s,%s,%s,%s)"%(str(reslist[0]),str(reslist[1]),str(reslist[2]),str(reslist[3]),str(reslist[4]),str(reslist[5]),str(reslist[6]),str(reslist[7]))
     print(exestr)
     con.execute(exestr)

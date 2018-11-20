@@ -20,15 +20,15 @@ def insert_fee_monthly_detail_info():
 	r.time as a1,
 	-- r.tax,
 
-	format(SUM(so.actual_paid) / r.tax , 2) as a2,
-	format(b2.a1 / r.tax *- 1 , 2) as a3,
-	format(b2.a2 / r.tax *- 1 , 2)  as a4,
-	format(b2.a3 / r.tax *- 1 , 2) as a5,
-	format(b2.a4 / r.tax *- 1 , 2) as a6,
-	format(b2.a5 / r.tax *- 1 , 2) as a7,
-	format(b2.a6 / r.tax *- 1 , 2) as a8,
-	format(SUM(so.refund) / r.tax , 2) as a9,
-	format(b3.a11 / r.tax , 2) as a10
+    sum(so.actual_paid) / r.tax ,
+    min(b2.a1 / r.tax) *- 1 , 
+    min(b2.a2 / r.tax) *- 1 , 
+    min(b2.a3 / r.tax) *- 1 , 
+    min(b2.a4 / r.tax) *- 1 , 
+    min(b2.a5 / r.tax) *- 1 , 
+    min(b2.a6 / r.tax) *- 1 , 
+    sum(so.refund) / r.tax ,
+    min(b3.a11 / r.tax) 
     FROM
     load_tmallso_info so,
     tax_rate r,
@@ -74,7 +74,8 @@ def insert_fee_monthly_detail_info():
     AND t.paper_type = '交易出库'
     and t.goods_code<>'7290108800098'
     )
-    AND r.time LIKE '%@datetime%')
+    AND r.time LIKE '%@datetime%'
+    GROUP BY r.time,r.tax)
     """
     detail.execute("TRUNCATE TABLE t_fee_monthly_detail_info;")
     
@@ -82,17 +83,16 @@ def insert_fee_monthly_detail_info():
             "SELECT SUBSTR(in_out_time FROM 1 FOR 7) as date_str from load_transaction_info GROUP BY SUBSTR(in_out_time FROM 1 FOR 7) desc")
     list_date = detail.fetchall()
     delivery_fee_res = []
+    print(list_date)
     for one_date in list(list_date):
         print(one_date)
-        detail.execute(delivery_fee_strr.replace("@datetime", one_date['date_str']))
-        count = detail.execute(
-            "select count(*) from t_other_fee_add_info where date_str = '%s'" % (one_date['date_str']))
-        if count == 0:
-            detail.execute("insert into t_other_fee_add_info (date_str) values('%s')" % (
-                one_date['date_str']))
+        strexec =delivery_fee_strr.replace("@datetime", one_date['date_str'])
+        
+        detail.execute(strexec)
+        print("------------------插入一条--------------------")
     db.commit()
     detail.close()
     db.close()
-
+    print("---------------------插入完毕---------------------")
 
 insert_fee_monthly_detail_info()
