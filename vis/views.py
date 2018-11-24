@@ -746,11 +746,12 @@ def excel_export(request):
     )
     data = db.cursor(MySQLdb.cursors.DictCursor)
     if type=='1':
-        pass
+        print("-----------------导出订单分析文件")
+        
     if type == '2':
-        pass
+        print("-----------------导出金额分析文件")
     if type == '3':
-        pass
+        print("-----------------导出货品分析文件")
 
 
     

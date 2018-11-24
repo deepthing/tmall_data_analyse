@@ -45,7 +45,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="input-group">
+                                    <!-- <div class="input-group">
                                         <span class="input-group-addon" style="width:120px">settlefee</span>
                                         <input type="file" name="file" id="settlefee" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-btn">
@@ -54,117 +54,13 @@
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" onclick="UndoUpload('settlefee')">{%trans "撤回"%}</button>
                                         </span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon" style="width:120px">inventory</span>
-                                        <input type="file" name="file" id="inventory" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('inventory')">{%trans "上传"%}</button>
-                                        </span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('inventory')">{%trans "撤回"%}</button>
-                                        </span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon" style="width:120px">myaccount</span>
-                                        <input type="file" name="file" id="myaccount" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('myaccount')">{%trans "上传"%}</button>
-                                        </span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('myaccount')">{%trans "撤回"%}</button>
-                                        </span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon" style="width:120px">order</span>
-                                        <input type="file" name="file" id="order" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('order')">{%trans "上传"%}</button>
-                                        </span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('order')">{%trans "撤回"%}</button>
-                                        </span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon" style="width:120px">settlebatch</span>
-                                        <input type="file" name="file" id="settlebatch" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settlebatch')">{%trans "上传"%}</button>
-                                        </span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('settlebatch')">{%trans "撤回"%}</button>
-                                        </span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon" style="width:120px">settledetail</span>
-                                        <input type="file" name="file" id="settledetail" class="form-control" multiple="multiple" aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('settledetail')">{%trans "上传"%}</button>
-                                        </span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('settledetail')">{%trans "撤回"%}</button>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" style="width:120px">fee</span>
-                                        <input type="file" name="file" id="fee" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('fee')">{%trans "上传"%}</button>
-                                        </span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('fee')">{%trans "撤回"%}</button>
-                                        </span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon" style="width:120px">strade</span>
-                                        <input type="file" name="file" id="strade" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('strade')">{%trans "上传"%}</button>
-                                        </span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('strade')">{%trans "撤回"%}</button>
-                                        </span>
-                                    </div>
-                                    <div class="input-group">
-                                        <span class="input-group-addon" style="width:120px">tmallsodetails</span>
-                                        <input type="file" name="file" id="tmallsodetails" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('tmallsodetails')">{%trans "上传"%}</button>
-                                        </span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('tmallsodetails')">{%trans "撤回"%}</button>
-                                        </span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon" style="width:120px">tmallso</span>
-                                        <input type="file" name="file" id="tmallso" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('tmallso')">{%trans "上传"%}</button>
-                                        </span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('tmallso')">{%trans "撤回"%}</button>
-                                        </span>
-                                    </div>
-                                    <div class="input-group">
-                                        <span class="input-group-addon" style="width:120px">transaction</span>
-                                        <input type="file" name="file" id="transaction" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="MutiFileUpload('transaction')">{%trans "上传"%}</button>
-                                        </span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="UndoUpload('transaction')">{%trans "撤回"%}</button>
-                                        </span>
-                                    </div>
+                                    </div> -->
+                                    <form action="/file-upload" class="dropzone">
+                                        <div class="fallback">
+                                          <input name="file" type="file" multiple />
+                                        </div>
+                                      </form>
+                                    <div></div>
                                 </div>
                             </div>
                         </div>
